@@ -1,0 +1,1 @@
+{"id":"job_f8a9c82c3d6981ec7e44caac","submission_id":199,"student_id":18,"challenge_id":0,"language":"java","job_type":"NATIVE","code":"\/\/ Save this file exactly as Main.java\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, World!\");\n    }\n}\n\")","custom_input":"2 3","enqueued_at":1787577288}

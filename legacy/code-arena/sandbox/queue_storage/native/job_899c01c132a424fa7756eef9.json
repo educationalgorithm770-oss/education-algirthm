@@ -1,0 +1,1 @@
+{"id":"job_899c01c132a424fa7756eef9","submission_id":278,"student_id":0,"challenge_id":0,"language":"python","job_type":"NATIVE","code":"print('Hello from Python!')\nx = 10\ny = 20\nprint('Sum:', x + y)","custom_input":"","enqueued_at":1787607755}

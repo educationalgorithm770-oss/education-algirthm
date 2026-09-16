@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Education Algorithm</string>
+    <string name="title_activity_main">Education Algorithm</string>
+    <string name="package_name">com.educationalgorithm.lms</string>
+    <string name="custom_url_scheme">com.educationalgorithm.lms</string>
+</resources>

@@ -1,0 +1,1 @@
+{"id":"job_55afb730d0e0b511e639a229","submission_id":108,"student_id":18,"challenge_id":0,"language":"sql","job_type":"NATIVE","code":"SELECT name, department, salary \nFROM users \nWHERE salary > 80000 \nORDER BY salary DESC;","custom_input":"2 3","enqueued_at":1787571771}

@@ -1,0 +1,36 @@
+==================================================================
+NIREEKSHAN LMS — 1-CLICK PRODUCTION DEPLOYMENT GUIDE
+==================================================================
+
+1. DATABASE IMPORT (phpMyAdmin):
+   ----------------------------------------
+   a. Open your Hostinger / cPanel phpMyAdmin.
+   b. Select your database: `u200723621_sQRge`
+   c. Click the "Import" tab at the top.
+   d. Choose the SINGLE file `database.sql` from this package.
+   e. Click "Import" / "Go". All 50 tables, courses, videos, and settings will be installed in 5 seconds!
+
+2. FILE UPLOAD (File Manager):
+   ----------------------------------------
+   a. Open your Hostinger / cPanel "File Manager".
+   b. Navigate to `public_html/`.
+   c. Upload `Nireekshan.zip` and click "Extract".
+   d. Verify that `.env` is present in `public_html/` with your credentials:
+      - DB_HOST=localhost
+      - DB_NAME=u200723621_sQRge
+      - DB_USER=u200723621_Qf7Y9
+      - DB_PASSWORD=Niree@2525
+      - APP_ENV=production
+      - ALLOW_DEV_PAYMENT=false
+
+3. DEFAULT ACCOUNTS & ROLES:
+   ----------------------------------------
+   • Student Portal:    /login.php
+   • Admin Portal:      /admin-login.php (or /admin-dashboard.php)
+   • Instructor Portal: /instructor-login.php (or /instructor-dashboard.php)
+   • Video Engine:      Bunny.net Stream CDN (Library #733405)
+   • Payment Gateway:   Razorpay Live Gateway
+
+==================================================================
+Your website is 100% hardened, tested, and ready for live production!
+==================================================================

@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  # ── Next.js Application ───────────────────────────────────────────────────
+  web:
+    build:
+      context: ./apps/frontend
+      dockerfile: Dockerfile
+    container_name: ea_web_prod
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_NAME=${DB_NAME:-education_production}
+      - DB_USER=${DB_USER:-app_user}
+      - DB_PASSWORD=${DB_PASSWORD:-StrongDatabasePass2026!}
+      - JWT_SECRET=${JWT_SECRET}
+      - NEXT_PUBLIC_APP_URL=${NEXT_PUBLIC_APP_URL:-https://educationalgorithm.com}
+      - RAZORPAY_KEY_ID=${RAZORPAY_KEY_ID}
+      - RAZORPAY_KEY_SECRET=${RAZORPAY_KEY_SECRET}
+      - NEXT_PUBLIC_RAZORPAY_KEY_ID=${NEXT_PUBLIC_RAZORPAY_KEY_ID}
+      - GEMINI_API_KEYS=${GEMINI_API_KEYS}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - ea-network
+
+  # ── MySQL 8 Production Database ──────────────────────────────────────────
+  db:
+    image: mysql:8.0
+    container_name: ea_mysql_prod
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-RootSecurePass2026!}
+      MYSQL_DATABASE: ${DB_NAME:-education_production}
+      MYSQL_USER: ${DB_USER:-app_user}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-StrongDatabasePass2026!}
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./db/init_production.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DB_ROOT_PASSWORD:-RootSecurePass2026!}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - ea-network
+
+networks:
+  ea-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+    driver: local

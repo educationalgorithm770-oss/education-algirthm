@@ -1,0 +1,12 @@
+﻿{
+  "name": "code-arena-web-runner",
+  "version": "2.0.0",
+  "description": "Education Algorithm Code Arena Playwright Web Runner",
+  "main": "playwright-runner.js",
+  "scripts": {
+    "start": "node playwright-runner.js"
+  },
+  "dependencies": {
+    "playwright": "^1.40.0"
+  }
+}

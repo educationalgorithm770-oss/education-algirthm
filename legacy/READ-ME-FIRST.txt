@@ -1,0 +1,33 @@
+UPLOAD THESE TO THE LIVE SITE
+=============================
+
+WHERE: Hostinger hPanel -> Files -> File Manager -> public_html
+HOW:   Upload all 6 .php files, choose OVERWRITE / REPLACE when prompted.
+THEN:  Hard-reload the site with Ctrl+Shift+R before testing.
+
+FILES AND WHAT THEY FIX
+-----------------------
+code-view.php            Code playground buttons were all dead (broken JavaScript).
+admin-content.php        Delete module / video / note / code snippet.
+admin-quiz.php           Delete quiz / question.
+admin-notifications.php  Delete notification.
+instructor-content.php   Same delete fixes, instructor side.
+instructor-quiz.php      Same delete fixes, instructor side.
+
+Do NOT upload this READ-ME-FIRST.txt file.
+
+
+SEPARATE STEP - IMPORTANT SECURITY FIX (edit .env on the server)
+----------------------------------------------------------------
+Your live .env currently has APP_ENV=development. That leaves several
+development-only shortcuts switched ON for real visitors.
+
+In File Manager, open public_html/.env and change these two lines:
+
+    FROM:  APP_ENV=development
+    TO:    APP_ENV=production
+
+    FROM:  ALLOW_DEV_PAYMENT=false
+    TO:    ALLOW_DEV_PAYMENT=false
+
+Save. No file upload needed for this - just edit those two lines.

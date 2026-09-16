@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Education Algorithm — Comprehensive Local Security Audit Report</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    code, pre { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-rose-500 selection:text-white pb-20">
+
+  <!-- Header -->
+  <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-600 to-amber-500 flex items-center justify-center shadow-lg shadow-rose-500/20 font-bold text-white text-lg">
+          🛡️
+        </div>
+        <div>
+          <h1 class="text-xl font-bold text-white tracking-tight flex items-center gap-2">
+            Education Algorithm — Deep Security Audit Report
+            <span class="text-xs px-2.5 py-0.5 rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20 font-mono font-medium">
+              30 Issues Discovered
+            </span>
+          </h1>
+          <p class="text-xs text-slate-400">
+            Local QA & Security Inspection Report (Zero Changes Made to Server)
+          </p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-xs px-3 py-1 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-medium">
+          ● Inspection Status: Complete
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+
+    <!-- KPI Summary Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+      <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center text-slate-300 font-bold text-xl">
+          📊
+        </div>
+        <div>
+          <div class="text-2xl font-black text-white" id="totalCount">30</div>
+          <div class="text-xs text-slate-400 font-medium">Total Vulnerabilities</div>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-2xl bg-rose-950/30 border border-rose-900/40 flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-rose-900/40 flex items-center justify-center text-rose-400 font-bold text-xl">
+          🔥
+        </div>
+        <div>
+          <div class="text-2xl font-black text-rose-400">14</div>
+          <div class="text-xs text-rose-300 font-medium">Critical (P0) Breaches</div>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-2xl bg-amber-950/30 border border-amber-900/40 flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-amber-900/40 flex items-center justify-center text-amber-400 font-bold text-xl">
+          ⚠️
+        </div>
+        <div>
+          <div class="text-2xl font-black text-amber-400">10</div>
+          <div class="text-xs text-amber-300 font-medium">High Priority (P1)</div>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-2xl bg-blue-950/30 border border-blue-900/40 flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-blue-900/40 flex items-center justify-center text-blue-400 font-bold text-xl">
+          ℹ️
+        </div>
+        <div>
+          <div class="text-2xl font-black text-blue-400">6</div>
+          <div class="text-xs text-blue-300 font-medium">Medium / Hygiene (P2)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls Toolbar -->
+    <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 mb-8 flex flex-col md:flex-row gap-4 items-center justify-between">
+      <div class="w-full md:w-80">
+        <input 
+          id="searchInput"
+          type="text" 
+          placeholder="Filter by vulnerability, file or route..." 
+          class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-rose-500 transition-colors"
+          oninput="filterVulnerabilities()"
+        >
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="text-xs text-slate-400 font-medium mr-1">Severity:</span>
+        <button onclick="setSeverity('ALL')" class="sev-btn active px-3 py-1 rounded-lg text-xs font-semibold bg-slate-200 text-slate-900 transition-all" data-sev="ALL">All (30)</button>
+        <button onclick="setSeverity('P0')" class="sev-btn px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-slate-400 hover:text-white transition-all" data-sev="P0">P0 Critical (14)</button>
+        <button onclick="setSeverity('P1')" class="sev-btn px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-slate-400 hover:text-white transition-all" data-sev="P1">P1 High (10)</button>
+        <button onclick="setSeverity('P2')" class="sev-btn px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-slate-400 hover:text-white transition-all" data-sev="P2">P2 Medium (6)</button>
+      </div>
+    </div>
+
+    <!-- Vulnerability Feed Container -->
+    <div id="vulnList" class="space-y-4">
+      <!-- Items dynamically populated via script below -->
+    </div>
+
+  </main>
+
+  <script>
+    const VULNS = [
+      {
+        id: "VULN-001",
+        title: "Admin Faculty Management Account Takeover & Deletion",
+        severity: "P0",
+        category: "Admin Access Control",
+        file: "apps/frontend/src/app/api/admin/instructors/route.ts",
+        endpoints: ["GET /api/admin/instructors", "POST /api/admin/instructors", "PUT /api/admin/instructors", "DELETE /api/admin/instructors"],
+        summary: "All HTTP methods on this route are completely open without any session authentication or admin role verification.",
+        rootCause: "The route handler lacks session extraction (getSessionFromRequest) and does not verify if session.role === 'admin'.",
+        impact: "Anyone can call PUT with an instructor ID to reset their password and take over the account, delete all faculty members, or view instructor personal phone numbers.",
+        remediation: "Wrap GET, POST, PUT, DELETE, and PATCH with strict admin role verification before executing database queries."
+      },
+      {
+        id: "VULN-002",
+        title: "Unauthenticated Forged Certificate Minting",
+        severity: "P0",
+        category: "Payment & Enrollment",
+        file: "apps/frontend/src/app/api/certificates/generate/route.ts",
+        endpoints: ["POST /api/certificates/generate"],
+        summary: "Public endpoint creates genuine cryptographically signed certificates for any arbitrary student and course name.",
+        rootCause: "Accepts studentId, studentName, courseId, and courseName directly from the request body without checking course enrollment or 100% video completion.",
+        impact: "Undermines the credibility of all platform certificates. Anyone can generate official certificates without paying or taking classes.",
+        remediation: "Enforce authenticated student session, verify active paid enrollment in MySQL, and confirm 100% lesson completions before issuing certificate hashes."
+      },
+      {
+        id: "VULN-003",
+        title: "Admin Financial Data Exposure & Rogue Coupon Creation",
+        severity: "P0",
+        category: "Admin Access Control",
+        file: "apps/frontend/src/app/api/admin/finance/route.ts",
+        endpoints: ["GET /api/admin/finance", "POST /api/admin/finance", "PATCH /api/admin/finance"],
+        summary: "Exposes financial revenues and allows unauthenticated creation of 100% discount coupons.",
+        rootCause: "No getSessionFromRequest check on GET, POST, or PATCH.",
+        impact: "Confidential platform revenue, GST breakdown, and transaction logs are publicly visible. Malicious actors can generate 100% discount coupons and get free course access.",
+        remediation: "Enforce admin-only authentication guard on GET, POST, and PATCH."
+      },
+      {
+        id: "VULN-004",
+        title: "Admin Assignment Grading & Submission Data Leak",
+        severity: "P0",
+        category: "Admin Access Control",
+        file: "apps/frontend/src/app/api/admin/assignments/route.ts",
+        endpoints: ["GET /api/admin/assignments", "POST /api/admin/assignments"],
+        summary: "Student assignment submissions are publicly readable, and grades can be changed by anyone.",
+        rootCause: "Missing session authentication and role validation.",
+        impact: "Student source code and assignments are leaked. Anyone can assign themselves 100% marks or change other students' feedback.",
+        remediation: "Restrict GET and POST to verified admin and instructor roles."
+      },
+      {
+        id: "VULN-005",
+        title: "Admin Live Classes Schedule Manipulation & Phishing Risk",
+        severity: "P0",
+        category: "Admin Access Control",
+        file: "apps/frontend/src/app/api/admin/live-classes/route.ts",
+        endpoints: ["GET /api/admin/live-classes", "POST /api/admin/live-classes", "DELETE /api/admin/live-classes"],
+        summary: "Unauthenticated users can delete real live class schedules or inject fake meetings.",
+        rootCause: "No session verification on live class management mutations.",
+        impact: "Disruption of live lectures, deletion of class schedules, and injection of malicious external links into student dashboards.",
+        remediation: "Require admin or instructor authorization on POST and DELETE."
+      },
+      {
+        id: "VULN-006",
+        title: "Admin Webinars Attendee PII Leak & Open Management",
+        severity: "P0",
+        category: "Data Privacy & Exposure",
+        file: "apps/frontend/src/app/api/admin/webinars/route.ts",
+        endpoints: ["GET /api/admin/webinars", "POST /api/admin/webinars", "PUT /api/admin/webinars", "DELETE /api/admin/webinars"],
+        summary: "Exposes student lead personal information (names, emails, phone numbers) and allows open webinar manipulation.",
+        rootCause: "No admin session validation on GET, POST, PUT, or DELETE.",
+        impact: "Direct breach of attendee data privacy (phone numbers and emails). Allows unauthenticated deletion and editing of webinars.",
+        remediation: "Add admin session checks to protect attendee lead details and webinar modification routes."
+      },
+      {
+        id: "VULN-007",
+        title: "Admin Support Ticket Spoofing & Communication Tampering",
+        severity: "P0",
+        category: "Admin Access Control",
+        file: "apps/frontend/src/app/api/admin/support/route.ts",
+        endpoints: ["GET /api/admin/support", "PATCH /api/admin/support"],
+        summary: "Anyone can read student complaints and reply masquerading as system administrators.",
+        rootCause: "Lacks session authentication on support messages.",
+        impact: "Confidential student inquiries are exposed, and attackers can send unauthorized communications to users as the support team.",
+        remediation: "Guard support routes with admin authorization."
+      },
+      {
+        id: "VULN-008",
+        title: "Admin Global Notifications Broadcast Spoofing",
+        severity: "P0",
+        category: "Admin Access Control",
+        file: "apps/frontend/src/app/api/admin/notifications/route.ts",
+        endpoints: ["POST /api/admin/notifications"],
+        summary: "Public endpoint allows broadcasting system-wide announcements to all students.",
+        rootCause: "No session verification on notification insertion.",
+        impact: "Spam, defacement, or phishing announcements can be broadcast across all student dashboards.",
+        remediation: "Require admin authentication before inserting into notifications table."
+      },
+      {
+        id: "VULN-009",
+        title: "Admin Scholarships PII Exposure & Unapproved Granting",
+        severity: "P0",
+        category: "Payment & Enrollment",
+        file: "apps/frontend/src/app/api/admin/scholarships/route.ts",
+        endpoints: ["GET /api/admin/scholarships", "PATCH /api/admin/scholarships"],
+        summary: "Exposes scholarship applicant phone numbers and allows setting scholarship status to APPROVED without admin verification.",
+        rootCause: "Missing session check on GET and PATCH.",
+        impact: "PII leakage and unauthorized price discounts granted to unapproved accounts.",
+        remediation: "Enforce admin role checks on all scholarship routes."
+      },
+      {
+        id: "VULN-010",
+        title: "Database System Telemetry & Schema Discovery",
+        severity: "P0",
+        category: "Data Privacy & Exposure",
+        file: "apps/frontend/src/app/api/admin/system/route.ts",
+        endpoints: ["GET /api/admin/system"],
+        summary: "Exposes database structure, table sizes, row counts, and admin audit logs to the public.",
+        rootCause: "Direct query execution against information_schema without authentication.",
+        impact: "Reconnaissance advantage for attackers discovering internal table structures and admin IPs.",
+        remediation: "Protect with admin role verification."
+      },
+      {
+        id: "VULN-011",
+        title: "Batch Course Modules Injection",
+        severity: "P0",
+        category: "Admin Access Control",
+        file: "apps/frontend/src/app/api/admin/courses/[id]/batch-modules/route.ts",
+        endpoints: ["POST /api/admin/courses/[id]/batch-modules"],
+        summary: "Allows unauthenticated insertion of curriculum modules into any course.",
+        rootCause: "No session verification on batch module insertion.",
+        impact: "Corrupts curriculum data and inserts unauthorized content into published courses.",
+        remediation: "Require admin authentication before inserting modules."
+      },
+      {
+        id: "VULN-012",
+        title: "Free Paid Enrollment Bypass Route",
+        severity: "P0",
+        category: "Payment & Enrollment",
+        file: "apps/frontend/src/app/api/enroll/route.ts",
+        endpoints: ["POST /api/enroll"],
+        summary: "Directly provisions active paid enrollments without Razorpay payment signature validation.",
+        rootCause: "Legacy endpoint marks enrollments as paid immediately upon receiving a student email.",
+        impact: "Users can enroll into ₹18,000+ courses for free by hitting this endpoint.",
+        remediation: "Lock down or delete legacy route; require cryptographic payment verification (/api/enrollment/payment/verify)."
+      },
+      {
+        id: "VULN-013",
+        title: "Project Targets Schedule Manipulation",
+        severity: "P0",
+        category: "Admin Access Control",
+        file: "apps/frontend/src/app/api/projects/targets/route.ts",
+        endpoints: ["POST /api/projects/targets", "PUT /api/projects/targets", "DELETE /api/projects/targets"],
+        summary: "Unauthenticated users can add, modify, or delete 16-week cohort project specifications.",
+        rootCause: "Missing session checks in POST, PUT, and DELETE methods.",
+        impact: "Curriculum targets can be wiped or modified, disrupting student learning paths.",
+        remediation: "Require admin authorization for creating, editing, or deleting cohort targets."
+      },
+      {
+        id: "VULN-014",
+        title: "Project Submission Review & Student Self-Grading",
+        severity: "P0",
+        category: "Admin Access Control",
+        file: "apps/frontend/src/app/api/projects/review/route.ts",
+        endpoints: ["GET /api/projects/review", "POST /api/projects/review"],
+        summary: "GET leaks all student project reviews; POST allows students to grade themselves 100/100.",
+        rootCause: "POST extracts session but does not check if session.role is instructor or admin.",
+        impact: "Students can mark their own project submissions as APPROVED and award themselves 500 XP.",
+        remediation: "Restrict GET and POST to instructor and admin roles."
+      },
+      {
+        id: "VULN-015",
+        title: "Dev Mode Bypass on Bunny.net CDN Video Deletions",
+        severity: "P1",
+        category: "Admin Access Control",
+        file: "apps/frontend/src/app/api/videos/[id]/route.ts",
+        endpoints: ["DELETE /api/videos/[id]"],
+        summary: "Checks if NODE_ENV !== 'production' and skips authentication checks, allowing unauthenticated video purging.",
+        rootCause: "Flawed conditional logic: if (!session?.role && !isDev)",
+        impact: "If NODE_ENV is unset or in staging, anyone can delete videos from Bunny.net CDN storage.",
+        remediation: "Remove the dev mode bypass and strictly enforce admin authentication in all environments."
+      },
+      {
+        id: "VULN-016",
+        title: "Dev Mode Bypass on Course Deletions & Price Updates",
+        severity: "P1",
+        category: "Admin Access Control",
+        file: "apps/frontend/src/app/api/courses/[id]/route.ts",
+        endpoints: ["PATCH /api/courses/[id]", "DELETE /api/courses/[id]"],
+        summary: "Course prices can be updated or deleted without credentials when not in strict production mode.",
+        rootCause: "Insecure isDev exemption in route authorization guard.",
+        impact: "Courses can be deleted or prices changed to ₹0 by unauthenticated callers in development/staging.",
+        remediation: "Enforce strict admin verification unconditionally."
+      },
+      {
+        id: "VULN-017",
+        title: "Dev Mode Bypass on Course Module Creation",
+        severity: "P1",
+        category: "Admin Access Control",
+        file: "apps/frontend/src/app/api/courses/[id]/modules/route.ts",
+        endpoints: ["POST /api/courses/[id]/modules"],
+        summary: "Modules can be injected into any course without authentication when isDev is active.",
+        rootCause: "Presence of isDev bypass logic in module creation endpoint.",
+        impact: "Arbitrary module injection into existing course structures.",
+        remediation: "Require admin session checks unconditionally."
+      },
+      {
+        id: "VULN-018",
+        title: "Public AI Resume Engine Quota Draining",
+        severity: "P1",
+        category: "AI & Resource Quotas",
+        file: "apps/frontend/src/app/api/ai/resume/route.ts",
+        endpoints: ["POST /api/ai/resume"],
+        summary: "9 heavy generative AI features (ATS audits, cover letter generation, full resume prompt builder) lack session checks.",
+        rootCause: "No user session extraction or rate limiting on expensive Gemini API calls.",
+        impact: "Bots can exhaust your Google Gemini API token quota and cause financial charges.",
+        remediation: "Require authenticated student login and apply a per-user rate limit (e.g. 10 resume AI requests/day)."
+      },
+      {
+        id: "VULN-019",
+        title: "Unmetered AI Code Coach Access",
+        severity: "P1",
+        category: "AI & Resource Quotas",
+        file: "apps/frontend/src/app/api/ai/code-coach/route.ts",
+        endpoints: ["POST /api/ai/code-coach"],
+        summary: "AI code hints and debugging endpoints are accessible without login or quota restrictions.",
+        rootCause: "Lacks user identification and per-student quota enforcement.",
+        impact: "API rate limits and Gemini quotas can be exhausted by external traffic.",
+        remediation: "Require authenticated student session and limit to 20 hints/hour."
+      },
+      {
+        id: "VULN-020",
+        title: "Unauthenticated Curriculum AI Syllabus Parsing",
+        severity: "P1",
+        category: "AI & Resource Quotas",
+        file: "apps/frontend/src/app/api/admin/courses/parse-syllabus/route.ts",
+        endpoints: ["POST /api/admin/courses/parse-syllabus"],
+        summary: "Large PDF and text syllabus parsing with Gemini AI is publicly open without admin login.",
+        rootCause: "No session verification on curriculum parsing endpoint.",
+        impact: "Heavy PDF processing and high Gemini token consumption triggered by unauthenticated callers.",
+        remediation: "Require admin authentication."
+      },
+      {
+        id: "VULN-021",
+        title: "Mock Interview Booking Spoofing & Flooding",
+        severity: "P1",
+        category: "Data Privacy & Exposure",
+        file: "apps/frontend/src/app/api/mock-interviews/book/route.ts",
+        endpoints: ["POST /api/mock-interviews/book"],
+        summary: "Accepts arbitrary studentEmail in request body without checking authentication.",
+        rootCause: "const studentEmail = session?.email || body.studentEmail || fallback;",
+        impact: "Interview slots can be flooded, and attackers can schedule interviews under other students' identities.",
+        remediation: "Require active student session and bind email strictly to session.email."
+      },
+      {
+        id: "VULN-022",
+        title: "Admin & Instructor Login Plaintext Fallback",
+        severity: "P1",
+        category: "Authentication & OTP",
+        file: "apps/frontend/src/app/api/auth/admin-login/route.ts & instructor-login/route.ts",
+        endpoints: ["POST /api/auth/admin-login", "POST /api/auth/instructor-login"],
+        summary: "Both routes retain plaintext password fallback comparisons.",
+        rootCause: "if (!isValid && password === admin.password) isValid = true;",
+        impact: "Allows unhashed passwords to authenticate rather than strictly enforcing BCrypt verification.",
+        remediation: "Remove plaintext fallback and enforce strict bcrypt.compare()."
+      },
+      {
+        id: "VULN-023",
+        title: "Insecure OTP Generation & Plaintext Storage",
+        severity: "P1",
+        category: "Authentication & OTP",
+        file: "apps/frontend/src/app/api/auth/forgot-password/route.ts",
+        endpoints: ["POST /api/auth/forgot-password"],
+        summary: "OTPs generated via Math.random(), stored in plain text, and 404 response enables user enumeration.",
+        rootCause: "Uses non-cryptographic RNG and inserts raw OTP into password_resets.token.",
+        impact: "Predictable OTPs, database breach exposes all active OTPs, and user email enumeration.",
+        remediation: "Use crypto.randomInt(100000, 999999), store SHA-256 hash of OTP, and return generic 200 response."
+      },
+      {
+        id: "VULN-024",
+        title: "Interactive Code Arena PTY Host Process Execution",
+        severity: "P1",
+        category: "Remote Code Execution",
+        file: "apps/frontend/src/lib/sandbox/interactiveSessionManager.ts",
+        endpoints: ["PTY / Code Arena Interactive Session"],
+        summary: "Interactive terminal sessions spawn javac, g++, and python processes directly on the host OS.",
+        rootCause: "Uses child_process.spawn directly on host rather than inside isolated Docker container.",
+        impact: "Untrusted user code executes directly on the server operating system.",
+        remediation: "Route interactive PTY sessions through isolated Docker sandbox containers with CPU/memory limits."
+      },
+      {
+        id: "VULN-025",
+        title: "Public Job Scraper Trigger & Referral Data Leak",
+        severity: "P1",
+        category: "Data Privacy & Exposure",
+        file: "apps/frontend/src/app/api/jobs/sync/route.ts & referrals/route.ts",
+        endpoints: ["POST /api/jobs/sync", "GET /api/jobs/referrals", "PATCH /api/jobs/referrals"],
+        summary: "Scraper can be triggered openly; candidate resumes and contact details are publicly exposed.",
+        rootCause: "Missing admin session validation.",
+        impact: "Resource exhaustion via scraper spam and student resume/PII exposure.",
+        remediation: "Protect both routes with admin session authorization."
+      },
+      {
+        id: "VULN-026",
+        title: "Ghost Certificate Fallback on Course Progress",
+        severity: "P1",
+        category: "Payment & Enrollment",
+        file: "apps/frontend/src/app/api/student/certificates/route.ts",
+        endpoints: ["GET /api/student/certificates"],
+        summary: "Falls back to courses LIMIT 1 if student has no enrollments, issuing certificates upon completing free lessons.",
+        rootCause: "Fallback query selects default course if enrollments array is empty.",
+        impact: "Non-enrolled users can obtain official verified certificates.",
+        remediation: "Remove the fallback and only issue certificates for courses with active paid enrollment status."
+      },
+      {
+        id: "VULN-027",
+        title: "Project Submission Email Spoofing",
+        severity: "P1",
+        category: "Data Privacy & Exposure",
+        file: "apps/frontend/src/app/api/projects/submit/route.ts",
+        endpoints: ["POST /api/projects/submit"],
+        summary: "Trusts studentEmail in the request body instead of taking it securely from the JWT session.",
+        rootCause: "effectiveEmail = studentEmail || 'student@education-algorithm.com';",
+        impact: "Students can submit projects and trigger evaluations under other students' accounts.",
+        remediation: "Extract email and studentId directly from the verified JWT session."
+      },
+      {
+        id: "VULN-028",
+        title: "Hardcoded Fallback JWT Secret in Production",
+        severity: "P1",
+        category: "Authentication & OTP",
+        file: "apps/frontend/src/lib/auth.ts",
+        endpoints: ["JWT Signing & Verification"],
+        summary: "Falls back to ea_dev_secret_change_in_production_2026 if JWT_SECRET environment variable is missing.",
+        rootCause: "process.env.JWT_SECRET ?? 'ea_dev_secret_change_in_production_2026'",
+        impact: "If the environment variable fails to load, attackers can forge valid JWT tokens for any admin or student.",
+        remediation: "Throw an error on startup if JWT_SECRET is not configured in production."
+      },
+      {
+        id: "VULN-029",
+        title: "CRM Lead Table Flooding via Public AI Chat",
+        severity: "P2",
+        category: "AI & Resource Quotas",
+        file: "apps/frontend/src/app/api/ai/public-chat/route.ts",
+        endpoints: ["POST /api/ai/public-chat"],
+        summary: "Inserts leadData into crm_leads without CAPTCHA, verification, or IP rate limiting.",
+        rootCause: "Unrestricted database insert on public chatbot endpoint.",
+        impact: "Spam bots can flood the CRM leads table with millions of junk records.",
+        remediation: "Implement Cloudflare Turnstile CAPTCHA and IP-based rate limiting."
+      },
+      {
+        id: "VULN-030",
+        title: "Missing Password Reset Attempt Throttling",
+        severity: "P2",
+        category: "Authentication & OTP",
+        file: "apps/frontend/src/app/api/auth/forgot-password/route.ts",
+        endpoints: ["POST /api/auth/forgot-password (reset-password)"],
+        summary: "No limit on failed OTP validation attempts before token is invalidated.",
+        rootCause: "Does not track failed attempts in password_resets table.",
+        impact: "Increases exposure to automated 6-digit OTP guessing attacks.",
+        remediation: "Lock out and delete reset token after 5 failed attempts."
+      }
+    ];
+
+    let currentSeverity = 'ALL';
+
+    function renderVulnerabilities(items) {
+      const container = document.getElementById('vulnList');
+      if (items.length === 0) {
+        container.innerHTML = `<div class="p-8 text-center text-slate-500 rounded-2xl bg-slate-900 border border-slate-800">No matching vulnerabilities found.</div>`;
+        return;
+      }
+
+      container.innerHTML = items.map(item => {
+        const isP0 = item.severity === 'P0';
+        const isP1 = item.severity === 'P1';
+
+        const badgeClass = isP0 
+          ? 'bg-rose-500/10 text-rose-400 border border-rose-500/20'
+          : isP1 
+          ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
+          : 'bg-blue-500/10 text-blue-400 border border-blue-500/20';
+
+        const borderClass = isP0 
+          ? 'hover:border-rose-500/40' 
+          : isP1 
+          ? 'hover:border-amber-500/40' 
+          : 'hover:border-blue-500/40';
+
+        return `
+          <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 ${borderClass} transition-all">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-1 rounded-md text-xs font-black tracking-wider ${badgeClass}">
+                  ${item.severity}
+                </span>
+                <span class="text-xs font-mono text-slate-500">${item.id}</span>
+                <span class="text-xs px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-medium">${item.category}</span>
+              </div>
+              <span class="text-xs font-mono text-slate-400 bg-slate-950 px-2.5 py-1 rounded border border-slate-800">
+                ${item.file}
+              </span>
+            </div>
+
+            <h3 class="text-base font-bold text-white mb-2">${item.title}</h3>
+            <p class="text-xs text-slate-300 mb-4 leading-relaxed">${item.summary}</p>
+
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              ${item.endpoints.map(ep => `<span class="text-xs font-mono px-2 py-0.5 rounded bg-slate-950 border border-slate-800 text-emerald-400">${ep}</span>`).join('')}
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-3 border-t border-slate-800/80 text-xs">
+              <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800">
+                <div class="font-bold text-rose-400 mb-1">Root Cause</div>
+                <div class="text-slate-400">${item.rootCause}</div>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800">
+                <div class="font-bold text-amber-400 mb-1">Security Impact</div>
+                <div class="text-slate-400">${item.impact}</div>
+              </div>
+            </div>
+
+            <div class="mt-3 p-3 rounded-xl bg-emerald-950/20 border border-emerald-900/30 text-xs text-emerald-300">
+              <span class="font-bold text-emerald-400">🛡️ Recommended Fix:</span> ${item.remediation}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function setSeverity(sev) {
+      currentSeverity = sev;
+      document.querySelectorAll('.sev-btn').forEach(btn => {
+        if (btn.dataset.sev === sev) {
+          btn.className = 'sev-btn active px-3 py-1 rounded-lg text-xs font-semibold bg-slate-200 text-slate-900 shadow-sm transition-all';
+        } else {
+          btn.className = 'sev-btn px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-slate-400 hover:text-white transition-all';
+        }
+      });
+      filterVulnerabilities();
+    }
+
+    function filterVulnerabilities() {
+      const q = document.getElementById('searchInput').value.toLowerCase();
+      const filtered = VULNS.filter(item => {
+        const matchSev = currentSeverity === 'ALL' || item.severity === currentSeverity;
+        const matchQuery = 
+          item.title.toLowerCase().includes(q) ||
+          item.file.toLowerCase().includes(q) ||
+          item.summary.toLowerCase().includes(q) ||
+          item.endpoints.some(e => e.toLowerCase().includes(q));
+        return matchSev && matchQuery;
+      });
+      renderVulnerabilities(filtered);
+    }
+
+    // Initialize
+    renderVulnerabilities(VULNS);
+  </script>
+</body>
+</html>

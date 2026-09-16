@@ -1,0 +1,1 @@
+{"id":"job_3e2e7e3f6b0b27b76305f7a7","submission_id":55,"student_id":0,"challenge_id":0,"language":"python","job_type":"NATIVE","code":"a = 25\nb = 75\nprint(f'Calculated Sum: {a + b}')","custom_input":"","enqueued_at":1787569672}

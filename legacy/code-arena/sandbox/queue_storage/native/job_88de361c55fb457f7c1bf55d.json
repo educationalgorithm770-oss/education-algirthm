@@ -1,0 +1,1 @@
+{"id":"job_88de361c55fb457f7c1bf55d","submission_id":191,"student_id":0,"challenge_id":0,"language":"javascript","job_type":"NATIVE","code":"const arr = [1, 2, 3, 4, 5];\nconst doubled = arr.map(x => x * 2);\nconsole.log('Doubled Array:', doubled.join(', '));","custom_input":"","enqueued_at":1787576884}

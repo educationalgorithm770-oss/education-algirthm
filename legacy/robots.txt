@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+Allow: /about
+Allow: /courses
+Allow: /outcomes
+Allow: /internships
+Allow: /contact
+Allow: /terms
+Allow: /privacy-policy
+Allow: /refund-policy
+Allow: /shipping-policy
+
+# Protect internal portal and APIs from indexing
+Disallow: /admin-*.php
+Disallow: /instructor-*.php
+Disallow: /dashboard.php
+Disallow: /watch.php
+Disallow: /quiz.php
+Disallow: /assignment.php
+Disallow: /profile.php
+Disallow: /notifications.php
+Disallow: /payment-history.php
+Disallow: /api-*.php
+
+Sitemap: https://educationalgorithm.com/sitemap.xml

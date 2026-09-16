@@ -1,0 +1,21 @@
+Options -Indexes
+<FilesMatch "\.(php|phtml|php3|php4|php5|phps|cgi|pl|py|sh|txt)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# Course content (videos, notes) must never be served directly.
+# Access is only allowed through stream-video.php / stream-note.php,
+# which check login + course enrollment before releasing the file.
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+</IfModule>

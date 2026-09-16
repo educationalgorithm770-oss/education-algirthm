@@ -1,0 +1,1182 @@
+/* ==========================================================================
+   Education Algorithm — Java Full Stack Workshop Master Theme
+   Scoped strictly under .jfw-workshop to protect existing site styles.
+   ========================================================================== */
+
+.jfw-workshop {
+    --jfw-bg: #040712;
+    --jfw-bg-alt: #080d1a;
+    --jfw-surface: #0e172e;
+    --jfw-surface-hover: #152244;
+    --jfw-border: rgba(255, 255, 255, 0.08);
+    --jfw-border-glow: rgba(99, 102, 241, 0.35);
+    --jfw-text: #f8fafc;
+    --jfw-text-muted: #94a3b8;
+    --jfw-text-subtle: #64748b;
+    --jfw-primary: #6366f1;
+    --jfw-primary-hover: #4f46e5;
+    --jfw-accent-cyan: #38bdf8;
+    --jfw-accent-purple: #818cf8;
+    --jfw-accent-emerald: #34d399;
+    --jfw-accent-amber: #f59e0b;
+    --jfw-radius-sm: 6px;
+    --jfw-radius-md: 10px;
+    --jfw-radius-lg: 16px;
+    --jfw-radius-xl: 24px;
+    --jfw-font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --jfw-font-heading: "Plus Jakarta Sans", var(--jfw-font-main);
+    --jfw-font-mono: "Fira Code", "JetBrains Mono", Consolas, monospace;
+
+    background-color: var(--jfw-bg);
+    color: var(--jfw-text);
+    font-family: var(--jfw-font-main);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+.jfw-workshop * {
+    box-sizing: border-box;
+}
+
+/* TYPOGRAPHY & GRADIENTS */
+.jfw-workshop .jfw-heading {
+    font-family: var(--jfw-font-heading);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.jfw-workshop .jfw-mono {
+    font-family: var(--jfw-font-mono);
+}
+
+.jfw-workshop .jfw-gradient-accent {
+    background: linear-gradient(135deg, var(--jfw-accent-cyan) 0%, var(--jfw-primary) 50%, var(--jfw-accent-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* LAYOUT CONTAINER */
+.jfw-container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* PERFECT GLOBAL HEADER & NAVBAR ALIGNMENT */
+.jfw-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(4, 7, 18, 0.88);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--jfw-border);
+    transition: background 0.3s ease;
+}
+
+.jfw-header.scrolled {
+    background: rgba(4, 7, 18, 0.96);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.jfw-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+    gap: 1rem;
+}
+
+/* BRAND LOGO LOCKUP */
+.jfw-brand-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    text-decoration: none;
+    color: var(--jfw-text);
+    font-family: var(--jfw-font-heading);
+    font-weight: 800;
+    font-size: 1.15rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.jfw-brand-logo .ea-logo {
+    color: var(--jfw-primary);
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
+.jfw-brand-badge {
+    font-size: 0.7rem;
+    padding: 0.18rem 0.6rem;
+    background: rgba(99, 102, 241, 0.12);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    color: var(--jfw-accent-purple);
+    border-radius: 9999px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* NAVBAR LINKS (CONTAINED HORIZONTAL SCROLL BOX) */
+.jfw-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0.35rem 0.6rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    max-width: 100%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--jfw-border);
+    border-radius: 30px;
+}
+
+.jfw-nav-links::-webkit-scrollbar {
+    display: none;
+}
+
+.jfw-nav-link {
+    color: var(--jfw-text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+    padding: 0.25rem 0.5rem;
+    border-radius: 20px;
+}
+
+.jfw-nav-link:hover,
+.jfw-nav-link.active {
+    color: #ffffff;
+    background: rgba(99, 102, 241, 0.2);
+}
+
+/* CONCEPT TASKBAR / TABS ALIGNMENT (CONTAINED SCROLL BOX) */
+.jfw-concept-taskbar {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 0.25rem 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.jfw-concept-taskbar::-webkit-scrollbar {
+    display: none;
+}
+
+
+.jfw-concept-tab {
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 0.55rem 1.05rem;
+    font-size: 0.86rem;
+    font-weight: 600;
+    border-radius: var(--jfw-radius-md);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--jfw-text-muted);
+    border: 1px solid var(--jfw-border);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.jfw-concept-tab:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--jfw-text);
+}
+
+.jfw-concept-tab.active {
+    background: var(--jfw-primary);
+    border-color: var(--jfw-primary);
+    color: #ffffff;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+}
+
+/* ADVANCED CPU MEMORY INSPECTOR */
+.jfw-cpu-memory {
+    background: #040712;
+    border: 1px solid var(--jfw-border);
+    border-radius: var(--jfw-radius-md);
+    padding: 1.25rem;
+    margin-top: 1rem;
+}
+
+.jfw-memory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+.jfw-memory-slot {
+    background: rgba(14, 23, 46, 0.9);
+    border: 1px dashed var(--jfw-border-glow);
+    border-radius: 8px;
+    padding: 0.75rem;
+    font-family: var(--jfw-font-mono);
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.jfw-memory-slot.updated {
+    border-color: var(--jfw-accent-emerald);
+    background: rgba(52, 211, 153, 0.1);
+    box-shadow: 0 0 15px rgba(52, 211, 153, 0.2);
+}
+
+/* DUAL PANE PROFILE BUILDER PREVIEW */
+.jfw-dual-pane {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.jfw-live-terminal {
+    background: #040712;
+    border: 1px solid var(--jfw-border);
+    border-radius: var(--jfw-radius-md);
+    padding: 1.25rem;
+    font-family: var(--jfw-font-mono);
+    font-size: 0.86rem;
+    color: #a5b4fc;
+    line-height: 1.7;
+    white-space: pre-wrap;
+}
+
+/* BEGINNER BUG TROUBLESHOOTING MATRIX */
+.jfw-bug-card {
+    background: var(--jfw-surface);
+    border: 1px solid var(--jfw-border);
+    border-radius: var(--jfw-radius-md);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    transition: all 0.2s ease;
+}
+
+.jfw-bug-card:hover {
+    border-color: var(--jfw-border-glow);
+}
+
+/* MICRO CHALLENGE QUIZ PILLS */
+.jfw-quiz-box {
+    background: rgba(14, 23, 46, 0.95);
+    border: 1px solid var(--jfw-border-glow);
+    border-radius: var(--jfw-radius-lg);
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+.jfw-quiz-option {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 0.6rem 1rem;
+    margin-top: 0.5rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--jfw-border);
+    border-radius: var(--jfw-radius-md);
+    color: var(--jfw-text);
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.jfw-quiz-option:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.jfw-quiz-option.correct {
+    background: rgba(16, 185, 129, 0.2);
+    border-color: #34d399;
+    color: #34d399;
+    font-weight: 700;
+}
+
+.jfw-quiz-option.wrong {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: #f87171;
+    color: #f87171;
+}
+
+/* KEYWORD TOOLTIP CHIPS */
+.jfw-kw-chip {
+    display: inline-block;
+    background: rgba(99, 102, 241, 0.15);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    color: var(--jfw-accent-cyan);
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    font-family: var(--jfw-font-mono);
+    font-size: 0.85rem;
+    cursor: help;
+    position: relative;
+}
+
+/* CSS BEFORE / AFTER DRAGGABLE SLIDER STYLING */
+.jfw-ba-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 860px;
+    height: 280px;
+    margin: 0 auto 1.5rem auto;
+    border-radius: var(--jfw-radius-xl);
+    overflow: hidden;
+    border: 1px solid var(--jfw-border-glow);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    background: #ffffff;
+}
+
+.jfw-ba-before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    color: #000000;
+    padding: 2.5rem;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+.jfw-ba-after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    overflow: hidden;
+    border-right: 3px solid var(--jfw-accent-cyan);
+    box-shadow: 5px 0 25px rgba(0, 0, 0, 0.6);
+    background: #0e172e;
+    transition: width 0.05s linear;
+}
+
+.jfw-ba-after-inner {
+    width: 860px;
+    height: 100%;
+    padding: 2.5rem;
+    background: #0e172e;
+    color: #ffffff;
+    font-family: var(--jfw-font-main);
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+/* THEME Visualizer Presets */
+.jfw-ba-after-inner.theme-cyberpunk {
+    background: linear-gradient(135deg, #090014 0%, #190033 100%);
+    border: 1px solid #f0abfc;
+}
+
+.jfw-ba-after-inner.theme-minimal {
+    background: #18181b;
+    color: #f4f4f5;
+    border: 1px solid #3f3f46;
+}
+
+/* CUSTOM SLIDER INPUT */
+.jfw-ba-slider-container {
+    max-width: 860px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#jfwBaSlider {
+    width: 100%;
+    max-width: 760px;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 8px;
+    background: linear-gradient(90deg, var(--jfw-primary), var(--jfw-accent-cyan));
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+}
+
+#jfwBaSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 3px solid var(--jfw-primary);
+    box-shadow: 0 0 14px rgba(99, 102, 241, 0.9);
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+#jfwBaSlider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+/* 8-STEP FULL STACK HIGHWAY SIMULATOR */
+.jfw-flow-step-box {
+    background: #040712;
+    padding: 1.25rem;
+    border-radius: 8px;
+    border: 1px solid var(--jfw-border);
+    font-size: 0.82rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.jfw-flow-step-box.active {
+    border-color: var(--jfw-accent-cyan);
+    background: rgba(56, 189, 248, 0.1);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+    transform: translateY(-2px);
+}
+
+.jfw-node-drawer {
+    background: #040712;
+    border: 1px solid var(--jfw-border-glow);
+    border-radius: var(--jfw-radius-lg);
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    display: none;
+}
+
+/* FLOATING PROGRESS BAR */
+.jfw-floating-progress {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 99;
+    background: rgba(14, 23, 46, 0.92);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--jfw-border-glow);
+    border-radius: var(--jfw-radius-xl);
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+
+.jfw-progress-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--jfw-text-muted);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.jfw-progress-pill.active {
+    background: var(--jfw-primary);
+    color: #ffffff;
+}
+
+.jfw-progress-pill.done {
+    background: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+}
+
+.jfw-progress-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+/* BUTTON SYSTEM (CLEAN 2D SAAS DESIGN) */
+.jfw-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: var(--jfw-font-heading);
+    font-weight: 700;
+    border-radius: var(--jfw-radius-md);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.jfw-btn-primary {
+    background: var(--jfw-primary);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+}
+
+.jfw-btn-primary:hover {
+    background: var(--jfw-primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
+}
+
+.jfw-btn-secondary {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--jfw-text);
+    border: 1px solid var(--jfw-border);
+}
+
+.jfw-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.jfw-btn-large {
+    padding: 0.95rem 1.85rem;
+    font-size: 1rem;
+}
+
+.jfw-btn-micro {
+    padding: 0.4rem 0.85rem;
+    font-size: 0.82rem;
+    border-radius: var(--jfw-radius-sm);
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--jfw-text);
+    border: 1px solid var(--jfw-border);
+    cursor: pointer;
+}
+
+.jfw-btn-micro:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.jfw-btn-micro.active {
+    background: var(--jfw-primary);
+    border-color: var(--jfw-primary);
+    color: #ffffff;
+}
+
+/* HERO SECTION & 3D BOOKEND VISUALS */
+.jfw-hero {
+    padding: 5rem 0 4rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.jfw-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.jfw-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.85rem;
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid var(--jfw-border-glow);
+    border-radius: var(--jfw-radius-xl);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--jfw-accent-cyan);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.jfw-hero-title {
+    font-family: var(--jfw-font-heading);
+    font-size: 3.2rem;
+    line-height: 1.1;
+    font-weight: 800;
+    margin: 1.25rem 0;
+    letter-spacing: -0.03em;
+}
+
+.jfw-hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--jfw-text-muted);
+    margin-bottom: 2.25rem;
+    line-height: 1.6;
+}
+
+/* 3D PERSPECTIVE CONTAINER */
+.jfw-hero-3d-scene,
+.jfw-ending-3d-scene {
+    perspective: 1000px;
+}
+
+.jfw-hero-3d-canvas,
+.jfw-ending-3d-canvas {
+    transform-style: preserve-3d;
+    transition: transform 0.4s ease-out;
+    background: var(--jfw-surface);
+    border: 1px solid var(--jfw-border-glow);
+    border-radius: var(--jfw-radius-xl);
+    padding: 1.75rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+/* SECTIONS & HEADINGS */
+.jfw-section {
+    padding: 4.5rem 0;
+    position: relative;
+}
+
+.jfw-section-header {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 3rem auto;
+}
+
+.jfw-section-title {
+    font-family: var(--jfw-font-heading);
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin: 0.75rem 0 0.5rem 0;
+    letter-spacing: -0.02em;
+}
+
+.jfw-section-desc {
+    font-size: 1.05rem;
+    color: var(--jfw-text-muted);
+}
+
+/* CARDS & EXPANDABLES */
+.jfw-card {
+    background: var(--jfw-surface);
+    border: 1px solid var(--jfw-border);
+    border-radius: var(--jfw-radius-lg);
+    padding: 1.75rem;
+    transition: all 0.25s ease;
+}
+
+.jfw-card:hover {
+    border-color: var(--jfw-border-glow);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* FAQ ACCORDION */
+.jfw-faq-item {
+    border-bottom: 1px solid var(--jfw-border);
+    padding: 1.25rem 0;
+}
+
+.jfw-faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.05rem;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.jfw-faq-answer {
+    display: none;
+    margin-top: 0.75rem;
+    color: var(--jfw-text-muted);
+    font-size: 0.95rem;
+}
+
+/* STICKY MOBILE BOTTOM CTA */
+.jfw-mobile-cta {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 101;
+    background: rgba(4, 7, 18, 0.95);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid var(--jfw-border);
+    padding: 0.85rem 1.25rem;
+}
+
+/* RESPONSIVE MEDIA QUERIES */
+@media (max-width: 1024px) {
+    .jfw-nav-links {
+        gap: 0.85rem;
+    }
+    .jfw-nav-link {
+        font-size: 0.82rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .jfw-hero-grid {
+        grid-template-columns: 1fr;
+    }
+    .jfw-hero-title {
+        font-size: 2.5rem;
+    }
+    .jfw-dual-pane {
+        grid-template-columns: 1fr;
+    }
+    .jfw-ba-after-inner {
+        width: 100%;
+    }
+}
+
+@media (max-width: 860px) {
+    .jfw-nav-links {
+        display: none;
+    }
+    .jfw-mobile-cta {
+        display: block;
+    }
+    .jfw-floating-progress {
+        bottom: 4.5rem;
+        right: 1rem;
+    }
+}
+
+/* PASSCODE LOCK OVERLAY SYSTEM */
+body.jfw-locked-body {
+    overflow: hidden !important;
+    height: 100vh !important;
+}
+
+body.jfw-locked-body .jfw-header,
+body.jfw-locked-body .jfw-floating-progress,
+body.jfw-locked-body .jfw-hero,
+body.jfw-locked-body .jfw-section,
+body.jfw-locked-body .jfw-mobile-cta,
+body.jfw-locked-body footer {
+    display: none !important;
+}
+
+.jfw-lock-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99999;
+    background: #040712;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.jfw-lock-card {
+    background: linear-gradient(135deg, #0e172e 0%, #1e1b4b 100%);
+    border: 1px solid var(--jfw-border-glow);
+    border-radius: 20px;
+    padding: 2.5rem;
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+}
+
+.jfw-lock-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+    filter: drop-shadow(0 0 15px rgba(245, 158, 11, 0.6));
+}
+
+.jfw-lock-input {
+    width: 100%;
+    padding: 0.85rem 1.25rem;
+    background: #040712;
+    border: 1px solid var(--jfw-border-glow);
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.jfw-lock-input:focus {
+    border-color: var(--jfw-primary);
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+}
+
+.jfw-lock-error {
+    color: #f87171;
+    font-size: 0.88rem;
+    margin-top: 0.75rem;
+    display: none;
+    font-weight: 600;
+}
+
+/* WEBINAR SPECIAL COUPON OFFER MODULE */
+.jfw-coupon-card {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(14, 23, 46, 0.95) 100%);
+    border: 1px solid rgba(52, 211, 153, 0.3);
+    border-radius: var(--jfw-radius-xl);
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 680px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+.jfw-price-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.jfw-price-strike {
+    text-decoration: line-through;
+    color: #94a3b8;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.jfw-price-offer {
+    color: #34d399;
+    font-size: 2.4rem;
+    font-weight: 900;
+    font-family: var(--jfw-font-heading);
+}
+
+.jfw-coupon-input-group {
+    display: flex;
+    gap: 0.5rem;
+    max-width: 420px;
+    margin: 1rem auto 0.5rem auto;
+}
+
+.jfw-coupon-input {
+    flex: 1;
+    padding: 0.65rem 1rem;
+    background: #040712;
+    border: 1px solid var(--jfw-border-glow);
+    border-radius: 8px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: center;
+}
+
+.jfw-coupon-input:focus {
+    border-color: #34d399;
+    outline: none;
+}
+
+/* SPOON-FED RECIPE & SMART HOUSE ANALOGY MODULES */
+.jfw-recipe-box {
+    background: #040712;
+    border: 1px solid var(--jfw-border-glow);
+    border-radius: var(--jfw-radius-lg);
+    padding: 1.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.jfw-analogy-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.75rem;
+    background: rgba(99, 102, 241, 0.15);
+    border: 1px solid var(--jfw-border-glow);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--jfw-accent-cyan);
+    margin-bottom: 0.75rem;
+}
+
+.jfw-recipe-step-card {
+    background: var(--jfw-surface);
+    border-left: 4px solid var(--jfw-primary);
+    padding: 1.25rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+/* INTERACTIVE LINE INSPECTOR DRAWER & DEEP-DIVE TABLE */
+.jfw-deepdive-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.88rem;
+}
+
+.jfw-deepdive-table th {
+    background: #040712;
+    color: var(--jfw-accent-cyan);
+    padding: 0.85rem 1rem;
+    text-align: left;
+    border: 1px solid var(--jfw-border);
+    font-weight: 700;
+}
+
+.jfw-deepdive-table td {
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--jfw-border);
+    color: #cbd5e1;
+    line-height: 1.6;
+}
+
+.jfw-deepdive-table tr:hover td {
+    background: rgba(99, 102, 241, 0.08);
+}
+
+.jfw-code-clickable-line {
+    cursor: pointer;
+    padding: 0.35rem 0.6rem;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+    white-space: nowrap;
+}
+
+.jfw-code-clickable-line:hover {
+    background: rgba(99, 102, 241, 0.2) !important;
+}
+
+/* 3-COLUMN LIVE INTERACTIVE STUDIO & APP MOCKUPS */
+.jfw-studio-grid {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr 1fr;
+    gap: 1.25rem;
+    max-width: 1140px;
+    margin: 0 auto;
+    align-items: stretch;
+}
+
+@media (max-width: 1024px) {
+    .jfw-studio-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.jfw-studio-col {
+    background: var(--jfw-surface);
+    border: 1px solid var(--jfw-border-glow);
+    border-radius: var(--jfw-radius-lg);
+    padding: 1.35rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#jfwStudioCodeBox {
+    background: #040712;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    line-height: 1.9;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: thin;
+    scrollbar-color: var(--jfw-primary) transparent;
+    border: 1px solid var(--jfw-border);
+    flex: 1;
+}
+
+#jfwStudioCodeBox::-webkit-scrollbar {
+    height: 4px;
+}
+
+#jfwStudioCodeBox::-webkit-scrollbar-thumb {
+    background: var(--jfw-primary);
+    border-radius: 4px;
+}
+
+.jfw-studio-controls {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.jfw-ram-card {
+    background: #040712;
+    border: 1px solid var(--jfw-border);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.jfw-ram-card.active-cyan {
+    border-color: var(--jfw-accent-cyan);
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+}
+
+.jfw-ram-card.active-amber {
+    border-color: var(--jfw-accent-amber);
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.25);
+}
+
+.jfw-app-mockup-box {
+    background: #040712;
+    border: 1px solid var(--jfw-border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    min-height: 200px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* ==========================================================================
+   PERFECT RESPONSIVE & MOBILE MEDIA QUERIES (<768px & <480px)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* Prevent horizontal overflow on entire page body & container */
+    html, body, .jfw-workshop {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+    }
+
+    .jfw-container {
+        padding: 0 1rem !important;
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+    }
+
+    /* Header & Navigation */
+    .jfw-header {
+        height: 64px !important;
+    }
+    
+    .jfw-header-inner {
+        height: 64px !important;
+        gap: 0.5rem !important;
+    }
+
+    .jfw-brand-logo span:not(.jfw-brand-badge) {
+        font-size: 0.95rem !important;
+    }
+
+    .jfw-brand-badge {
+        display: none !important;
+    }
+
+    .jfw-nav-links {
+        display: none !important;
+    }
+
+    /* Hero Section & Title Typography */
+    .jfw-hero {
+        padding: 2rem 0 2rem 0 !important;
+    }
+
+    .jfw-hero-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+
+    h1.jfw-hero-title, .jfw-hero-title {
+        font-size: 1.85rem !important;
+        line-height: 1.18 !important;
+        word-break: break-word !important;
+        max-width: 100% !important;
+    }
+
+    .jfw-hero-subtitle {
+        font-size: 0.92rem !important;
+    }
+
+    .jfw-badge {
+        font-size: 0.72rem !important;
+        padding: 0.25rem 0.65rem !important;
+    }
+
+    /* 3D Scene / Canvas Container */
+    #jfwCanvas, .jfw-3d-scene, .jfw-hero-3d-scene {
+        max-height: 240px !important;
+    }
+
+    /* Floating Progress Tracker Bar Fix (Prevents Vertical Stretch Bug) */
+    .jfw-floating-progress {
+        position: fixed !important;
+        top: auto !important;
+        bottom: 70px !important;
+        left: 50% !important;
+        right: auto !important;
+        transform: translateX(-50%) !important;
+        height: auto !important;
+        padding: 0.35rem 0.75rem !important;
+        font-size: 0.72rem !important;
+        width: auto !important;
+        max-width: calc(100vw - 32px) !important;
+        z-index: 999 !important;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7) !important;
+    }
+
+    /* Grids & Cards */
+    .jfw-grid, .jfw-card-grid, .jfw-studio-grid, .jfw-recipe-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+
+    /* Code & Inspector Blocks */
+    #jfwStudioCodeBox, .jfw-mono, code, pre {
+        font-size: 0.75rem !important;
+        white-space: pre-wrap !important;
+        word-break: break-word !important;
+    }
+
+    /* Deep Dive Tables */
+    .jfw-deepdive-table {
+        display: block !important;
+        overflow-x: auto !important;
+        width: 100% !important;
+    }
+
+    /* Passcode Lock Modal Mobile Fixes */
+    .jfw-lock-modal-overlay {
+        padding: 0.75rem !important;
+        overflow-y: auto !important;
+        align-items: flex-start !important;
+        padding-top: 2rem !important;
+    }
+
+    .jfw-lock-card {
+        padding: 1.5rem 1rem !important;
+        max-width: calc(100vw - 24px) !important;
+        border-radius: 16px !important;
+    }
+
+    .jfw-lock-icon {
+        font-size: 2.2rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    h1.jfw-hero-title, .jfw-hero-title {
+        font-size: 1.65rem !important;
+    }
+
+    .jfw-btn {
+        padding: 0.55rem 0.95rem !important;
+        font-size: 0.8rem !important;
+    }
+}
+
+
+
+
+
+
+

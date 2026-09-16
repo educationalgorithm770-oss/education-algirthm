@@ -1,0 +1,1258 @@
+{
+    "passed": 139,
+    "failed": 0,
+    "total": 139,
+    "logs": [
+        {
+            "id": "PY-01",
+            "category": "Python 3",
+            "name": "Arithmetic & Precedence",
+            "status": "PASS",
+            "output": "Add:32 Sub:18 Mul:175 Div:3 Mod:4 Pow:625",
+            "time_ms": 104.95,
+            "keyword": "Add:32 Sub:18 Mul:175 Div:3 Mod:4 Pow:625"
+        },
+        {
+            "id": "PY-02",
+            "category": "Python 3",
+            "name": "UTF-8 Emojis & Formatting",
+            "status": "PASS",
+            "output": "\ud83d\ude80 Hello World \u2728 \ud83d\udd25 \ud83d\udcaf",
+            "time_ms": 120.65,
+            "keyword": "\ud83d\ude80 Hello World \u2728 \ud83d\udd25 \ud83d\udcaf"
+        },
+        {
+            "id": "PY-03",
+            "category": "Python 3",
+            "name": "STDIN Single-Line Multi-Tokens",
+            "status": "PASS",
+            "output": "Product: 60",
+            "time_ms": 92.99,
+            "keyword": "Product: 60"
+        },
+        {
+            "id": "PY-04",
+            "category": "Python 3",
+            "name": "STDIN Multi-Line Input",
+            "status": "PASS",
+            "output": "Total Sum: 60",
+            "time_ms": 97.24,
+            "keyword": "Total Sum: 60"
+        },
+        {
+            "id": "PY-05",
+            "category": "Python 3",
+            "name": "List Comprehensions & Filter",
+            "status": "PASS",
+            "output": "Evens Squared: [4, 16, 36, 64, 100]",
+            "time_ms": 103.28,
+            "keyword": "Evens Squared: [4, 16, 36, 64, 100]"
+        },
+        {
+            "id": "PY-06",
+            "category": "Python 3",
+            "name": "Dictionary Frequency Histogram",
+            "status": "PASS",
+            "output": "a:3 b:1 n:2",
+            "time_ms": 99.36,
+            "keyword": "a:3 b:1 n:2"
+        },
+        {
+            "id": "PY-07",
+            "category": "Python 3",
+            "name": "Set Operations",
+            "status": "PASS",
+            "output": "Union:[1, 2, 3, 4, 5, 6] Intersect:[3, 4]",
+            "time_ms": 202.45,
+            "keyword": "Union:[1, 2, 3, 4, 5, 6] Intersect:[3, 4]"
+        },
+        {
+            "id": "PY-08",
+            "category": "Python 3",
+            "name": "Lambda & Multi-Key Sorting",
+            "status": "PASS",
+            "output": "Top Scorer: Bob with 95",
+            "time_ms": 121.86,
+            "keyword": "Top Scorer: Bob with 95"
+        },
+        {
+            "id": "PY-09",
+            "category": "Python 3",
+            "name": "Recursive Factorial",
+            "status": "PASS",
+            "output": "Factorial 7: 5040",
+            "time_ms": 133.58,
+            "keyword": "Factorial 7: 5040"
+        },
+        {
+            "id": "PY-10",
+            "category": "Python 3",
+            "name": "DP Fibonacci with Memoization",
+            "status": "PASS",
+            "output": "Fib 15: 610",
+            "time_ms": 104.52,
+            "keyword": "Fib 15: 610"
+        },
+        {
+            "id": "PY-11",
+            "category": "Python 3",
+            "name": "String Slicing & Palindrome",
+            "status": "PASS",
+            "output": "Is Palindrome: True",
+            "time_ms": 169.74,
+            "keyword": "Is Palindrome: True"
+        },
+        {
+            "id": "PY-12",
+            "category": "Python 3",
+            "name": "Matrix Transposition",
+            "status": "PASS",
+            "output": "Transposed: [[1, 3, 5], [2, 4, 6]]",
+            "time_ms": 92.28,
+            "keyword": "Transposed: [[1, 3, 5], [2, 4, 6]]"
+        },
+        {
+            "id": "PY-13",
+            "category": "Python 3",
+            "name": "Euclidean Distance Math",
+            "status": "PASS",
+            "output": "Distance: 5.0",
+            "time_ms": 85.55,
+            "keyword": "Distance: 5.0"
+        },
+        {
+            "id": "PY-14",
+            "category": "Python 3",
+            "name": "JSON Serialization \/ Parsing",
+            "status": "PASS",
+            "output": "Course: Python Pro XP: 150",
+            "time_ms": 112.87,
+            "keyword": "Course: Python Pro XP: 150"
+        },
+        {
+            "id": "PY-15",
+            "category": "Python 3",
+            "name": "Custom OOP Class & Str",
+            "status": "PASS",
+            "output": "Alex scored 98",
+            "time_ms": 95.84,
+            "keyword": "Alex scored 98"
+        },
+        {
+            "id": "PY-16",
+            "category": "Python 3",
+            "name": "Exception Try\/Except\/Finally",
+            "status": "PASS",
+            "output": "Result: 5\nExecution complete",
+            "time_ms": 110.86,
+            "keyword": "Result: 5\nExecution complete"
+        },
+        {
+            "id": "PY-17",
+            "category": "Python 3",
+            "name": "In-Memory Stream (StringIO)",
+            "status": "PASS",
+            "output": "Lines: 2",
+            "time_ms": 113.2,
+            "keyword": "Lines: 2"
+        },
+        {
+            "id": "PY-18",
+            "category": "Python 3",
+            "name": "Regex Pattern Extraction",
+            "status": "PASS",
+            "output": "Extracted: ['101', '202', '303']",
+            "time_ms": 122.18,
+            "keyword": "Extracted: ['101', '202', '303']"
+        },
+        {
+            "id": "PY-19",
+            "category": "Python 3",
+            "name": "Bitwise Kernighan Algorithm",
+            "status": "PASS",
+            "output": "Set bits in 29: 4",
+            "time_ms": 217.18,
+            "keyword": "Set bits in 29: 4"
+        },
+        {
+            "id": "PY-20",
+            "category": "Python 3",
+            "name": "Arbitrary Precision Math",
+            "status": "PASS",
+            "output": "Big power starts: 126765 digits: 31",
+            "time_ms": 110.14,
+            "keyword": "Big power starts: 126765 digits: 31"
+        },
+        {
+            "id": "JV-01",
+            "category": "Java",
+            "name": "Basic System.out.println",
+            "status": "PASS",
+            "output": "Hello Java World!",
+            "time_ms": 151.48,
+            "keyword": "Hello Java World!"
+        },
+        {
+            "id": "JV-02",
+            "category": "Java",
+            "name": "String Concat & Sum Math",
+            "status": "PASS",
+            "output": "Calculated Sum: 50",
+            "time_ms": 201.38,
+            "keyword": "Calculated Sum: 50"
+        },
+        {
+            "id": "JV-03",
+            "category": "Java",
+            "name": "Complex Precedence Math",
+            "status": "PASS",
+            "output": "Product Result: 150",
+            "time_ms": 200.91,
+            "keyword": "Product Result: 150"
+        },
+        {
+            "id": "JV-04",
+            "category": "Java",
+            "name": "Scanner STDIN Single Integer",
+            "status": "PASS",
+            "output": "Square: 81",
+            "time_ms": 134.67,
+            "keyword": "Square: 81"
+        },
+        {
+            "id": "JV-05",
+            "category": "Java",
+            "name": "Scanner STDIN Multi-Token Stream",
+            "status": "PASS",
+            "output": "Sum of 3: 60",
+            "time_ms": 135.41,
+            "keyword": "Sum of 3: 60"
+        },
+        {
+            "id": "JV-06",
+            "category": "Java",
+            "name": "Scanner Mixed Types",
+            "status": "PASS",
+            "output": "Student 101 Score: 95.5",
+            "time_ms": 129.92,
+            "keyword": "Student 101 Score: 95.5"
+        },
+        {
+            "id": "JV-07",
+            "category": "Java",
+            "name": "Multi-Variable Declarations",
+            "status": "PASS",
+            "output": "Triple Sum: 30",
+            "time_ms": 116.34,
+            "keyword": "Triple Sum: 30"
+        },
+        {
+            "id": "JV-08",
+            "category": "Java",
+            "name": "Array Accumulation Loop",
+            "status": "PASS",
+            "output": "Array Sum: 15",
+            "time_ms": 204.7,
+            "keyword": "Array Sum: 15"
+        },
+        {
+            "id": "JV-09",
+            "category": "Java",
+            "name": "Enhanced For-Each Loop",
+            "status": "PASS",
+            "output": "Total: 60",
+            "time_ms": 135.93,
+            "keyword": "Total: 60"
+        },
+        {
+            "id": "JV-10",
+            "category": "Java",
+            "name": "Nested If-Else Grading",
+            "status": "PASS",
+            "output": "Grade: B",
+            "time_ms": 129.69,
+            "keyword": "Grade: B"
+        },
+        {
+            "id": "JV-11",
+            "category": "Java",
+            "name": "While Loop Accumulator",
+            "status": "PASS",
+            "output": "1 to 5 Sum: 15",
+            "time_ms": 128.29,
+            "keyword": "1 to 5 Sum: 15"
+        },
+        {
+            "id": "JV-12",
+            "category": "Java",
+            "name": "Bubble Sort Algorithm",
+            "status": "PASS",
+            "output": "Sorted Min: 1 Max: 8",
+            "time_ms": 208.19,
+            "keyword": "Sorted Min: 1 Max: 8"
+        },
+        {
+            "id": "JV-13",
+            "category": "Java",
+            "name": "Linear Search Index",
+            "status": "PASS",
+            "output": "Found Index: 2",
+            "time_ms": 139.1,
+            "keyword": "Found Index: 2"
+        },
+        {
+            "id": "JV-14",
+            "category": "Java",
+            "name": "String Methods",
+            "status": "PASS",
+            "output": "Length: 19",
+            "time_ms": 127.64,
+            "keyword": "Length: 19"
+        },
+        {
+            "id": "JV-15",
+            "category": "Java",
+            "name": "Static Helper Method",
+            "status": "PASS",
+            "output": "Product: 42",
+            "time_ms": 134.75,
+            "keyword": "Product: 42"
+        },
+        {
+            "id": "JV-16",
+            "category": "Java",
+            "name": "Modulo Arithmetic Even\/Odd",
+            "status": "PASS",
+            "output": "Number 42 is: Even",
+            "time_ms": 187.02,
+            "keyword": "Number 42 is: Even"
+        },
+        {
+            "id": "JV-17",
+            "category": "Java",
+            "name": "Matrix 2D Row Sum",
+            "status": "PASS",
+            "output": "Matrix 2x2 Sum: 10",
+            "time_ms": 189.97,
+            "keyword": "Matrix 2x2 Sum: 10"
+        },
+        {
+            "id": "JV-18",
+            "category": "Java",
+            "name": "Boolean Logic Operators",
+            "status": "PASS",
+            "output": "Can Access: true",
+            "time_ms": 176.98,
+            "keyword": "Can Access: true"
+        },
+        {
+            "id": "JV-19",
+            "category": "Java",
+            "name": "Type Casting Double to Int",
+            "status": "PASS",
+            "output": "Casted Int: 45",
+            "time_ms": 167.51,
+            "keyword": "Casted Int: 45"
+        },
+        {
+            "id": "JV-20",
+            "category": "Java",
+            "name": "Max of 3 Numbers",
+            "status": "PASS",
+            "output": "Maximum: 45",
+            "time_ms": 138.07,
+            "keyword": "Maximum: 45"
+        },
+        {
+            "id": "CP-01",
+            "category": "C++",
+            "name": "Stream cout Output",
+            "status": "PASS",
+            "output": "Hello from C++20!",
+            "time_ms": 121.3,
+            "keyword": "Hello from C++20!"
+        },
+        {
+            "id": "CP-02",
+            "category": "C++",
+            "name": "Stream Formatting Tabs",
+            "status": "PASS",
+            "output": "ID\tName\n101\tAlpha",
+            "time_ms": 142.98,
+            "keyword": "101\tAlpha"
+        },
+        {
+            "id": "CP-03",
+            "category": "C++",
+            "name": "Stream cin Space-Delimited",
+            "status": "PASS",
+            "output": "C++ Product: 56",
+            "time_ms": 170.37,
+            "keyword": "C++ Product: 56"
+        },
+        {
+            "id": "CP-04",
+            "category": "C++",
+            "name": "Stream cin Newline-Delimited",
+            "status": "PASS",
+            "output": "Sum: 45",
+            "time_ms": 178.08,
+            "keyword": "Sum: 45"
+        },
+        {
+            "id": "CP-05",
+            "category": "C++",
+            "name": "Operator Precedence Math",
+            "status": "PASS",
+            "output": "Result: 120",
+            "time_ms": 121.49,
+            "keyword": "Result: 120"
+        },
+        {
+            "id": "CP-06",
+            "category": "C++",
+            "name": "Modulo Arithmetic",
+            "status": "PASS",
+            "output": "Quotient: 9 Remainder: 2",
+            "time_ms": 126.34,
+            "keyword": "Quotient: 9 Remainder: 2"
+        },
+        {
+            "id": "CP-07",
+            "category": "C++",
+            "name": "Array Summation Loop",
+            "status": "PASS",
+            "output": "C++ Array Sum: 30",
+            "time_ms": 228.25,
+            "keyword": "C++ Array Sum: 30"
+        },
+        {
+            "id": "CP-08",
+            "category": "C++",
+            "name": "Iterative Fibonacci",
+            "status": "PASS",
+            "output": "Fib 7: 13",
+            "time_ms": 124.77,
+            "keyword": "Fib 7: 13"
+        },
+        {
+            "id": "CP-09",
+            "category": "C++",
+            "name": "Sieve of Eratosthenes Primes",
+            "status": "PASS",
+            "output": "Primes up to 20: 8",
+            "time_ms": 122.95,
+            "keyword": "Primes up to 20: 8"
+        },
+        {
+            "id": "CP-10",
+            "category": "C++",
+            "name": "Nested If-Else Branching",
+            "status": "PASS",
+            "output": "Grade: A+",
+            "time_ms": 140.58,
+            "keyword": "Grade: A+"
+        },
+        {
+            "id": "CP-11",
+            "category": "C++",
+            "name": "Switch-Case Selector",
+            "status": "PASS",
+            "output": "Selected Two",
+            "time_ms": 111.81,
+            "keyword": "Selected Two"
+        },
+        {
+            "id": "CP-12",
+            "category": "C++",
+            "name": "Factorial While Loop",
+            "status": "PASS",
+            "output": "5! = 120",
+            "time_ms": 190.75,
+            "keyword": "5! = 120"
+        },
+        {
+            "id": "CP-13",
+            "category": "C++",
+            "name": "Bitwise AND \/ OR \/ XOR",
+            "status": "PASS",
+            "output": "AND: 1 OR: 7 XOR: 6",
+            "time_ms": 137.63,
+            "keyword": "AND: 1 OR: 7 XOR: 6"
+        },
+        {
+            "id": "CP-14",
+            "category": "C++",
+            "name": "String Concatenation",
+            "status": "PASS",
+            "output": "C++ Pro",
+            "time_ms": 137.33,
+            "keyword": "C++ Pro"
+        },
+        {
+            "id": "CP-15",
+            "category": "C++",
+            "name": "Custom Helper Function",
+            "status": "PASS",
+            "output": "Sum: 100",
+            "time_ms": 121.24,
+            "keyword": "Sum: 100"
+        },
+        {
+            "id": "CP-16",
+            "category": "C++",
+            "name": "Matrix 2D Sum",
+            "status": "PASS",
+            "output": "Sum: 20",
+            "time_ms": 176.67,
+            "keyword": "Sum: 20"
+        },
+        {
+            "id": "CP-17",
+            "category": "C++",
+            "name": "Min Max Search",
+            "status": "PASS",
+            "output": "Min: 14 Max: 88",
+            "time_ms": 154.43,
+            "keyword": "Min: 14 Max: 88"
+        },
+        {
+            "id": "CP-18",
+            "category": "C++",
+            "name": "Ternary Conditional",
+            "status": "PASS",
+            "output": "Status: Adult",
+            "time_ms": 153.67,
+            "keyword": "Status: Adult"
+        },
+        {
+            "id": "CP-19",
+            "category": "C++",
+            "name": "Floating Point Division",
+            "status": "PASS",
+            "output": "Div: 3.5",
+            "time_ms": 140.45,
+            "keyword": "Div: 3.5"
+        },
+        {
+            "id": "CP-20",
+            "category": "C++",
+            "name": "ASCII Character Arithmetic",
+            "status": "PASS",
+            "output": "Next: B",
+            "time_ms": 146.53,
+            "keyword": "Next: B"
+        },
+        {
+            "id": "HT-01",
+            "category": "HTML5\/GUI",
+            "name": "HTML5 Structure & Header",
+            "status": "PASS",
+            "output": "HTML5 DOM & JavaScript Sandboxed Viewport Verified",
+            "time_ms": 4,
+            "keyword": "Main Title"
+        },
+        {
+            "id": "HT-02",
+            "category": "HTML5\/GUI",
+            "name": "Interactive Click Counter Button",
+            "status": "PASS",
+            "output": "HTML5 DOM & JavaScript Sandboxed Viewport Verified",
+            "time_ms": 4,
+            "keyword": "Counter"
+        },
+        {
+            "id": "HT-03",
+            "category": "HTML5\/GUI",
+            "name": "Two-Way Live Input Reflection",
+            "status": "PASS",
+            "output": "HTML5 DOM & JavaScript Sandboxed Viewport Verified",
+            "time_ms": 4,
+            "keyword": "preview"
+        },
+        {
+            "id": "HT-04",
+            "category": "HTML5\/GUI",
+            "name": "Glassmorphism Card Style",
+            "status": "PASS",
+            "output": "HTML5 DOM & JavaScript Sandboxed Viewport Verified",
+            "time_ms": 4,
+            "keyword": "Card"
+        },
+        {
+            "id": "HT-05",
+            "category": "HTML5\/GUI",
+            "name": "CSS Flexbox Center Layout",
+            "status": "PASS",
+            "output": "HTML5 DOM & JavaScript Sandboxed Viewport Verified",
+            "time_ms": 4,
+            "keyword": "Center"
+        },
+        {
+            "id": "HT-06",
+            "category": "HTML5\/GUI",
+            "name": "CSS Responsive Grid",
+            "status": "PASS",
+            "output": "HTML5 DOM & JavaScript Sandboxed Viewport Verified",
+            "time_ms": 4,
+            "keyword": "Grid Items"
+        },
+        {
+            "id": "HT-07",
+            "category": "HTML5\/GUI",
+            "name": "HTML5 2D Canvas Geometry",
+            "status": "PASS",
+            "output": "HTML5 DOM & JavaScript Sandboxed Viewport Verified",
+            "time_ms": 4,
+            "keyword": "cvs"
+        },
+        {
+            "id": "HT-08",
+            "category": "HTML5\/GUI",
+            "name": "In-Browser Console Log Capture",
+            "status": "PASS",
+            "output": "HTML5 DOM & JavaScript Sandboxed Viewport Verified",
+            "time_ms": 4,
+            "keyword": "Sandbox Log Captured"
+        },
+        {
+            "id": "HT-09",
+            "category": "HTML5\/GUI",
+            "name": "Console Warn and Error Emitter",
+            "status": "PASS",
+            "output": "HTML5 DOM & JavaScript Sandboxed Viewport Verified",
+            "time_ms": 4,
+            "keyword": "Sample Warn"
+        },
+        {
+            "id": "HT-10",
+            "category": "HTML5\/GUI",
+            "name": "Interactive Modal Dialog",
+            "status": "PASS",
+            "output": "HTML5 DOM & JavaScript Sandboxed Viewport Verified",
+            "time_ms": 4,
+            "keyword": "Modal Dialog Box"
+        },
+        {
+            "id": "HT-11",
+            "category": "HTML5\/GUI",
+            "name": "Accordion Collapse Widget",
+            "status": "PASS",
+            "output": "HTML5 DOM & JavaScript Sandboxed Viewport Verified",
+            "time_ms": 4,
+            "keyword": "Toggle Header"
+        },
+        {
+            "id": "HT-12",
+            "category": "HTML5\/GUI",
+            "name": "SVG Vector Shape Graphic",
+            "status": "PASS",
+            "output": "HTML5 DOM & JavaScript Sandboxed Viewport Verified",
+            "time_ms": 4,
+            "keyword": "svg"
+        },
+        {
+            "id": "HT-13",
+            "category": "HTML5\/GUI",
+            "name": "Zebra Striped Data Table",
+            "status": "PASS",
+            "output": "HTML5 DOM & JavaScript Sandboxed Viewport Verified",
+            "time_ms": 4,
+            "keyword": "Col1"
+        },
+        {
+            "id": "HT-14",
+            "category": "HTML5\/GUI",
+            "name": "Animated Progress Bar",
+            "status": "PASS",
+            "output": "HTML5 DOM & JavaScript Sandboxed Viewport Verified",
+            "time_ms": 4,
+            "keyword": "10b981"
+        },
+        {
+            "id": "HT-15",
+            "category": "HTML5\/GUI",
+            "name": "Form Input Validation Banner",
+            "status": "PASS",
+            "output": "HTML5 DOM & JavaScript Sandboxed Viewport Verified",
+            "time_ms": 4,
+            "keyword": "Submit"
+        },
+        {
+            "id": "HT-16",
+            "category": "HTML5\/GUI",
+            "name": "Dark Mode Neon Box Card",
+            "status": "PASS",
+            "output": "HTML5 DOM & JavaScript Sandboxed Viewport Verified",
+            "time_ms": 4,
+            "keyword": "Neon Box"
+        },
+        {
+            "id": "HT-17",
+            "category": "HTML5\/GUI",
+            "name": "Live Digital Timer Display",
+            "status": "PASS",
+            "output": "HTML5 DOM & JavaScript Sandboxed Viewport Verified",
+            "time_ms": 4,
+            "keyword": "timer"
+        },
+        {
+            "id": "HT-18",
+            "category": "HTML5\/GUI",
+            "name": "Badge Pill Notification",
+            "status": "PASS",
+            "output": "HTML5 DOM & JavaScript Sandboxed Viewport Verified",
+            "time_ms": 4,
+            "keyword": "NEW"
+        },
+        {
+            "id": "HT-19",
+            "category": "HTML5\/GUI",
+            "name": "CSS Animated Gradient",
+            "status": "PASS",
+            "output": "HTML5 DOM & JavaScript Sandboxed Viewport Verified",
+            "time_ms": 4,
+            "keyword": "linear-gradient"
+        },
+        {
+            "id": "HT-20",
+            "category": "HTML5\/GUI",
+            "name": "Complete Analytics Dashboard Preview",
+            "status": "PASS",
+            "output": "HTML5 DOM & JavaScript Sandboxed Viewport Verified",
+            "time_ms": 4,
+            "keyword": "Total Users: 1,420"
+        },
+        {
+            "id": "JS-01",
+            "category": "JavaScript",
+            "name": "Console Log Print",
+            "status": "PASS",
+            "output": "Hello Node.js Environment!",
+            "time_ms": 186.73,
+            "keyword": "Hello Node.js Environment!"
+        },
+        {
+            "id": "JS-02",
+            "category": "JavaScript",
+            "name": "Template Literals & Math",
+            "status": "PASS",
+            "output": "Sum: 100",
+            "time_ms": 186.73,
+            "keyword": "Sum: 100"
+        },
+        {
+            "id": "JS-03",
+            "category": "JavaScript",
+            "name": "Array Map Transformation",
+            "status": "PASS",
+            "output": "10, 20, 30, 40",
+            "time_ms": 137.66,
+            "keyword": "10, 20, 30, 40"
+        },
+        {
+            "id": "JS-04",
+            "category": "JavaScript",
+            "name": "Array Filter Evens",
+            "status": "PASS",
+            "output": "2, 4, 6",
+            "time_ms": 209.68,
+            "keyword": "2, 4, 6"
+        },
+        {
+            "id": "JS-05",
+            "category": "JavaScript",
+            "name": "Array Reduce Product",
+            "status": "PASS",
+            "output": "Product: 120",
+            "time_ms": 134.01,
+            "keyword": "Product: 120"
+        },
+        {
+            "id": "JS-06",
+            "category": "JavaScript",
+            "name": "Chained Map Filter Reduce",
+            "status": "PASS",
+            "output": "Sum Even Sq: 56",
+            "time_ms": 247.61,
+            "keyword": "Sum Even Sq: 56"
+        },
+        {
+            "id": "JS-07",
+            "category": "JavaScript",
+            "name": "Object Destructuring",
+            "status": "PASS",
+            "output": "Sarah is Level 3",
+            "time_ms": 144.1,
+            "keyword": "Sarah is Level 3"
+        },
+        {
+            "id": "JS-08",
+            "category": "JavaScript",
+            "name": "Rest & Spread Operators",
+            "status": "PASS",
+            "output": "Head: 10 Tail Length: 3",
+            "time_ms": 143.67,
+            "keyword": "Head: 10 Tail Length: 3"
+        },
+        {
+            "id": "JS-09",
+            "category": "JavaScript",
+            "name": "Object Spread Merging",
+            "status": "PASS",
+            "output": "{\"a\":1,\"b\":2}",
+            "time_ms": 119.88,
+            "keyword": "{\"a\":1,\"b\":2}"
+        },
+        {
+            "id": "JS-10",
+            "category": "JavaScript",
+            "name": "Arrow Function Implicit Return",
+            "status": "PASS",
+            "output": "Double 21: 42",
+            "time_ms": 242.91,
+            "keyword": "Double 21: 42"
+        },
+        {
+            "id": "JS-11",
+            "category": "JavaScript",
+            "name": "Object Entries Mapping",
+            "status": "PASS",
+            "output": "speed-power",
+            "time_ms": 201.89,
+            "keyword": "speed-power"
+        },
+        {
+            "id": "JS-12",
+            "category": "JavaScript",
+            "name": "Async Promise Resolution",
+            "status": "PASS",
+            "output": "Status: Async Done",
+            "time_ms": 140.45,
+            "keyword": "Status: Async Done"
+        },
+        {
+            "id": "JS-13",
+            "category": "JavaScript",
+            "name": "String Character Frequency",
+            "status": "PASS",
+            "output": "Count of a: 1",
+            "time_ms": 190.94,
+            "keyword": "Count of a: 1"
+        },
+        {
+            "id": "JS-14",
+            "category": "JavaScript",
+            "name": "Palindrome Verification",
+            "status": "PASS",
+            "output": "Is Palindrome: true",
+            "time_ms": 225.29,
+            "keyword": "Is Palindrome: true"
+        },
+        {
+            "id": "JS-15",
+            "category": "JavaScript",
+            "name": "Euclidean GCD Algorithm",
+            "status": "PASS",
+            "output": "GCD 48 & 18: 6",
+            "time_ms": 211.56,
+            "keyword": "GCD 48 & 18: 6"
+        },
+        {
+            "id": "JS-16",
+            "category": "JavaScript",
+            "name": "Math Min \/ Max Utilities",
+            "status": "PASS",
+            "output": "Max Val: 99",
+            "time_ms": 158.91,
+            "keyword": "Max Val: 99"
+        },
+        {
+            "id": "JS-17",
+            "category": "JavaScript",
+            "name": "Try Catch Error Recovery",
+            "status": "PASS",
+            "output": "Caught: Custom JS Exception",
+            "time_ms": 141.95,
+            "keyword": "Caught: Custom JS Exception"
+        },
+        {
+            "id": "JS-18",
+            "category": "JavaScript",
+            "name": "Set Data Deduplication",
+            "status": "PASS",
+            "output": "Unique: 1, 2, 3, 4",
+            "time_ms": 202.94,
+            "keyword": "Unique: 1, 2, 3, 4"
+        },
+        {
+            "id": "JS-19",
+            "category": "JavaScript",
+            "name": "JSON Formatting Indentation",
+            "status": "PASS",
+            "output": "{\"title\":\"JS Studio\"}",
+            "time_ms": 137.19,
+            "keyword": "{\"title\":\"JS Studio\"}"
+        },
+        {
+            "id": "JS-20",
+            "category": "JavaScript",
+            "name": "Kadane Maximum Subarray",
+            "status": "PASS",
+            "output": "Max Subarray Sum: 6",
+            "time_ms": 153.65,
+            "keyword": "Max Subarray Sum: 6"
+        },
+        {
+            "id": "SQ-01",
+            "category": "SQL Sandbox",
+            "name": "Basic SELECT All Users",
+            "status": "PASS",
+            "output": "id | name | email | department | salary | created_at\n------------------------------------------------------------\n1 | Diana Prince | diana@themyscira.gov | Executive | 125000 | 2026-01-15\n2 | Bruce Wayne | bruce@wayne-enterprises.com | Executive | 150000 | 2026-02-01\n3 | Clark Kent | clark.kent@dailyplanet.com | Engineering | 92000 | 2026-03-10\n4 | Barry Allen | barry.allen@centralcitypd.gov | HR | 68000 | 2026-04-05\n5 | Arthur Curry | arthur@atlantis.org | Design | 78000 | 2026-05-12",
+            "time_ms": 4,
+            "keyword": "Diana Prince"
+        },
+        {
+            "id": "SQ-02",
+            "category": "SQL Sandbox",
+            "name": "Column Projection Name and Salary",
+            "status": "PASS",
+            "output": "name | salary\n---------------------\nDiana Prince | 125000\nBruce Wayne | 150000\nClark Kent | 92000\nBarry Allen | 68000\nArthur Curry | 78000",
+            "time_ms": 4,
+            "keyword": "Bruce Wayne"
+        },
+        {
+            "id": "SQ-03",
+            "category": "SQL Sandbox",
+            "name": "Column Calculation and Aliases",
+            "status": "PASS",
+            "output": "full_name | revised_salary\n----------------------------------\nDiana Prince | 137500\nBruce Wayne | 165000\nClark Kent | 101200\nBarry Allen | 74800\nArthur Curry | 85800",
+            "time_ms": 4,
+            "keyword": "full_name"
+        },
+        {
+            "id": "SQ-04",
+            "category": "SQL Sandbox",
+            "name": "Equality Filter Engineering",
+            "status": "PASS",
+            "output": "name\n------------\nClark Kent",
+            "time_ms": 4,
+            "keyword": "Clark Kent"
+        },
+        {
+            "id": "SQ-05",
+            "category": "SQL Sandbox",
+            "name": "Numerical Comparison Salary > 80k",
+            "status": "PASS",
+            "output": "name | salary\n---------------------\nDiana Prince | 125000\nBruce Wayne | 150000\nClark Kent | 92000",
+            "time_ms": 4,
+            "keyword": "Bruce Wayne"
+        },
+        {
+            "id": "SQ-06",
+            "category": "SQL Sandbox",
+            "name": "Compound AND Condition",
+            "status": "PASS",
+            "output": "name\n------------\nClark Kent",
+            "time_ms": 4,
+            "keyword": "Clark Kent"
+        },
+        {
+            "id": "SQ-07",
+            "category": "SQL Sandbox",
+            "name": "Compound OR Condition",
+            "status": "PASS",
+            "output": "name\n------------\nBarry Allen\nArthur Curry",
+            "time_ms": 4,
+            "keyword": "Barry Allen"
+        },
+        {
+            "id": "SQ-08",
+            "category": "SQL Sandbox",
+            "name": "NOT Equality Filter",
+            "status": "PASS",
+            "output": "name\n------------\nDiana Prince\nBruce Wayne\nClark Kent\nBarry Allen\nArthur Curry",
+            "time_ms": 4,
+            "keyword": "Clark Kent"
+        },
+        {
+            "id": "SQ-09",
+            "category": "SQL Sandbox",
+            "name": "Prefix Pattern Matching LIKE A%",
+            "status": "PASS",
+            "output": "name\n------------\nArthur Curry",
+            "time_ms": 4,
+            "keyword": "Arthur Curry"
+        },
+        {
+            "id": "SQ-10",
+            "category": "SQL Sandbox",
+            "name": "Domain Email Matching @",
+            "status": "PASS",
+            "output": "name\n------------\nDiana Prince\nBruce Wayne\nClark Kent\nBarry Allen\nArthur Curry",
+            "time_ms": 4,
+            "keyword": "Diana Prince"
+        },
+        {
+            "id": "SQ-11",
+            "category": "SQL Sandbox",
+            "name": "Ascending Sort by Salary",
+            "status": "PASS",
+            "output": "name | salary\n---------------------\nBarry Allen | 68000\nArthur Curry | 78000\nClark Kent | 92000\nDiana Prince | 125000\nBruce Wayne | 150000",
+            "time_ms": 4,
+            "keyword": "Barry Allen"
+        },
+        {
+            "id": "SQ-12",
+            "category": "SQL Sandbox",
+            "name": "Descending Sort by Salary",
+            "status": "PASS",
+            "output": "name | salary\n---------------------\nBruce Wayne | 150000\nDiana Prince | 125000\nClark Kent | 92000\nArthur Curry | 78000\nBarry Allen | 68000",
+            "time_ms": 4,
+            "keyword": "Diana Prince"
+        },
+        {
+            "id": "SQ-13",
+            "category": "SQL Sandbox",
+            "name": "Pagination Top-3 Limit",
+            "status": "PASS",
+            "output": "name | salary\n---------------------\nBruce Wayne | 150000\nDiana Prince | 125000\nClark Kent | 92000",
+            "time_ms": 4,
+            "keyword": "Diana Prince"
+        },
+        {
+            "id": "SQ-14",
+            "category": "SQL Sandbox",
+            "name": "Pagination with Offset",
+            "status": "PASS",
+            "output": "name | salary\n---------------------\nClark Kent | 92000\nArthur Curry | 78000",
+            "time_ms": 4,
+            "keyword": "Clark Kent"
+        },
+        {
+            "id": "SQ-15",
+            "category": "SQL Sandbox",
+            "name": "Aggregate COUNT Total Staff",
+            "status": "PASS",
+            "output": "total_staff\n-------------------\n5",
+            "time_ms": 4,
+            "keyword": "total_staff"
+        },
+        {
+            "id": "SQ-16",
+            "category": "SQL Sandbox",
+            "name": "Aggregate AVG Compensation",
+            "status": "PASS",
+            "output": "avg_comp\n----------------\n102600",
+            "time_ms": 4,
+            "keyword": "avg_comp"
+        },
+        {
+            "id": "SQ-17",
+            "category": "SQL Sandbox",
+            "name": "Aggregate MIN and MAX",
+            "status": "PASS",
+            "output": "lowest | highest\n------------------------\n68000 | 150000",
+            "time_ms": 4,
+            "keyword": "lowest"
+        },
+        {
+            "id": "SQ-18",
+            "category": "SQL Sandbox",
+            "name": "GROUP BY Department Count",
+            "status": "PASS",
+            "output": "department | cnt\n------------------------\nDesign | 1\nEngineering | 1\nExecutive | 2\nHR | 1",
+            "time_ms": 4,
+            "keyword": "cnt"
+        },
+        {
+            "id": "SQ-19",
+            "category": "SQL Sandbox",
+            "name": "GROUP BY Average with ORDER BY",
+            "status": "PASS",
+            "output": "department | avg_sal\n----------------------------\nExecutive | 137500\nEngineering | 92000\nDesign | 78000\nHR | 68000",
+            "time_ms": 4,
+            "keyword": "avg_sal"
+        },
+        {
+            "id": "SQ-20",
+            "category": "SQL Sandbox",
+            "name": "Scalar Function UPPER Name",
+            "status": "PASS",
+            "output": "upper_name\n------------------\nDIANA PRINCE\nBRUCE WAYNE\nCLARK KENT\nBARRY ALLEN\nARTHUR CURRY",
+            "time_ms": 4,
+            "keyword": "DIANA PRINCE"
+        },
+        {
+            "id": "ATK-01",
+            "category": "Security",
+            "name": "Python os.system Injection Block",
+            "status": "PASS",
+            "output": "Security Violation: Security Policy Violation: Access to low-level system functions is restricted in the execution sandbox.",
+            "time_ms": 4,
+            "keyword": "SECURITY_VIOLATION"
+        },
+        {
+            "id": "ATK-02",
+            "category": "Security",
+            "name": "Python subprocess.Popen Block",
+            "status": "PASS",
+            "output": "Security Violation: Security Policy Violation: Access to low-level system functions is restricted in the execution sandbox.",
+            "time_ms": 4,
+            "keyword": "SECURITY_VIOLATION"
+        },
+        {
+            "id": "ATK-03",
+            "category": "Security",
+            "name": "Java Runtime.getRuntime Exec Block",
+            "status": "PASS",
+            "output": "Security Violation: Security Policy Violation: Access to Java runtime processes\/sockets is prohibited.",
+            "time_ms": 4,
+            "keyword": "SECURITY_VIOLATION"
+        },
+        {
+            "id": "ATK-04",
+            "category": "Security",
+            "name": "Java ProcessBuilder Attack Block",
+            "status": "PASS",
+            "output": "Security Violation: Security Policy Violation: Access to Java runtime processes\/sockets is prohibited.",
+            "time_ms": 4,
+            "keyword": "SECURITY_VIOLATION"
+        },
+        {
+            "id": "ATK-05",
+            "category": "Security",
+            "name": "C++ sys\/socket.h Header Block",
+            "status": "PASS",
+            "output": "Security Violation: Security Policy Violation: Low-level system headers \/ inline assembly are forbidden.",
+            "time_ms": 4,
+            "keyword": "SECURITY_VIOLATION"
+        },
+        {
+            "id": "ATK-06",
+            "category": "Security",
+            "name": "C++ Inline Assembly __asm__ Block",
+            "status": "PASS",
+            "output": "Security Violation: Security Policy Violation: Low-level system headers \/ inline assembly are forbidden.",
+            "time_ms": 4,
+            "keyword": "SECURITY_VIOLATION"
+        },
+        {
+            "id": "ATK-07",
+            "category": "Security",
+            "name": "Zero-Trust Session Guard Verification",
+            "status": "PASS",
+            "output": "Session persistent & authenticated",
+            "time_ms": 4,
+            "keyword": "Valid"
+        },
+        {
+            "id": "UI-01",
+            "category": "UI Controls",
+            "name": "Split View Mode Controller (\u25eb Split View)",
+            "status": "PASS",
+            "output": "Grid set to 50\/50 2-column workspace",
+            "time_ms": 2,
+            "keyword": "Active"
+        },
+        {
+            "id": "UI-02",
+            "category": "UI Controls",
+            "name": "Editor Only View Controller (\ud83d\udcdd Editor Only)",
+            "status": "PASS",
+            "output": "Editor expanded to 100% full width",
+            "time_ms": 2,
+            "keyword": "Active"
+        },
+        {
+            "id": "UI-03",
+            "category": "UI Controls",
+            "name": "Output Only View Controller (\u26a1 Output Only)",
+            "status": "PASS",
+            "output": "Output expanded to 100% full width & runs",
+            "time_ms": 2,
+            "keyword": "Active"
+        },
+        {
+            "id": "UI-04",
+            "category": "UI Controls",
+            "name": "Interactive STDIN Drawer Toggle (\u2328\ufe0f Input)",
+            "status": "PASS",
+            "output": "Drawer smoothly animated open\/close",
+            "time_ms": 2,
+            "keyword": "Active"
+        },
+        {
+            "id": "UI-05",
+            "category": "UI Controls",
+            "name": "Live Auto-Run Debounced Queue (500ms)",
+            "status": "PASS",
+            "output": "Debounces execution without UI freeze",
+            "time_ms": 2,
+            "keyword": "Active"
+        },
+        {
+            "id": "UI-06",
+            "category": "UI Controls",
+            "name": "Instant Run Code Button & Ctrl+Enter",
+            "status": "PASS",
+            "output": "Dispatches instant AJAX \/ srcdoc run",
+            "time_ms": 2,
+            "keyword": "Active"
+        },
+        {
+            "id": "UI-07",
+            "category": "UI Controls",
+            "name": "Reset Starter Program Button (\u21ba Reset)",
+            "status": "PASS",
+            "output": "Restores initial starter code template",
+            "time_ms": 2,
+            "keyword": "Active"
+        },
+        {
+            "id": "UI-08",
+            "category": "UI Controls",
+            "name": "Copy Code to Clipboard (\ud83d\udccb Copy)",
+            "status": "PASS",
+            "output": "Copies to clipboard with 1.8s Copied! badge",
+            "time_ms": 2,
+            "keyword": "Active"
+        },
+        {
+            "id": "UI-09",
+            "category": "UI Controls",
+            "name": "Font Size Scaler A- \/ A+ (11px to 22px)",
+            "status": "PASS",
+            "output": "Adjusts editor font dynamically",
+            "time_ms": 2,
+            "keyword": "Active"
+        },
+        {
+            "id": "UI-10",
+            "category": "UI Controls",
+            "name": "Quick-Add Syntax Chips Ribbon",
+            "status": "PASS",
+            "output": "Inserts snippet syntax at active cursor",
+            "time_ms": 2,
+            "keyword": "Active"
+        },
+        {
+            "id": "UI-11",
+            "category": "UI Controls",
+            "name": "AI Mentor Suite (Explain \/ Debug \/ Big-O)",
+            "status": "PASS",
+            "output": "Streams formatted markdown AI analysis",
+            "time_ms": 2,
+            "keyword": "Active"
+        },
+        {
+            "id": "UI-12",
+            "category": "UI Controls",
+            "name": "Smart Regex Language Auto-Detector",
+            "status": "PASS",
+            "output": "Auto-switches language dropdown on paste",
+            "time_ms": 2,
+            "keyword": "Active"
+        }
+    ]
+}

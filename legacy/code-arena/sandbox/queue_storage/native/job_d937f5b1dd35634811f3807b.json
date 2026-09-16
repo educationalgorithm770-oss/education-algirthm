@@ -1,0 +1,1 @@
+{"id":"job_d937f5b1dd35634811f3807b","submission_id":50,"student_id":0,"challenge_id":0,"language":"java","job_type":"NATIVE","code":"public class Main { public static void main(String[] args) { System.out.println(\"Java Calculated Sum: 100\"); } }","custom_input":"","enqueued_at":1787569631}

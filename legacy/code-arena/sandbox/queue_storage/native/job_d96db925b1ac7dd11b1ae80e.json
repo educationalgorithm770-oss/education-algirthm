@@ -1,0 +1,1 @@
+{"id":"job_d96db925b1ac7dd11b1ae80e","submission_id":131,"student_id":18,"challenge_id":0,"language":"python","job_type":"NATIVE","code":"# Python 3 Sandbox\na = 120\nb = 80\nprint(f\"Calculated Sum: {a + b}\")\nprint(\" Real-time UTF-8 Emojis \u2728\")","custom_input":"2 3","enqueued_at":1787572944}

@@ -1,0 +1,55 @@
+# Dependencies
+node_modules/
+**/node_modules/
+.pnpm-store/
+
+# Next.js build output
+.next/
+**/.next/
+out/
+build/
+dist/
+
+# Environment files & secrets
+.env
+.env.*
+*.env
+!.env.example
+!.env.production.example
+
+# Android & Gradle Build Artifacts
+.gradle/
+**/android/.gradle/
+**/android/build/
+**/android/app/build/
+**/android/capacitor-cordova-android-plugins/build/
+**/android/local.properties
+*.apk
+*.aab
+
+# Temporary zip bundles & scratch scripts
+*.zip
+*.tar.gz
+scratch/
+apps/frontend/scratch/
+*.sql
+!db/*.sql
+/*.py
+/*.sh
+!scripts/*.sh
+
+# Operating system & IDE files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.suo
+*.user
+
+# Logs & temporary files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
+.system_generated/

@@ -1,0 +1,1 @@
+{"id":"job_a3a78dc7ae5de90eb1f23c42","submission_id":136,"student_id":0,"challenge_id":0,"language":"python","job_type":"NATIVE","code":"a = 120\nb = 80\nprint(f'Calculated Sum: {a + b}')\nprint('\ud83d\ude80 Real-time UTF-8 Emojis \u2728')","custom_input":"","enqueued_at":1787573028}

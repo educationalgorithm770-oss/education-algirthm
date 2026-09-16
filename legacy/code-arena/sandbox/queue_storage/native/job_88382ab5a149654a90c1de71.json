@@ -1,0 +1,1 @@
+{"id":"job_88382ab5a149654a90c1de71","submission_id":176,"student_id":0,"challenge_id":0,"language":"javascript","job_type":"NATIVE","code":"const a = 15; const b = 35; console.log('Calculated Sum:', a + b);","custom_input":"","enqueued_at":1787576255}

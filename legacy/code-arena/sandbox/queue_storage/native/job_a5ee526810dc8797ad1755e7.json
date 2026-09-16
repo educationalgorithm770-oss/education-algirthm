@@ -1,0 +1,1 @@
+{"id":"job_a5ee526810dc8797ad1755e7","submission_id":133,"student_id":18,"challenge_id":0,"language":"javascript","job_type":"NATIVE","code":"const numbers = [10, 20, 30, 40];\nconst total = numbers.reduce((acc, curr) => acc + curr, 0);\nconsole.log(\"JavaScript Total Sum:\", total);","custom_input":"2 3","enqueued_at":1787572949}

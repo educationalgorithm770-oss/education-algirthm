@@ -1,0 +1,3 @@
+Hello World!
+Welcome to Python file processing.
+This is a sample document for word count.

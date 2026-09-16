@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Delivery Policy — Education Algorithm</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/chatbot.css?v=5.0.0">
+
+  <style>
+    :root {
+      --bg-page: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-subtle: #f1f5f9;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-light: #eef2ff;
+      --primary-glow: rgba(79, 70, 229, 0.18);
+      --success: #10b981;
+      --success-light: #ecfdf5;
+      --success-text: #047857;
+      --border: #e2e8f0;
+      --border-subtle: #cbd5e1;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.07);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07);
+      --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.08);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --radius-full: 9999px;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-heading: 'Plus Jakarta Sans', var(--font-sans);
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; width: 100%; }
+    body {
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding-top: calc(72px + 40px);
+      overflow-x: hidden;
+      width: 100%;
+      position: relative;
+    }
+
+    h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); color: var(--text-primary); line-height: 1.2; font-weight: 700; overflow-wrap: break-word; }
+    p { color: var(--text-secondary); line-height: 1.65; }
+    .mono { font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.04em; }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Announcement Banner */
+    .announcement-banner {
+      background: linear-gradient(135deg, #eef2ff, #f5f3ff);
+      border-bottom: 1px solid rgba(79, 70, 229, 0.12);
+      padding: 0.45rem 1.25rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      min-height: 40px;
+      z-index: 1001;
+      box-sizing: border-box;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .announcement-banner.hidden { transform: translateY(-100%); opacity: 0; pointer-events: none; }
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+      animation: pulseDot 1.8s infinite;
+      display: inline-block;
+    }
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.7; }
+    }
+    .banner-text {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .banner-text strong {
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .banner-link {
+      color: var(--primary);
+      text-decoration: none;
+      border: 1px solid rgba(79, 70, 229, 0.25);
+      background: #ffffff;
+      padding: 0.18rem 0.65rem;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      transition: all 0.2s ease;
+      font-weight: 700;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .banner-link:hover { background: var(--primary-light); border-color: var(--primary); }
+    .banner-close {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.1rem;
+      line-height: 1;
+      padding: 0 0.25rem;
+      margin-left: 0.25rem;
+      opacity: 0.7;
+    }
+    .banner-close:hover { color: var(--text-primary); }
+
+    /* Top Navigation */
+    .site-nav {
+      position: fixed;
+      top: 40px;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      transition: top 0.3s ease, background 0.25s ease, box-shadow 0.25s ease;
+    }
+    body.banner-dismissed .site-nav { top: 0; }
+    body.banner-dismissed { padding-top: 72px; }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-decoration: none;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.18rem;
+      color: var(--text-primary);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .brand-badge {
+      background: rgba(79, 70, 229, 0.08);
+      color: var(--primary);
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 0.15rem 0.5rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(79, 70, 229, 0.18);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 18px;
+    }
+
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; list-style: none; }
+    .nav-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 600;
+      transition: color 0.2s ease;
+      position: relative;
+      padding: 0.25rem 0;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--primary); }
+    .nav-link.active { color: var(--primary); font-weight: 700; }
+
+    .nav-actions { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+    .mobile-menu-btn {
+      display: none;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      padding: 0.5rem;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      color: var(--text-primary);
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+    }
+    .mobile-action { display: none; }
+    .mobile-nav-backdrop { display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(4px); z-index: 998; }
+    .mobile-nav-backdrop.active { display: block; }
+
+    /* Button Styles */
+    .btn {
+      line-height: 1.6;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.35rem;
+      border-radius: var(--radius-md);
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+      min-height: 42px;
+      box-sizing: border-box;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+      color: #fff;
+      box-shadow: 0 4px 14px var(--primary-glow);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(79, 70, 229, 0.38);
+    }
+    .btn-secondary {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+    }
+    .btn-secondary:hover {
+      background: var(--primary-light);
+      border-color: rgba(79, 70, 229, 0.25);
+      color: var(--primary);
+      transform: translateY(-1px);
+    }
+    .btn-sm { padding: 0.45rem 0.95rem; font-size: 0.82rem; min-height: 34px; border-radius: var(--radius-sm); }
+
+    /* Policy Content Box */
+    .policy-hero {
+      text-align: center;
+      padding: 3.5rem 1rem 2rem;
+    }
+    .policy-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 3rem 2.5rem;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 4rem;
+    }
+    .policy-section {
+      margin-bottom: 2.25rem;
+    }
+    .policy-section:last-child {
+      margin-bottom: 0;
+    }
+    .policy-section h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+    }
+    .policy-section p, .policy-section ul {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    .policy-section ul {
+      margin-left: 1.5rem;
+      margin-top: 0.5rem;
+    }
+    .policy-section li {
+      margin-bottom: 0.4rem;
+    }
+
+    /* Footer */
+    .site-footer {
+      background: #0f172a;
+      color: #94a3b8;
+      padding: 4rem 0 2rem;
+      border-top: 1px solid #1e293b;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+      box-sizing: border-box;
+    }
+    .footer-col h4 {
+      color: #ffffff;
+      font-size: 0.95rem;
+      margin-bottom: 1.25rem;
+      font-weight: 700;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.65rem; }
+    .footer-col a { color: #94a3b8; text-decoration: none; font-size: 0.88rem; transition: color 0.15s; }
+    .footer-col a:hover { color: #ffffff; }
+
+    @media (max-width: 1040px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #ffffff;
+        padding: 0.75rem 1rem 1.1rem;
+        border-bottom: 1px solid var(--border);
+        gap: 0.35rem;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+      }
+      .site-nav.open .nav-links { display: flex; }
+      .nav-links li { width: 100%; list-style: none; }
+      .nav-links .nav-link {
+        display: flex;
+        width: 100%;
+        padding: 0.55rem 0.9rem;
+        font-size: 0.88rem;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+      }
+      .mobile-menu-btn { display: flex; }
+      .nav-actions { display: none; }
+      .mobile-action { display: block; width: 100%; }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    }
+
+    @media (max-width: 640px) {
+      .policy-card { padding: 1.75rem 1.25rem; border-radius: var(--radius-lg); }
+      .footer-inner { grid-template-columns: 1fr; gap: 1.75rem; }
+    }
+      /* =========================================================
+       FLAGSHIP ENROLLMENT MODAL 2.0 (PERFECT MOBILE RESPONSIVE)
+       ========================================================= */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.78);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem;
+      box-sizing: border-box;
+    }
+    .modal-backdrop.active, .modal-backdrop.open { display: flex !important; }
+
+    .flagship-modal-card {
+      background: #ffffff;
+      border-radius: 20px;
+      max-width: 960px;
+      width: 100%;
+      max-height: 94vh;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      box-shadow: 0 25px 65px -12px rgba(15, 23, 42, 0.45);
+      position: relative;
+      overflow: hidden;
+      box-sizing: border-box;
+      border: 1px solid rgba(226, 232, 240, 0.9);
+    }
+
+    /* Left Overview Pane */
+    .flagship-summary-pane {
+      background: linear-gradient(165deg, #0f172a 0%, #1e1b4b 60%, #1e293b 100%);
+      padding: 2rem 1.65rem;
+      color: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+    }
+
+    /* Right Action Pane */
+    .flagship-action-pane {
+      background: #ffffff;
+      padding: 2rem 2rem 1.75rem;
+      overflow-y: auto;
+      max-height: 94vh;
+      -webkit-overflow-scrolling: touch;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .flagship-modal-close {
+      position: absolute;
+      top: 0.85rem;
+      right: 0.85rem;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 50%;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      line-height: 1;
+      cursor: pointer;
+      color: #334155;
+      transition: all 0.18s ease;
+      z-index: 100;
+    }
+    .flagship-modal-close:hover {
+      background: #fee2e2;
+      color: #dc2626;
+      border-color: #fca5a5;
+      transform: scale(1.08);
+    }
+
+    /* Stepper */
+    .flagship-stepper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+      position: relative;
+    }
+    .stepper-node {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #94a3b8;
+    }
+    .stepper-node.active { color: #4f46e5; }
+    .stepper-node.completed { color: #10b981; }
+    .step-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      border: 2px solid #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+    .stepper-node.active .step-num {
+      background: #4f46e5;
+      border-color: #4f46e5;
+      color: #ffffff;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.18);
+    }
+    .stepper-node.completed .step-num {
+      background: #10b981;
+      border-color: #10b981;
+      color: #ffffff;
+    }
+    .stepper-line {
+      flex: 1;
+      height: 2px;
+      background: #e2e8f0;
+      margin: 0 0.35rem;
+    }
+    .stepper-line.active { background: #10b981; }
+
+    /* 6-Box OTP Matrix */
+    .otp-boxes-grid {
+      display: flex;
+      gap: 0.45rem;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+    .otp-digit-input {
+      width: 44px;
+      height: 50px;
+      font-size: 1.35rem;
+      font-weight: 800;
+      text-align: center;
+      font-family: var(--font-mono, monospace);
+      border: 2px solid #cbd5e1;
+      border-radius: 10px;
+      background: #ffffff;
+      color: #0f172a;
+    }
+    .otp-digit-input:focus {
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+      outline: none;
+    }
+
+    /* Mobile Track Pill */
+    .mobile-track-summary-pill {
+      display: none;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 0.6rem 0.85rem;
+      margin-bottom: 1rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* MOBILE VIEW OPTIMIZATIONS (< 860px) */
+    @media (max-width: 860px) {
+      .flagship-modal-card {
+        grid-template-columns: 1fr !important;
+        max-height: 92vh !important;
+        max-width: 95vw !important;
+        border-radius: 16px !important;
+      }
+      /* HIDE heavy summary sidebar on mobile so action form is instant & perfectly sized */
+      .flagship-summary-pane {
+        display: none !important;
+      }
+      .mobile-track-summary-pill {
+        display: flex !important;
+      }
+      .flagship-action-pane {
+        padding: 1.35rem 1.15rem 1.25rem !important;
+      }
+      .stepper-node span.step-label {
+        display: none !important;
+      }
+      .otp-digit-input {
+        width: 38px !important;
+        height: 46px !important;
+        font-size: 1.2rem !important;
+        border-radius: 8px !important;
+      }
+      .otp-boxes-grid {
+        gap: 0.3rem !important;
+      }
+    }
+
+    /* MOBILE NAVIGATION DRAWER */
+    @media (max-width: 1040px) {
+      .mobile-menu-btn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 1002;
+      }
+      .nav-links {
+        display: none;
+      }
+      .site-nav.open .nav-links {
+        display: flex !important;
+        flex-direction: column !important;
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        width: 100% !important;
+        background: #ffffff !important;
+        padding: 0.85rem 1.25rem 1.25rem !important;
+        border-bottom: 1px solid var(--border) !important;
+        gap: 0.45rem !important;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+        z-index: 1001 !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        transform: translateY(0) !important;
+      }
+      .mobile-nav-backdrop {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        z-index: 998;
+      }
+      .mobile-nav-backdrop.active { display: block !important; }
+    }
+          /* =========================================================
+       CLEAN & BULLETPROOF MOBILE NAVIGATION MENU
+       ========================================================= */
+    @media (max-width: 1040px) {
+      .nav-actions {
+        display: none !important;
+      }
+      .mobile-menu-btn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        background: #f1f5f9 !important;
+        border: 1.5px solid #cbd5e1 !important;
+        border-radius: 10px !important;
+        cursor: pointer !important;
+        color: #0f172a !important;
+        z-index: 1002 !important;
+        padding: 0 !important;
+        transition: all 0.18s ease;
+      }
+      .mobile-menu-btn:active {
+        transform: scale(0.92);
+      }
+      .drawer-header {
+        display: none !important;
+      }
+      /* When closed, nav-links is strictly hidden */
+      .nav-links {
+        display: none !important;
+        flex-direction: column !important;
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        background: #ffffff !important;
+        padding: 0.85rem 1.25rem 1.5rem !important;
+        border-bottom: 2px solid rgba(226, 232, 240, 0.9) !important;
+        box-shadow: 0 20px 45px rgba(15, 23, 42, 0.18) !important;
+        z-index: 1001 !important;
+        margin: 0 !important;
+        gap: 0.45rem !important;
+        box-sizing: border-box !important;
+        list-style: none !important;
+      }
+      /* When open, nav-links appears cleanly below navbar */
+      .site-nav.open .nav-links {
+        display: flex !important;
+      }
+      .nav-links li {
+        width: 100% !important;
+        list-style: none !important;
+      }
+      .nav-links .nav-link {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+        padding: 0.68rem 1rem !important;
+        font-size: 0.92rem !important;
+        font-weight: 700 !important;
+        color: #0f172a !important;
+        background: #f8fafc !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 10px !important;
+        text-decoration: none !important;
+        box-sizing: border-box !important;
+        transition: all 0.18s ease !important;
+      }
+      .nav-links .nav-link:active,
+      .nav-links .nav-link:hover {
+        background: #eef2ff !important;
+        color: #4f46e5 !important;
+        border-color: #c7d2fe !important;
+      }
+      .mobile-action {
+        display: block !important;
+        width: 100% !important;
+        margin-top: 0.25rem !important;
+      }
+      .mobile-action .btn {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 0.75rem 1rem !important;
+        font-size: 0.9rem !important;
+        font-weight: 700 !important;
+        border-radius: 10px !important;
+      }
+      .mobile-nav-backdrop {
+        display: none;
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background: rgba(15, 23, 42, 0.6) !important;
+        backdrop-filter: blur(4px) !important;
+        -webkit-backdrop-filter: blur(4px) !important;
+        z-index: 999 !important;
+      }
+      .mobile-nav-backdrop.active {
+        display: block !important;
+      }
+    }
+      /* ============ CALLBACK POPUP ============ */
+    .cb-backdrop {
+      position: fixed; inset: 0; z-index: 12000;
+      background: rgba(15, 23, 42, 0.55);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      display: none; align-items: center; justify-content: center;
+      padding: 1rem; box-sizing: border-box;
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    .cb-backdrop.show { display: flex; opacity: 1; }
+
+    .cb-card {
+      background: #fff; width: 100%; max-width: 406px;
+      max-height: 92vh; overflow-y: auto; overflow-x: hidden;
+      border-radius: 18px; padding: 18px 20px 16px;
+      position: relative; box-sizing: border-box;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.3);
+      font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+      opacity: 0; transform: translateY(24px) scale(0.94);
+      transition: opacity 0.34s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .cb-backdrop.show .cb-card { opacity: 1; transform: translateY(0) scale(1); }
+    .cb-card::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, #4f46e5, #06b6d4, #4f46e5);
+      background-size: 200% 100%;
+      border-radius: 18px 18px 0 0;
+      animation: cbSheen 3.5s linear infinite;
+    }
+    @keyframes cbSheen { to { background-position: -200% 0; } }
+
+    .cb-close {
+      position: absolute; top: 8px; right: 10px;
+      background: none; border: none; font-size: 1.3rem; line-height: 1;
+      color: #94a3b8; cursor: pointer; padding: 3px 7px; border-radius: 7px;
+      transition: color 0.18s, background 0.18s, transform 0.18s;
+    }
+    .cb-close:hover { color: #0f172a; background: #f1f5f9; transform: rotate(90deg); }
+
+    .cb-head { text-align: center; margin-bottom: 0.15rem; }
+    .cb-logo {
+      width: 40px; height: 40px; margin: 0 auto 0.3rem; display: block; color: #4f46e5;
+      animation: cbFloat 3.6s ease-in-out infinite;
+    }
+    @keyframes cbFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+    .cb-pill {
+      display: inline-flex; align-items: center; gap: 0.34rem;
+      font-size: 0.57rem; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase;
+      color: #4f46e5; background: #eef2ff; border: 1px solid rgba(79,70,229,0.18);
+      padding: 0.2rem 0.5rem; border-radius: 999px; line-height: 1;
+    }
+    .cb-dot { width: 5px; height: 5px; border-radius: 50%; background: #10b981; position: relative; }
+    .cb-dot::after {
+      content: ""; position: absolute; inset: 0; border-radius: 50%;
+      animation: cbPing 2s ease-out infinite;
+    }
+    @keyframes cbPing {
+      0% { box-shadow: 0 0 0 0 rgba(16,185,129,0.6); }
+      70% { box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+      100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); }
+    }
+    .cb-head h3 { font-size: 1.05rem; margin: 0.32rem 0 0.14rem; color: #0f172a; line-height: 1.25; }
+    .cb-head p { font-size: 0.73rem; color: #64748b; margin: 0; line-height: 1.45; }
+
+    .cb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 0.6rem; }
+    .cb-field { opacity: 0; transform: translateY(9px); }
+    .cb-field-full { grid-column: 1 / -1; }
+    .cb-backdrop.show .cb-field { animation: cbUp 0.42s cubic-bezier(0.22,1,0.36,1) forwards; }
+    .cb-backdrop.show .cb-field:nth-of-type(1) { animation-delay: 0.10s; }
+    .cb-backdrop.show .cb-field:nth-of-type(2) { animation-delay: 0.16s; }
+    .cb-backdrop.show .cb-field:nth-of-type(3) { animation-delay: 0.22s; }
+    .cb-backdrop.show .cb-field:nth-of-type(4) { animation-delay: 0.28s; }
+    @keyframes cbUp { to { opacity: 1; transform: none; } }
+
+    .cb-label { display: block; font-size: 0.69rem; font-weight: 600; color: #334155; margin: 0.44rem 0 0.16rem; }
+    .cb-opt { font-weight: 500; color: #94a3b8; }
+    .cb-input {
+      width: 100%; box-sizing: border-box; padding: 0.45rem 0.6rem;
+      border: 1px solid #e2e8f0; border-radius: 9px; background: #f8fafc;
+      font-family: inherit; font-size: 0.82rem; color: #0f172a;
+      transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
+    }
+    .cb-input:focus {
+      outline: none; border-color: #4f46e5; background: #fff;
+      box-shadow: 0 0 0 3px rgba(79,70,229,0.14);
+    }
+    .cb-err {
+      display: none; margin-top: 0.5rem; padding: 0.42rem 0.6rem;
+      background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px;
+      color: #b91c1c; font-size: 0.74rem; animation: cbShake 0.4s;
+    }
+    .cb-err.show { display: block; }
+    @keyframes cbShake {
+      0%,100% { transform: translateX(0); }
+      20%,60% { transform: translateX(-4px); }
+      40%,80% { transform: translateX(4px); }
+    }
+
+    .cb-submit {
+      position: relative; overflow: hidden;
+      width: 100%; margin-top: 0.72rem; padding: 0.6rem 1rem;
+      background: linear-gradient(135deg, #4f46e5, #4338ca); color: #fff;
+      border: none; border-radius: 10px; cursor: pointer;
+      font-family: inherit; font-size: 0.85rem; font-weight: 700; line-height: 1.6;
+      box-shadow: 0 4px 14px rgba(79,70,229,0.3);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s;
+    }
+    .cb-submit::after {
+      content: ""; position: absolute; top: 0; left: -70%; width: 45%; height: 100%;
+      background: linear-gradient(100deg, transparent, rgba(255,255,255,0.28), transparent);
+      transform: skewX(-20deg); animation: cbShine 3.2s ease-in-out infinite;
+    }
+    @keyframes cbShine { 0%, 55% { left: -70%; } 100% { left: 140%; } }
+    .cb-submit:hover { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(79,70,229,0.36); }
+    .cb-submit:disabled { opacity: 0.6; cursor: default; transform: none; }
+    .cb-submit:disabled::after { display: none; }
+
+    .cb-fine { font-size: 0.64rem; color: #94a3b8; text-align: center; margin: 0.42rem 0 0; }
+
+    .cb-done { display: none; text-align: center; padding: 0.4rem 0 0.2rem; }
+    .cb-done.show { display: block; animation: cbUp 0.45s cubic-bezier(0.22,1,0.36,1) forwards; }
+    .cb-tick {
+      width: 50px; height: 50px; border-radius: 50%; margin: 0 auto 0.7rem;
+      background: #ecfdf5; color: #047857; font-size: 1.45rem;
+      display: flex; align-items: center; justify-content: center;
+      animation: cbPop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes cbPop { 0% { transform: scale(0.3); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+    .cb-done h4 { font-size: 0.98rem; margin: 0 0 0.3rem; color: #0f172a; }
+    .cb-done p { font-size: 0.78rem; color: #64748b; margin: 0 0 0.3rem; line-height: 1.5; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cb-card, .cb-field, .cb-tick, .cb-err { animation: none !important; transition: none !important;
+        opacity: 1 !important; transform: none !important; }
+      .cb-card::before, .cb-submit::after, .cb-logo, .cb-dot::after { animation: none !important; }
+    }
+    @media (max-width: 460px) {
+      .cb-card { padding: 1rem 0.95rem 0.95rem; max-width: 360px; }
+      .cb-grid { grid-template-columns: 1fr; }
+      .cb-head h3 { font-size: 1rem; }
+    }
+
+    /* ============ BRAND MARK ============ */
+    .ea-logo { display: block; overflow: visible; flex-shrink: 0; color: var(--primary, #4f46e5); }
+    .ea-logo .ea-base { opacity: 0.45; transition: opacity 0.3s ease; }
+    .ea-logo .ea-capg { transform-box: view-box; transform-origin: 22.5px 16px; transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .ea-logo .ea-tas  { transform-box: view-box; transform-origin: 41.6px 17.8px; animation: eaSwing 4.6s ease-in-out infinite; }
+    @keyframes eaSwing { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(8deg); } 75% { transform: rotate(-8deg); } }
+    .ea-logo .ea-g { animation: eaIntro 0.75s cubic-bezier(0.34, 1.56, 0.64, 1) both; transform-box: view-box; transform-origin: 22.5px 20px; }
+    @keyframes eaIntro { 0% { opacity: 0; transform: translateY(-5px) scale(0.82); } 100% { opacity: 1; transform: none; } }
+    a:hover > .ea-logo .ea-capg, .brand-logo:hover .ea-logo .ea-capg { transform: translateY(-2.4px) rotate(-7deg); }
+    a:hover > .ea-logo .ea-base, .brand-logo:hover .ea-logo .ea-base { opacity: 0.72; }
+    .brand-logo:hover .ea-logo .ea-tas { animation-duration: 1.15s; }
+    @media (prefers-reduced-motion: reduce) {
+      .ea-logo .ea-tas, .ea-logo .ea-g { animation: none !important; }
+      .ea-logo .ea-capg { transition: none !important; }
+    }
+</style>
+  <!-- restore the dismissed banner BEFORE first paint, so the layout never jumps -->
+  <script>(function(){try{if(sessionStorage.getItem('ea_banner_dismissed')==='1'){document.documentElement.classList.add('banner-dismissed');}}catch(e){}})();</script>
+  <style>
+    html.banner-dismissed .announcement-banner { display: none !important; }
+    html.banner-dismissed .site-nav { top: 0 !important; }
+    html.banner-dismissed body { padding-top: 72px !important; }
+  </style>
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#0f172a">
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y45hrispgg");
+</script>
+
+</head>
+<body>
+  <!-- Announcement Banner -->
+  <div class="announcement-banner" id="topBanner">
+    <span class="live-dot"></span>
+    <span class="banner-text"><strong>Admissions Open</strong> | Live Weekend Batches Starting Soon</span>
+    <a href="courses" class="banner-link">Explore Batches →</a>
+    <button class="banner-close" onclick="dismissBanner()" aria-label="Dismiss banner">&times;</button>
+  </div>
+
+  <div class="mobile-nav-backdrop" id="mobileNavBackdrop" onclick="closeMobileNav()"></div>
+
+  <!-- Top Navigation -->
+  <header class="site-nav" id="siteNav">
+    <div class="nav-inner">
+      <a href="./" class="brand-logo">
+        <svg class="ea-logo" width="34" height="34" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Education Algorithm"><g class="ea-g"><path class="ea-base" d="M11.5 23.4v6.8c0 3.6 5 6.1 11 6.1s11-2.5 11-6.1v-6.8" stroke="currentColor" stroke-width="3.4" fill="none" stroke-linecap="round"/><g class="ea-capg"><path class="ea-cap" d="M22.5 6.5 43 16 22.5 25.5 2 16Z" fill="currentColor"/></g><g class="ea-tas"><path d="M41.6 17.8v8.4" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" fill="none"/><circle cx="41.6" cy="30.2" r="3.2" fill="currentColor"/></g></g></svg>
+        <span>Education Algorithm</span>
+        <span class="brand-badge">EDTECH</span>
+      </a>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation" onclick="toggleMobileNav()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="courses" class="nav-link">Courses</a></li>
+        <li><a href="outcomes" class="nav-link">Outcomes</a></li>
+        <li><a href="internships" class="nav-link">Internships</a></li>
+        <li><a href="about" class="nav-link">About Us</a></li>
+        <li><a href="contact" class="nav-link">Admissions</a></li>
+        <li class="mobile-action"><a href="login.php" class="btn btn-secondary" style="width: 100%; margin-top: 0.75rem; justify-content: center;">Student LMS</a></li>
+        <li class="mobile-action"><a href="courses" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem; justify-content: center;">Browse Courses →</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="login.php" class="btn btn-secondary">Student LMS</a>
+        <a href="courses" class="btn btn-primary">Enroll Now →</a>
+      </div>
+    </div>
+  </header>
+  <main class="container">
+    <div class="policy-hero">
+      <span class="mono" style="color: var(--primary); font-weight: 700; text-transform: uppercase;">Service Delivery</span>
+      <h1 style="font-size: 2.5rem; margin-top: 0.35rem;">Digital Delivery & Fulfillment</h1>
+      <p style="margin-top: 0.5rem;">Last Updated: August 18, 2026</p>
+    </div>
+
+    <div class="policy-card">
+      <div class="policy-section">
+        <h3>1. Nature of Services</h3>
+        <p>Education Algorithm provides digital educational services, live online cohort mentoring, digital compiler sandbox access, downloadable study guides, and cryptographic digital certifications. We do not ship physical parcels or tangible hardware.</p>
+      </div>
+
+      <div class="policy-section">
+        <h3>2. Instant LMS Fulfillment</h3>
+        <p>Upon successful payment confirmation via our secure payment gateway (Razorpay), student LMS account credentials and course access are provisioned <strong>instantaneously (within 0–5 minutes)</strong>. Login details are displayed on-screen and automatically dispatched to your registered email and WhatsApp number.</p>
+      </div>
+
+      <div class="policy-section">
+        <h3>3. Live Class Access Delivery</h3>
+        <p>Live interactive lecture calendar invites, Google Meet/Zoom video conference links, and mentor office hours are posted directly on the student LMS dashboard and sent via calendar invite 24 hours prior to each weekend session.</p>
+      </div>
+
+      <div class="policy-section">
+        <h3>4. Digital Certificate Issuance</h3>
+        <p>Digital verified certificates and letters of recommendation are generated cryptographically and available for instant download and LinkedIn integration upon completion of project defense.</p>
+      </div>
+    </div>
+  </main>
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <a href="./" class="brand-logo" style="margin-bottom: 1rem; display: inline-flex;">
+          <span style="color: #ffffff;">Education Algorithm</span>
+        </a>
+        <p style="font-size: 0.9rem; line-height: 1.6; color: #94a3b8;">
+          Premier technical academy delivering industry-graded engineering tracks, verified certifications, and career acceleration.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Learning Tracks</h4>
+        <ul>
+          <li><a href="courses">Java Full Stack & Cloud</a></li>
+          <li><a href="courses">Data Science & Generative AI</a></li>
+          <li><a href="courses">DSA & System Design</a></li>
+          <li><a href="courses">Cloud DevOps Engineering</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Policies & Legal</h4>
+        <ul>
+          <li><a href="privacy-policy">Privacy Policy</a></li>
+          <li><a href="terms">Terms & Conditions</a></li>
+          <li><a href="shipping-policy">Digital Delivery</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="contact">Admissions Desk</a></li>
+          <li><span style="font-size: 0.9rem; color: #94a3b8;">Chennai, Tamil Nadu</span></li>
+          <li><span style="font-size: 0.9rem; color: #94a3b8;">+91 78456 70203</span></li>
+        </ul>
+      </div>
+    </div>
+    <div style="max-width: 1200px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem; text-align: center; font-size: 0.85rem; color: #64748b;">
+      &copy; 2026 Education Algorithm. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    function dismissBanner() {
+      const banner = document.getElementById('topBanner');
+      if (banner) {
+        banner.classList.add('hidden');
+        document.body.classList.add('banner-dismissed');
+        document.documentElement.classList.add('banner-dismissed');
+        try { sessionStorage.setItem('ea_banner_dismissed', '1'); } catch(e){}
+      }
+    }
+    try {
+      if (sessionStorage.getItem('ea_banner_dismissed') === '1') {
+        dismissBanner();
+      }
+    } catch(e){}
+
+    
+  
+    // Mobile nav controller
+    function toggleMobileNav() {
+      const nav = document.getElementById('siteNav');
+      const backdrop = document.getElementById('mobileNavBackdrop');
+      if (nav) {
+        const isOpen = nav.classList.toggle('open');
+        if (backdrop) backdrop.classList.toggle('active', isOpen);
+      }
+    }
+
+    function closeMobileNav() {
+      const nav = document.getElementById('siteNav');
+      const backdrop = document.getElementById('mobileNavBackdrop');
+      if (nav) nav.classList.remove('open');
+      if (backdrop) backdrop.classList.remove('active');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuBtn = document.getElementById('mobileMenuBtn');
+      if (menuBtn) {
+        menuBtn.onclick = function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggleMobileNav();
+        };
+      }
+
+      const backdrop = document.getElementById('mobileNavBackdrop');
+      if (backdrop) {
+        backdrop.onclick = function(e) {
+          e.preventDefault();
+          closeMobileNav();
+        };
+      }
+
+      const navLinks = document.querySelectorAll('.nav-links a, .nav-links button');
+      navLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+          closeMobileNav();
+        });
+      });
+    });
+  </script>
+  <script src="assets/chatbot.js?v=5.0.0" defer></script>
+
+  <!-- ============ CALLBACK POPUP ============ -->
+  <div class="cb-backdrop" id="cbBackdrop" role="dialog" aria-modal="true" aria-labelledby="cbTitle">
+    <div class="cb-card">
+      <button type="button" class="cb-close" id="cbClose" aria-label="Close">&times;</button>
+
+      <div class="cb-head">
+        <svg class="ea-logo cb-logo" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><g class="ea-g"><path class="ea-base" d="M11.5 23.4v6.8c0 3.6 5 6.1 11 6.1s11-2.5 11-6.1v-6.8" stroke="currentColor" stroke-width="3.4" fill="none" stroke-linecap="round"/><g class="ea-capg"><path class="ea-cap" d="M22.5 6.5 43 16 22.5 25.5 2 16Z" fill="currentColor"/></g><g class="ea-tas"><path d="M41.6 17.8v8.4" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" fill="none"/><circle cx="41.6" cy="30.2" r="3.2" fill="currentColor"/></g></g></svg>
+        <span class="cb-pill"><span class="cb-dot"></span>Admissions Open</span>
+        <h3 id="cbTitle">Request a Callback</h3>
+        <p>Fill the form &mdash; our team will call you shortly.</p>
+      </div>
+
+      <form id="cbForm" novalidate>
+        <input type="hidden" name="csrf_token" id="cbCsrf" value="">
+
+        <div class="cb-grid">
+          <div class="cb-field">
+            <label class="cb-label" for="cbName">Full Name *</label>
+            <input class="cb-input" type="text" id="cbName" name="name" required minlength="2" maxlength="80" placeholder="Alex Morgan" autocomplete="name">
+          </div>
+
+          <div class="cb-field">
+            <label class="cb-label" for="cbPhone">Mobile Number *</label>
+            <input class="cb-input" type="tel" id="cbPhone" name="phone" required inputmode="numeric" minlength="7" maxlength="20" placeholder="98765 43210" autocomplete="tel">
+          </div>
+
+          <div class="cb-field cb-field-full">
+            <label class="cb-label" for="cbEmail">Email Address *</label>
+            <input class="cb-input" type="email" id="cbEmail" name="email" required maxlength="191" placeholder="alex@example.com" autocomplete="email">
+          </div>
+
+          <div class="cb-field cb-field-full">
+            <label class="cb-label" for="cbTrack">Curriculum Track</label>
+            <select class="cb-input" id="cbTrack" name="program_interest">
+              <option value="Java Full Stack Engineering">Java Full Stack &amp; Cloud (12 Weeks)</option>
+              <option value="Data Science &amp; AI">Data Science &amp; Generative AI (14 Weeks)</option>
+              <option value="DSA &amp; Problem Solving">DSA &amp; System Design (Coming Soon)</option>
+              <option value="Cloud DevOps">Cloud DevOps &amp; Kubernetes (Coming Soon)</option>
+              <option value="Internship Track">Capstone &amp; Internship Track</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="cb-err" id="cbErr" role="alert"></div>
+
+        <button type="submit" class="cb-submit" id="cbSubmit">Request Callback &rarr;</button>
+        <p class="cb-fine">We&rsquo;ll only use your details to contact you about admissions.</p>
+      </form>
+
+      <div class="cb-done" id="cbDone">
+        <div class="cb-tick">&#10003;</div>
+        <h4>Request received!</h4>
+        <p>Our counsellor will call you shortly. Keep your phone handy.</p>
+        <button type="button" class="cb-submit" id="cbDoneClose">Continue browsing</button>
+      </div>
+    </div>
+  </div>
+  <script>
+  /* ============ CALLBACK POPUP ============
+     Shows once per browser session: after DELAY_MS, or immediately if the
+     visitor moves to close the tab (exit intent), whichever happens first.
+     Submits to contact-handler.php via fetch so the page is never left. */
+  (function () {
+    var DELAY_MS   = 8000;                 // <-- change this to show it sooner/later
+    var STORE_KEY  = 'ea_callback_popup';  // remembers "already shown/submitted"
+
+    var back  = document.getElementById('cbBackdrop');
+    var form  = document.getElementById('cbForm');
+    var done  = document.getElementById('cbDone');
+    var errEl = document.getElementById('cbErr');
+    var btn   = document.getElementById('cbSubmit');
+    var csrf  = document.getElementById('cbCsrf');
+    if (!back || !form) return;
+
+    function seen() { try { return sessionStorage.getItem(STORE_KEY); } catch (e) { return null; } }
+    function mark(v) { try { sessionStorage.setItem(STORE_KEY, v); } catch (e) {} }
+
+    function readCookie(n) {
+      var m = document.cookie.match('(^|;)\\s*' + n + '\\s*=\\s*([^;]+)');
+      return m ? decodeURIComponent(m.pop()) : '';
+    }
+    function syncToken() {
+      return fetch('session-init.php', { credentials: 'same-origin', cache: 'no-store' })
+        .then(function () { csrf.value = readCookie('csrf_token'); return !!csrf.value; })
+        .catch(function () { csrf.value = readCookie('csrf_token'); return !!csrf.value; });
+    }
+
+    function open_() {
+      if (seen()) return;
+      back.classList.add('show');
+      document.body.style.overflow = 'hidden';
+      mark('shown');
+      syncToken();
+      setTimeout(function () { var n = document.getElementById('cbName'); if (n) n.focus(); }, 320);
+    }
+    function close_() {
+      back.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('cbClose').addEventListener('click', close_);
+    var dc = document.getElementById('cbDoneClose');
+    if (dc) dc.addEventListener('click', close_);
+    back.addEventListener('click', function (e) { if (e.target === back) close_(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && back.classList.contains('show')) close_();
+    });
+
+    /* triggers */
+    if (!seen()) {
+      setTimeout(open_, DELAY_MS);
+      document.addEventListener('mouseout', function onExit(e) {
+        if (!e.relatedTarget && e.clientY <= 0) { document.removeEventListener('mouseout', onExit); open_(); }
+      });
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      errEl.classList.remove('show');
+
+      var name  = document.getElementById('cbName').value.trim();
+      var email = document.getElementById('cbEmail').value.trim();
+      var phone = document.getElementById('cbPhone').value.trim();
+      var msg   = '';
+
+      if (name.length < 2)                    return fail('Please enter your full name.');
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return fail('Please enter a valid email address.');
+      if (phone.replace(/\D/g, '').length < 7) return fail('Please enter a valid mobile number.');
+
+      // the handler needs a message; supply a sensible one if left blank
+      if (!msg) msg = 'Callback requested from the website popup. Please call me about admissions.';
+
+      btn.disabled = true; btn.textContent = 'Sending...';
+
+      syncToken().then(function (haveToken) {
+        if (!haveToken) { reset(); return fail('Could not start a secure session. Please refresh and try again.'); }
+        var body = new URLSearchParams({
+          csrf_token: csrf.value, name: name, email: email, phone: phone,
+          program_interest: document.getElementById('cbTrack').value, message: msg
+        });
+        return fetch('contact-handler.php?format=json', {
+          method: 'POST', credentials: 'same-origin',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'X-Requested-With': 'XMLHttpRequest' },
+          body: body.toString()
+        })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          reset();
+          if (d && d.ok) { form.style.display = 'none'; done.classList.add('show'); mark('submitted'); }
+          else { fail((d && d.error) || 'Something went wrong. Please try again.'); }
+        })
+        .catch(function () { reset(); fail('Network error. Please check your connection and try again.'); });
+      });
+
+      function fail(m) { errEl.textContent = m; errEl.classList.add('show'); return false; }
+      function reset() { btn.disabled = false; btn.innerHTML = 'Request Callback &rarr;'; }
+    });
+  })();
+  </script>
+</body>
+</html>

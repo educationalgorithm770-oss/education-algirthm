@@ -1,0 +1,79 @@
+services:
+  # Privileged component: the only service with direct Docker socket access.
+  # It exposes a deliberately restricted Docker API to the runner over the
+  # private internal network; the HTTP-facing runner never mounts docker.sock.
+  docker-socket-proxy:
+    image: tecnativa/docker-socket-proxy:latest
+    environment:
+      CONTAINERS: 1
+      POST: 1
+      IMAGES: 1
+      VERSION: 1
+      INFO: 0
+      NETWORKS: 0
+      VOLUMES: 0
+      SERVICES: 0
+      TASKS: 0
+      SWARM: 0
+      SYSTEM: 0
+      AUTH: 0
+      SECRETS: 0
+      CONFIGS: 0
+      EXEC: 0
+      DISTRIBUTION: 0
+      PLUGINS: 0
+      NODES: 0
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - runner_internal
+    read_only: true
+    tmpfs:
+      - /run:size=8m
+      - /tmp:size=8m
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    restart: unless-stopped
+
+  # Build the exact immutable sandbox image automatically on fresh deployment.
+  sandbox-image:
+    build:
+      context: ./services/code-runner/sandbox
+    image: education-algorithm-code-sandbox:latest
+    command: ["/bin/true"]
+    restart: "no"
+
+  code-runner:
+    build: ./services/code-runner
+    depends_on:
+      docker-socket-proxy:
+        condition: service_started
+      sandbox-image:
+        condition: service_completed_successfully
+    environment:
+      CODE_RUNNER_TOKEN: ${CODE_RUNNER_TOKEN:?set CODE_RUNNER_TOKEN}
+      RUNNER_SANDBOX_IMAGE: education-algorithm-code-sandbox:latest
+      DOCKER_HOST: tcp://docker-socket-proxy:2375
+    read_only: true
+    tmpfs:
+      - /tmp:size=32m,mode=1777
+    mem_limit: 128m
+    cpus: 0.5
+    pids_limit: 64
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    expose:
+      - "8080"
+    ports:
+      - "127.0.0.1:8088:8080"
+    networks:
+      - runner_internal
+    restart: unless-stopped
+
+networks:
+  runner_internal:
+    internal: true

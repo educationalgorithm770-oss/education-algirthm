@@ -1,0 +1,1 @@
+{"id":"job_fba036d08bd54784c8c860b0","submission_id":187,"student_id":0,"challenge_id":0,"language":"python","job_type":"NATIVE","code":"name = 'Education Algorithm'\nscore = 98\nprint(f'Platform: {name} | Score: {score}')","custom_input":"","enqueued_at":1787576876}

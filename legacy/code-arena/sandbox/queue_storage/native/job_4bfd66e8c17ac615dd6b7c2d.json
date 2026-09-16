@@ -1,0 +1,1 @@
+{"id":"job_4bfd66e8c17ac615dd6b7c2d","submission_id":251,"student_id":0,"challenge_id":0,"language":"cpp","job_type":"NATIVE","code":"#include <iostream>\nusing namespace std;\nint main() {\n    cout << \"C++ Diagnostic Test Success\" << endl;\n    return 0;\n}","custom_input":"","enqueued_at":1787599515}

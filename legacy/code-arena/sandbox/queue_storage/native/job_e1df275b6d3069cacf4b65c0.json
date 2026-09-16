@@ -1,0 +1,1 @@
+{"id":"job_e1df275b6d3069cacf4b65c0","submission_id":188,"student_id":0,"challenge_id":0,"language":"python","job_type":"NATIVE","code":"numbers = [10, 20, 30, 40]\ntotal = sum(numbers)\nprint(f'Sum of list: {total}')","custom_input":"","enqueued_at":1787576878}

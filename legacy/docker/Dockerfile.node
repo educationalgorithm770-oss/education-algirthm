@@ -1,0 +1,6 @@
+﻿# Dockerfile.node — Sandbox Execution Container for Node.js
+FROM node:20-alpine
+RUN adduser -D -u 1000 nonroot
+USER nonroot
+WORKDIR /tmp
+CMD ["node"]

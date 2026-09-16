@@ -1,0 +1,3881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TLT7X222G"></script>
+    <script>
+
+    // Mobile Hamburger Nav Toggle
+        // Mobile Hamburger Nav Toggle (Universal Fix)
+    window.toggleMobileNav = function(e) {
+      if (e && typeof e.stopPropagation === 'function') e.stopPropagation();
+      const siteNav = document.getElementById('siteNav');
+      const nav = document.getElementById('navLinks');
+      const btn = document.getElementById('mobileMenuBtn');
+      const backdrop = document.getElementById('mobileNavBackdrop');
+      
+      const isOpen = siteNav ? siteNav.classList.contains('open') : (nav && nav.classList.contains('open'));
+      
+      if (isOpen) {
+        if (siteNav) siteNav.classList.remove('open');
+        if (nav) { nav.classList.remove('active'); nav.classList.remove('open'); }
+        if (btn) btn.classList.remove('active');
+        if (backdrop) { backdrop.classList.remove('active'); backdrop.style.display = 'none'; }
+      } else {
+        if (siteNav) siteNav.classList.add('open');
+        if (nav) { nav.classList.add('active'); nav.classList.add('open'); }
+        if (btn) btn.classList.add('active');
+        if (backdrop) { backdrop.classList.add('active'); backdrop.style.display = 'block'; }
+      }
+    };
+
+    window.closeMobileNav = function() {
+      const siteNav = document.getElementById('siteNav');
+      const nav = document.getElementById('navLinks');
+      const btn = document.getElementById('mobileMenuBtn');
+      const backdrop = document.getElementById('mobileNavBackdrop');
+      if (siteNav) siteNav.classList.remove('open');
+      if (nav) { nav.classList.remove('active'); nav.classList.remove('open'); }
+      if (btn) btn.classList.remove('active');
+      if (backdrop) { backdrop.classList.remove('active'); backdrop.style.display = 'none'; }
+    };
+// Close mobile nav on outside click
+    document.addEventListener('click', function(e) {
+      const nav = document.getElementById('navLinks');
+      const btn = document.getElementById('mobileMenuBtn');
+      if (nav && nav.classList.contains('active') && !nav.contains(e.target) && (!btn || !btn.contains(e.target))) {
+        nav.classList.remove('active');
+        nav.classList.remove('open');
+        if (btn) btn.classList.remove('active');
+      }
+    });
+
+    // Sample Lecture Modal Functions
+    window.openSampleLectureModal = function(e) {
+      if (e && typeof e.preventDefault === 'function') e.preventDefault();
+      const modal = document.getElementById('sampleLectureModal');
+      if (modal) {
+        modal.style.setProperty('display', 'flex', 'important');
+        modal.classList.add('active');
+        modal.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      }
+    };
+
+    window.closeSampleLectureModal = function(e) {
+      if (e && typeof e.preventDefault === 'function') e.preventDefault();
+      const modal = document.getElementById('sampleLectureModal');
+      if (modal) {
+        modal.style.setProperty('display', 'none', 'important');
+        modal.classList.remove('active');
+        modal.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+    };
+
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-6TLT7X222G');
+    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curriculum Catalog & Engineering Programs &bull; Education Algorithm</title>
+  <meta name="description" content="Explore industry-leading software engineering programs in Java Full Stack, DSA & System Design, Generative AI, and Cloud DevOps at Education Algorithm.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/chatbot.css?v=5.0.0">
+
+  <style>
+    :root {
+      --bg-page: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-subtle: #f1f5f9;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-light: #eef2ff;
+      --primary-glow: rgba(79, 70, 229, 0.18);
+      --success: #10b981;
+      --success-light: #ecfdf5;
+      --success-text: #047857;
+      --warning: #f59e0b;
+      --warning-light: #fef3c7;
+      --warning-text: #b45309;
+      --danger: #ef4444;
+      --border: #e2e8f0;
+      --border-subtle: #cbd5e1;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.07), 0 1px 2px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+      --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.08), 0 4px 8px -4px rgba(0, 0, 0, 0.04);
+      --shadow-xl: 0 20px 30px -5px rgba(0, 0, 0, 0.1), 0 10px 15px -5px rgba(0, 0, 0, 0.04);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --radius-full: 9999px;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-heading: 'Plus Jakarta Sans', var(--font-sans);
+      --font-mono: 'JetBrains Mono', monospace;
+    
+      --bg-card: #ffffff;
+      --accent: #06b6d4;
+      --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; width: 100%; }
+    body {
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding-top: calc(72px + 40px);
+      overflow-x: hidden;
+      width: 100%;
+      position: relative;
+    }
+
+    h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); color: var(--text-primary); line-height: 1.25; font-weight: 700; }
+    p { color: var(--text-secondary); font-size: 0.875rem; }
+    .mono { font-family: var(--font-mono); font-size: 0.76rem; letter-spacing: 0.04em; }
+    img, svg, video, iframe { max-width: 100%; }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Announcement Banner */
+    .announcement-banner {
+      background: linear-gradient(135deg, #eef2ff, #f5f3ff);
+      border-bottom: 1px solid rgba(79, 70, 229, 0.12);
+      padding: 0.45rem 1.25rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      min-height: 40px;
+      z-index: 1001;
+      box-sizing: border-box;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .announcement-banner.hidden {
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+      animation: pulseDot 1.8s infinite;
+      display: inline-block;
+    }
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.7; }
+    }
+    .banner-text {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .banner-text strong {
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .banner-link {
+      color: var(--primary);
+      text-decoration: none;
+      border: 1px solid rgba(79, 70, 229, 0.25);
+      background: #ffffff;
+      padding: 0.18rem 0.65rem;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      transition: all 0.2s ease;
+      font-weight: 700;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .banner-link:hover { background: var(--primary-light); border-color: var(--primary); }
+    .banner-close {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.1rem;
+      line-height: 1;
+      padding: 0 0.25rem;
+      margin-left: 0.25rem;
+      opacity: 0.7;
+    }
+    .banner-close:hover { opacity: 1; color: var(--text-primary); }
+
+    /* Floating Glass Navbar */
+    .site-nav {
+      position: fixed;
+      top: 40px;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      transition: top 0.3s ease, background 0.25s ease, box-shadow 0.25s ease;
+    }
+    body.banner-dismissed .site-nav { top: 0; }
+    body.banner-dismissed { padding-top: 72px; }
+    .site-nav.scrolled {
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-decoration: none;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.18rem;
+      color: var(--text-primary);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .brand-badge {
+      background: rgba(79, 70, 229, 0.08);
+      color: var(--primary);
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 0.15rem 0.5rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(79, 70, 229, 0.18);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 18px;
+    }
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; list-style: none; }
+    .nav-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 600;
+      transition: color 0.2s ease;
+      position: relative;
+      padding: 0.25rem 0;
+      white-space: nowrap;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.22s;
+      border-radius: var(--radius-full);
+    }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    .nav-link:hover, .nav-link.active { color: var(--text-primary); }
+    .nav-actions { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+
+    /* Buttons */
+    .btn {
+      line-height: 1.6;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.35rem;
+      border-radius: var(--radius-md);
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+      min-height: 42px;
+      box-sizing: border-box;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+      color: #fff;
+      box-shadow: 0 4px 14px var(--primary-glow);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(79, 70, 229, 0.38);
+    }
+    .btn-secondary {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+    }
+    .btn-secondary:hover {
+      background: var(--primary-light);
+      border-color: rgba(79, 70, 229, 0.25);
+      color: var(--primary);
+      transform: translateY(-1px);
+    }
+    .btn-sm {
+      padding: 0.4rem 0.85rem;
+      font-size: 0.8rem;
+      min-height: 32px;
+      border-radius: var(--radius-sm);
+    }
+    .btn-lg {
+      padding: 0.85rem 1.75rem;
+      font-size: 1rem;
+      min-height: 48px;
+      border-radius: var(--radius-md);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      padding: 0.5rem;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      color: var(--text-primary);
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+    }
+    .mobile-action { display: none; }
+    .mobile-nav-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.5);
+      backdrop-filter: blur(4px);
+      z-index: 998;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease;
+    }
+    .mobile-nav-backdrop.active { opacity: 1; visibility: visible; }
+
+    /* Page Header */
+    .page-header-box {
+      text-align: center;
+      padding: 2.25rem 1rem 1.75rem;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .page-header-box h1 {
+      font-size: 2.1rem;
+      letter-spacing: -0.025em;
+      margin: 0.4rem 0 0.75rem;
+    }
+    .page-header-box p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    /* Header Metrics Strip */
+    .header-metrics-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .metric-box {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1rem 0.85rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .metric-num {
+      font-size: 1.4rem;
+      font-weight: 800;
+      font-family: var(--font-heading);
+      color: var(--primary);
+      line-height: 1.1;
+    }
+    .metric-label {
+      font-size: 0.76rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+      margin-top: 0.25rem;
+    }
+
+    /* Filter & Search Bar */
+    .filter-bar-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .filter-pills { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .filter-pill {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .filter-pill:hover { border-color: var(--primary); color: var(--primary); }
+    .filter-pill.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 2px 8px var(--primary-glow);
+    }
+    .search-input {
+      padding: 0.45rem 0.95rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      font-family: inherit;
+      font-size: 0.82rem;
+      width: 220px;
+      background: #ffffff;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-input:focus { border-color: var(--primary); }
+
+    /* Course Cards */
+    .course-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+      margin-bottom: 3.5rem;
+    }
+    .course-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 1.75rem 2rem;
+      box-shadow: var(--shadow-sm);
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      transition: all 0.25s ease;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .course-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: rgba(79, 70, 229, 0.25);
+    }
+    .course-tag {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-full);
+      display: inline-block;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .course-card h2 { font-size: 1.35rem; margin: 0.4rem 0 0.5rem; }
+    .course-card p { font-size: 0.86rem; color: var(--text-secondary); line-height: 1.55; margin-bottom: 0.9rem; }
+    .chips-row { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1rem; }
+    .chip {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      padding: 0.22rem 0.55rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .features-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.25rem;
+    }
+    .course-pricing-box {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 1.65rem 1.5rem;
+      text-align: center;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .price-value { font-size: 1.85rem; font-family: var(--font-heading); font-weight: 800; color: var(--text-primary); }
+
+    /* Interactive Syllabus Explorer Tabs */
+    #curriculumSummary, .syllabus-panel { scroll-margin-top: 130px; }
+    /* deep-linked course cards land clear of the fixed header */
+    .course-card { scroll-margin-top: 130px; }
+    /* brief pulse so the visitor sees which card they were sent to */
+    .course-card.card-flash {
+      animation: cardFlash 1.7s ease-out 1;
+    }
+    @keyframes cardFlash {
+      0%   { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.55); }
+      35%  { box-shadow: 0 0 0 7px rgba(79, 70, 229, 0.16); }
+      100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .course-card.card-flash { animation: none; outline: 2px solid rgba(79, 70, 229, 0.5); }
+    }
+    .syllabus-tabs {
+      display: flex;
+      gap: 0.4rem;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 1.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.4rem;
+    }
+    .syllabus-tab-btn {
+      background: none;
+      border: none;
+      padding: 0.55rem 1rem;
+      font-family: inherit;
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-radius: var(--radius-md);
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .syllabus-tab-btn.active {
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+    .syllabus-panel { display: none; }
+    .syllabus-panel.active { display: block; }
+
+    /* Pedagogy Cycle */
+    .pedagogy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+      gap: 1.25rem;
+      margin-bottom: 3.5rem;
+    }
+    .pedagogy-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 1.35rem 1.25rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Interactive Track Finder Quiz */
+    .interactive-tool-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 1.75rem 2rem;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .quiz-options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+      gap: 0.85rem;
+      margin-top: 1.15rem;
+    }
+    .quiz-btn {
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1rem 1.25rem;
+      text-align: left;
+      font-family: inherit;
+      font-size: 0.85rem;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+    .quiz-btn:hover {
+      border-color: var(--primary);
+      background: #f5f3ff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(79, 70, 229, 0.12);
+    }
+    .quiz-btn strong {
+      font-size: 0.95rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .quiz-btn span {
+      font-size: 0.83rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+    .quiz-progress-bar {
+      height: 6px;
+      background: var(--border);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+    }
+    .quiz-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), #7c3aed);
+      width: 33%;
+      transition: width 0.3s ease;
+    }
+
+    /* EMI & Tuition Calculator */
+    .emi-card-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 1.75rem;
+      align-items: center;
+      margin-top: 1.25rem;
+    }
+    .emi-summary-box {
+      background: linear-gradient(135deg, #f8fafc, #eef2ff);
+      border: 1px solid rgba(79, 70, 229, 0.2);
+      border-radius: var(--radius-lg);
+      padding: 1.35rem 1.5rem;
+      text-align: center;
+    }
+    .emi-amount-highlight {
+      font-size: 1.75rem;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.1;
+      margin: 0.35rem 0;
+    }
+    .emi-tenure-pills {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+    .emi-pill {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 0.4rem 0.85rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      color: var(--text-secondary);
+      transition: all 0.2s ease;
+    }
+    .emi-pill.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      box-shadow: 0 2px 8px var(--primary-glow);
+    }
+
+    /* Comparison Matrix */
+    .matrix-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 3.5rem;
+      overflow-x: auto;
+    }
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.84rem;
+    }
+    .matrix-table th {
+      padding: 0.75rem 0.85rem;
+      background: var(--bg-subtle);
+      border-bottom: 2px solid var(--border);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .matrix-table td {
+      padding: 0.75rem 0.85rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+    .matrix-table tr:hover { background: rgba(248, 250, 252, 0.8); }
+
+    /* FAQ Section */
+    .faq-item {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin-bottom: 0.75rem;
+      overflow: hidden;
+    }
+    .faq-q {
+      padding: 0.95rem 1.25rem;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+    .faq-q:hover { background: var(--bg-subtle); }
+    .faq-a {
+      padding: 0 1.25rem 0.95rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      display: none;
+    }
+    .faq-item.open .faq-a { display: block; }
+    .faq-icon {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      transition: transform 0.2s;
+    }
+    .faq-item.open .faq-icon { transform: rotate(180deg); color: var(--primary); }
+
+    /* Footer */
+    .site-footer {
+      background: #0f172a;
+      color: #94a3b8;
+      padding: 3.5rem 1.5rem 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.88rem;
+    }
+    .footer-inner {
+      max-width: 1140px;
+      margin: 0 auto 2.5rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+      gap: 2.5rem;
+    }
+    .footer-col h4 {
+      color: #ffffff;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.55rem; }
+    .footer-col a {
+      color: #94a3b8;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: #ffffff; }
+
+    /* Modal Backdrop & Dialog */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      box-sizing: border-box;
+    }
+    .modal-backdrop.active { display: flex; }
+        .modal-dialog, .modal-card {
+      background: #ffffff !important;
+      border: 1px solid var(--border, #e2e8f0);
+      border-radius: var(--radius-xl, 24px);
+      max-width: 520px;
+      width: 100%;
+      max-height: 92vh;
+      overflow-y: auto;
+      padding: 2.25rem 1.85rem;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.35);
+      position: relative;
+      box-sizing: border-box;
+      -webkit-overflow-scrolling: touch;
+      color: var(--text-primary, #0f172a);
+    }
+    .modal-dialog label, .modal-card label {
+      color: #0f172a !important;
+      font-weight: 700 !important;
+    }
+    .modal-dialog input, .modal-card input, .modal-dialog select, .modal-card select {
+      background: #ffffff !important;
+      color: #0f172a !important;
+      border: 1.5px solid #cbd5e1 !important;
+    }
+    .modal-dialog input:focus, .modal-card input:focus, .modal-dialog select:focus, .modal-card select:focus {
+      border-color: #4f46e5 !important;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15) !important;
+    }
+    .modal-dialog-orig {
+      background: var(--bg-surface);
+      border-radius: var(--radius-xl);
+      max-width: 480px;
+      width: 100%;
+      max-height: 92vh;
+      overflow-y: auto;
+      padding: 1.75rem 1.5rem;
+      box-shadow: var(--shadow-xl);
+      position: relative;
+      box-sizing: border-box;
+      -webkit-overflow-scrolling: touch;
+    }
+    .modal-close {
+      position: absolute;
+      top: 0.85rem;
+      right: 0.85rem;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      line-height: 1;
+      cursor: pointer;
+      color: #334155;
+      transition: all 0.18s ease;
+      z-index: 100;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+    .modal-close:hover {
+      background: #fee2e2;
+      color: #dc2626;
+      border-color: #fca5a5;
+      transform: scale(1.06);
+    }
+
+    /* Responsive */
+    @media (max-width: 1040px) {
+      .course-card {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+        padding: 1.5rem !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .course-pricing-box {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .emi-card-grid { grid-template-columns: 1fr !important; gap: 1.25rem !important; }
+      .quiz-options-grid { grid-template-columns: 1fr !important; }
+      .interactive-tool-card { padding: 1.35rem 1.25rem !important; }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .header-metrics-strip { grid-template-columns: repeat(2, 1fr); }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #ffffff;
+        padding: 0.75rem 1rem 1.1rem;
+        border-bottom: 1px solid var(--border);
+        gap: 0.35rem !important;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+      }
+      .site-nav.open .nav-links { display: flex; }
+      .nav-links li { width: 100%; list-style: none; }
+      .nav-links .nav-link {
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0.55rem 0.9rem !important;
+        font-size: 0.88rem !important;
+        font-weight: 600 !important;
+        color: var(--text-primary) !important;
+        background: #f8fafc !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 8px !important;
+        text-decoration: none !important;
+        box-sizing: border-box !important;
+        transition: all 0.18s ease !important;
+        cursor: pointer !important;
+      }
+      .nav-links .nav-link::after {\n        content: '\\2192' !important;
+        position: static !important;
+        width: auto !important;
+        height: auto !important;
+        background: transparent !important;
+        font-size: 0.95rem !important;
+        color: #94a3b8 !important;
+        font-weight: 600 !important;
+        transition: transform 0.18s ease, color 0.18s ease !important;
+      }
+      .nav-links .nav-link:hover,
+      .nav-links .nav-link:active {
+        background: var(--primary-light) !important;
+        border-color: rgba(79, 70, 229, 0.35) !important;
+        color: var(--primary) !important;
+        transform: translateY(-1px);
+      }
+      .nav-links .nav-link:hover::after,
+      .nav-links .nav-link:active::after {
+        color: var(--primary) !important;
+        transform: translateX(3px) !important;
+      }
+      .nav-links .nav-link.active {
+        background: var(--primary-light) !important;
+        border-color: var(--primary) !important;
+        color: var(--primary) !important;
+      }
+      .nav-links .nav-link.active::after {
+        color: var(--primary) !important;
+      }
+      .mobile-menu-btn { display: flex !important; }
+      .nav-actions { display: none !important; }
+      .mobile-action { display: block; width: 100%; }
+      .mobile-action .btn {
+        padding: 0.55rem 1rem !important;
+        font-size: 0.88rem !important;
+        min-height: 38px !important;
+        border-radius: 8px !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .announcement-banner { font-size: 0.76rem; padding: 0.35rem 0.5rem; gap: 0.35rem; }
+      .banner-detail { display: none; }
+      .banner-link { font-size: 0.72rem; padding: 0.15rem 0.55rem; }
+      .brand-logo { font-size: 1rem; }
+      .page-header-box { padding: 1.75rem 0.5rem 1.25rem; }
+      .page-header-box h1 { font-size: 1.55rem; }
+      .header-metrics-strip { grid-template-columns: 1fr; gap: 0.65rem; }
+      .filter-bar-wrapper { flex-direction: column; align-items: stretch; gap: 0.65rem; margin-bottom: 1.75rem; }
+      .search-input { width: 100%; }
+      .course-card {
+        padding: 1.25rem 1rem !important;
+        border-radius: var(--radius-lg) !important;
+      }
+      .course-card h2 {
+        font-size: 1.22rem !important;
+        line-height: 1.35 !important;
+        word-break: break-word;
+      }
+      .price-value { font-size: 1.6rem; }
+      .course-pricing-box {
+        padding: 1.25rem 1rem !important;
+        border-radius: var(--radius-lg) !important;
+      }
+      .interactive-tool-card {
+        padding: 1.15rem 0.85rem !important;
+        margin-bottom: 1.75rem !important;
+      }
+      .quiz-btn {
+        padding: 0.85rem 1rem !important;
+      }
+      .footer-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+      .matrix-card { padding: 1.15rem 0.85rem; }
+    }
+
+    @media (max-width: 380px) {
+      .announcement-banner { font-size: 0.72rem; gap: 0.25rem; }
+      .banner-link { font-size: 0.68rem; padding: 0.12rem 0.45rem; }
+    }
+      .step-pill {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: var(--bg-subtle);
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border);
+    }
+    .step-pill.active {
+      color: var(--primary);
+      background: var(--primary-light);
+      border-color: rgba(79, 70, 229, 0.3);
+    }
+      /* =========================================================
+       FLAGSHIP DUAL-PANE ENROLLMENT MODAL 2.0
+       ========================================================= */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      box-sizing: border-box;
+    }
+    .modal-backdrop.active, .modal-backdrop.open { display: flex; }
+
+    .flagship-modal-card {
+      background: #ffffff;
+      border-radius: 24px;
+      max-width: 960px;
+      width: 100%;
+      max-height: 94vh;
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      box-shadow: 0 30px 70px -15px rgba(15, 23, 42, 0.4);
+      position: relative;
+      overflow: hidden;
+      box-sizing: border-box;
+      border: 1px solid rgba(226, 232, 240, 0.9);
+    }
+
+    /* Left Overview Pane */
+    .flagship-summary-pane {
+      background: linear-gradient(165deg, #0f172a 0%, #1e1b4b 60%, #1e293b 100%);
+      padding: 2.25rem 1.85rem;
+      color: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+    }
+    .flagship-summary-pane::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 160px;
+      background: radial-gradient(circle at 20% 0%, rgba(99, 102, 241, 0.35), transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Right Action Pane */
+    .flagship-action-pane {
+      background: #ffffff;
+      padding: 2.25rem 2.25rem 2rem;
+      overflow-y: auto;
+      max-height: 94vh;
+      -webkit-overflow-scrolling: touch;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .flagship-modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      line-height: 1;
+      cursor: pointer;
+      color: #334155;
+      transition: all 0.18s ease;
+      z-index: 100;
+    }
+    .flagship-modal-close:hover {
+      background: #fee2e2;
+      color: #dc2626;
+      border-color: #fca5a5;
+      transform: scale(1.08);
+    }
+
+    /* Horizontal Stepper */
+    .flagship-stepper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    .stepper-node {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #94a3b8;
+      transition: all 0.2s ease;
+    }
+    .stepper-node.active {
+      color: #4f46e5;
+    }
+    .stepper-node.completed {
+      color: #10b981;
+    }
+    .step-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      border: 2px solid #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 800;
+      transition: all 0.2s ease;
+    }
+    .stepper-node.active .step-num {
+      background: #4f46e5;
+      border-color: #4f46e5;
+      color: #ffffff;
+      box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.18);
+    }
+    .stepper-node.completed .step-num {
+      background: #10b981;
+      border-color: #10b981;
+      color: #ffffff;
+    }
+    .stepper-line {
+      flex: 1;
+      height: 2px;
+      background: #e2e8f0;
+      margin: 0 0.4rem;
+      transition: background 0.2s ease;
+    }
+    .stepper-line.active {
+      background: #10b981;
+    }
+
+    /* 6-Box OTP Matrix */
+    .otp-boxes-grid {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      margin: 1.25rem 0;
+    }
+    .otp-digit-input {
+      width: 46px;
+      height: 54px;
+      font-size: 1.45rem;
+      font-weight: 800;
+      text-align: center;
+      font-family: var(--font-mono, monospace);
+      border: 2px solid #cbd5e1;
+      border-radius: 12px;
+      background: #ffffff;
+      color: #0f172a;
+      transition: all 0.18s ease;
+    }
+    .otp-digit-input:focus {
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15);
+      outline: none;
+    }
+
+    /* Password Strength Meter */
+    .pass-strength-meter {
+      display: flex;
+      gap: 4px;
+      margin-top: 0.35rem;
+      height: 4px;
+    }
+    .strength-bar {
+      flex: 1;
+      height: 100%;
+      background: #e2e8f0;
+      border-radius: 2px;
+      transition: background 0.25s ease;
+    }
+
+    @media (max-width: 860px) {
+      .flagship-modal-card {
+        grid-template-columns: 1fr;
+        max-height: 92vh;
+        border-radius: 20px;
+      }
+      .flagship-summary-pane {
+        padding: 1.5rem 1.25rem;
+      }
+      .flagship-action-pane {
+        padding: 1.5rem 1.25rem;
+      }
+      .stepper-node span.step-label {
+        display: none;
+      }
+    }
+      /* =========================================================
+       FLAGSHIP ENROLLMENT MODAL 2.0 (PERFECT MOBILE RESPONSIVE)
+       ========================================================= */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.78);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem;
+      box-sizing: border-box;
+    }
+    .modal-backdrop.active, .modal-backdrop.open { display: flex !important; }
+
+    .flagship-modal-card {
+      background: #ffffff;
+      border-radius: 20px;
+      max-width: 960px;
+      width: 100%;
+      max-height: 94vh;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      box-shadow: 0 25px 65px -12px rgba(15, 23, 42, 0.45);
+      position: relative;
+      overflow: hidden;
+      box-sizing: border-box;
+      border: 1px solid rgba(226, 232, 240, 0.9);
+    }
+
+    /* Left Overview Pane */
+    .flagship-summary-pane {
+      background: linear-gradient(165deg, #0f172a 0%, #1e1b4b 60%, #1e293b 100%);
+      padding: 2rem 1.65rem;
+      color: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+    }
+
+    /* Right Action Pane */
+    .flagship-action-pane {
+      background: #ffffff;
+      padding: 2rem 2rem 1.75rem;
+      overflow-y: auto;
+      max-height: 94vh;
+      -webkit-overflow-scrolling: touch;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .flagship-modal-close {
+      position: absolute;
+      top: 0.85rem;
+      right: 0.85rem;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 50%;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      line-height: 1;
+      cursor: pointer;
+      color: #334155;
+      transition: all 0.18s ease;
+      z-index: 100;
+    }
+    .flagship-modal-close:hover {
+      background: #fee2e2;
+      color: #dc2626;
+      border-color: #fca5a5;
+      transform: scale(1.08);
+    }
+
+    /* Stepper */
+    .flagship-stepper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+      position: relative;
+    }
+    .stepper-node {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #94a3b8;
+    }
+    .stepper-node.active { color: #4f46e5; }
+    .stepper-node.completed { color: #10b981; }
+    .step-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      border: 2px solid #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+    .stepper-node.active .step-num {
+      background: #4f46e5;
+      border-color: #4f46e5;
+      color: #ffffff;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.18);
+    }
+    .stepper-node.completed .step-num {
+      background: #10b981;
+      border-color: #10b981;
+      color: #ffffff;
+    }
+    .stepper-line {
+      flex: 1;
+      height: 2px;
+      background: #e2e8f0;
+      margin: 0 0.35rem;
+    }
+    .stepper-line.active { background: #10b981; }
+
+    /* 6-Box OTP Matrix */
+    .otp-boxes-grid {
+      display: flex;
+      gap: 0.45rem;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+    .otp-digit-input {
+      width: 44px;
+      height: 50px;
+      font-size: 1.35rem;
+      font-weight: 800;
+      text-align: center;
+      font-family: var(--font-mono, monospace);
+      border: 2px solid #cbd5e1;
+      border-radius: 10px;
+      background: #ffffff;
+      color: #0f172a;
+    }
+    .otp-digit-input:focus {
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+      outline: none;
+    }
+
+    /* Mobile Track Pill */
+    .mobile-track-summary-pill {
+      display: none;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 0.6rem 0.85rem;
+      margin-bottom: 1rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* MOBILE VIEW OPTIMIZATIONS (< 860px) */
+    @media (max-width: 860px) {
+      .flagship-modal-card {
+        grid-template-columns: 1fr !important;
+        max-height: 92vh !important;
+        max-width: 95vw !important;
+        border-radius: 16px !important;
+      }
+      /* HIDE heavy summary sidebar on mobile so action form is instant & perfectly sized */
+      .flagship-summary-pane {
+        display: none !important;
+      }
+      .mobile-track-summary-pill {
+        display: flex !important;
+      }
+      .flagship-action-pane {
+        padding: 1.35rem 1.15rem 1.25rem !important;
+      }
+      .stepper-node span.step-label {
+        display: none !important;
+      }
+      .otp-digit-input {
+        width: 38px !important;
+        height: 46px !important;
+        font-size: 1.2rem !important;
+        border-radius: 8px !important;
+      }
+      .otp-boxes-grid {
+        gap: 0.3rem !important;
+      }
+    }
+
+    /* MOBILE NAVIGATION DRAWER */
+    @media (max-width: 1040px) {
+      .mobile-menu-btn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 1002;
+      }
+      .nav-links {
+        display: none;
+      }
+      .site-nav.open .nav-links {
+        display: flex !important;
+        flex-direction: column !important;
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        width: 100% !important;
+        background: #ffffff !important;
+        padding: 0.85rem 1.25rem 1.25rem !important;
+        border-bottom: 1px solid var(--border) !important;
+        gap: 0.45rem !important;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+        z-index: 1001 !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        transform: translateY(0) !important;
+      }
+      .mobile-nav-backdrop {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        z-index: 998;
+      }
+      .mobile-nav-backdrop.active { display: block !important; }
+    }
+          /* =========================================================
+       CLEAN & BULLETPROOF MOBILE NAVIGATION MENU
+       ========================================================= */
+    @media (max-width: 1040px) {
+      .nav-actions {
+        display: none !important;
+      }
+      .mobile-menu-btn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        background: #f1f5f9 !important;
+        border: 1.5px solid #cbd5e1 !important;
+        border-radius: 10px !important;
+        cursor: pointer !important;
+        color: #0f172a !important;
+        z-index: 1002 !important;
+        padding: 0 !important;
+        transition: all 0.18s ease;
+      }
+      .mobile-menu-btn:active {
+        transform: scale(0.92);
+      }
+      .drawer-header {
+        display: none !important;
+      }
+      /* When closed, nav-links is strictly hidden */
+      .nav-links {
+        display: none !important;
+        flex-direction: column !important;
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        background: #ffffff !important;
+        padding: 0.85rem 1.25rem 1.5rem !important;
+        border-bottom: 2px solid rgba(226, 232, 240, 0.9) !important;
+        box-shadow: 0 20px 45px rgba(15, 23, 42, 0.18) !important;
+        z-index: 1001 !important;
+        margin: 0 !important;
+        gap: 0.45rem !important;
+        box-sizing: border-box !important;
+        list-style: none !important;
+      }
+      /* When open, nav-links appears cleanly below navbar */
+      .site-nav.open .nav-links {
+        display: flex !important;
+      }
+      .nav-links li {
+        width: 100% !important;
+        list-style: none !important;
+      }
+      .nav-links .nav-link {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+        padding: 0.68rem 1rem !important;
+        font-size: 0.92rem !important;
+        font-weight: 700 !important;
+        color: #0f172a !important;
+        background: #f8fafc !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 10px !important;
+        text-decoration: none !important;
+        box-sizing: border-box !important;
+        transition: all 0.18s ease !important;
+      }
+      .nav-links .nav-link:active,
+      .nav-links .nav-link:hover {
+        background: #eef2ff !important;
+        color: #4f46e5 !important;
+        border-color: #c7d2fe !important;
+      }
+      .mobile-action {
+        display: block !important;
+        width: 100% !important;
+        margin-top: 0.25rem !important;
+      }
+      .mobile-action .btn {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 0.75rem 1rem !important;
+        font-size: 0.9rem !important;
+        font-weight: 700 !important;
+        border-radius: 10px !important;
+      }
+      .mobile-nav-backdrop {
+        display: none;
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background: rgba(15, 23, 42, 0.6) !important;
+        backdrop-filter: blur(4px) !important;
+        -webkit-backdrop-filter: blur(4px) !important;
+        z-index: 999 !important;
+      }
+      .mobile-nav-backdrop.active {
+        display: block !important;
+      }
+    }
+      /* ============ CALLBACK POPUP ============ */
+    .cb-backdrop {
+      position: fixed; inset: 0; z-index: 12000;
+      background: rgba(15, 23, 42, 0.55);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      display: none; align-items: center; justify-content: center;
+      padding: 1rem; box-sizing: border-box;
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    .cb-backdrop.show { display: flex; opacity: 1; }
+
+    .cb-card {
+      background: #fff; width: 100%; max-width: 406px;
+      max-height: 92vh; overflow-y: auto; overflow-x: hidden;
+      border-radius: 18px; padding: 18px 20px 16px;
+      position: relative; box-sizing: border-box;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.3);
+      font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+      opacity: 0; transform: translateY(24px) scale(0.94);
+      transition: opacity 0.34s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .cb-backdrop.show .cb-card { opacity: 1; transform: translateY(0) scale(1); }
+    .cb-card::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, #4f46e5, #06b6d4, #4f46e5);
+      background-size: 200% 100%;
+      border-radius: 18px 18px 0 0;
+      animation: cbSheen 3.5s linear infinite;
+    }
+    @keyframes cbSheen { to { background-position: -200% 0; } }
+
+    .cb-close {
+      position: absolute; top: 8px; right: 10px;
+      background: none; border: none; font-size: 1.3rem; line-height: 1;
+      color: #94a3b8; cursor: pointer; padding: 3px 7px; border-radius: 7px;
+      transition: color 0.18s, background 0.18s, transform 0.18s;
+    }
+    .cb-close:hover { color: #0f172a; background: #f1f5f9; transform: rotate(90deg); }
+
+    .cb-head { text-align: center; margin-bottom: 0.15rem; }
+    .cb-logo {
+      width: 40px; height: 40px; margin: 0 auto 0.3rem; display: block; color: #4f46e5;
+      animation: cbFloat 3.6s ease-in-out infinite;
+    }
+    @keyframes cbFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+    .cb-pill {
+      display: inline-flex; align-items: center; gap: 0.34rem;
+      font-size: 0.57rem; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase;
+      color: #4f46e5; background: #eef2ff; border: 1px solid rgba(79,70,229,0.18);
+      padding: 0.2rem 0.5rem; border-radius: 999px; line-height: 1;
+    }
+    .cb-dot { width: 5px; height: 5px; border-radius: 50%; background: #10b981; position: relative; }
+    .cb-dot::after {
+      content: ""; position: absolute; inset: 0; border-radius: 50%;
+      animation: cbPing 2s ease-out infinite;
+    }
+    @keyframes cbPing {
+      0% { box-shadow: 0 0 0 0 rgba(16,185,129,0.6); }
+      70% { box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+      100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); }
+    }
+    .cb-head h3 { font-size: 1.05rem; margin: 0.32rem 0 0.14rem; color: #0f172a; line-height: 1.25; }
+    .cb-head p { font-size: 0.73rem; color: #64748b; margin: 0; line-height: 1.45; }
+
+    .cb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 0.6rem; }
+    .cb-field { opacity: 0; transform: translateY(9px); }
+    .cb-field-full { grid-column: 1 / -1; }
+    .cb-backdrop.show .cb-field { animation: cbUp 0.42s cubic-bezier(0.22,1,0.36,1) forwards; }
+    .cb-backdrop.show .cb-field:nth-of-type(1) { animation-delay: 0.10s; }
+    .cb-backdrop.show .cb-field:nth-of-type(2) { animation-delay: 0.16s; }
+    .cb-backdrop.show .cb-field:nth-of-type(3) { animation-delay: 0.22s; }
+    .cb-backdrop.show .cb-field:nth-of-type(4) { animation-delay: 0.28s; }
+    @keyframes cbUp { to { opacity: 1; transform: none; } }
+
+    .cb-label { display: block; font-size: 0.69rem; font-weight: 600; color: #334155; margin: 0.44rem 0 0.16rem; }
+    .cb-opt { font-weight: 500; color: #94a3b8; }
+    .cb-input {
+      width: 100%; box-sizing: border-box; padding: 0.45rem 0.6rem;
+      border: 1px solid #e2e8f0; border-radius: 9px; background: #f8fafc;
+      font-family: inherit; font-size: 0.82rem; color: #0f172a;
+      transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
+    }
+    .cb-input:focus {
+      outline: none; border-color: #4f46e5; background: #fff;
+      box-shadow: 0 0 0 3px rgba(79,70,229,0.14);
+    }
+    .cb-err {
+      display: none; margin-top: 0.5rem; padding: 0.42rem 0.6rem;
+      background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px;
+      color: #b91c1c; font-size: 0.74rem; animation: cbShake 0.4s;
+    }
+    .cb-err.show { display: block; }
+    @keyframes cbShake {
+      0%,100% { transform: translateX(0); }
+      20%,60% { transform: translateX(-4px); }
+      40%,80% { transform: translateX(4px); }
+    }
+
+    .cb-submit {
+      position: relative; overflow: hidden;
+      width: 100%; margin-top: 0.72rem; padding: 0.6rem 1rem;
+      background: linear-gradient(135deg, #4f46e5, #4338ca); color: #fff;
+      border: none; border-radius: 10px; cursor: pointer;
+      font-family: inherit; font-size: 0.85rem; font-weight: 700; line-height: 1.6;
+      box-shadow: 0 4px 14px rgba(79,70,229,0.3);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s;
+    }
+    .cb-submit::after {
+      content: ""; position: absolute; top: 0; left: -70%; width: 45%; height: 100%;
+      background: linear-gradient(100deg, transparent, rgba(255,255,255,0.28), transparent);
+      transform: skewX(-20deg); animation: cbShine 3.2s ease-in-out infinite;
+    }
+    @keyframes cbShine { 0%, 55% { left: -70%; } 100% { left: 140%; } }
+    .cb-submit:hover { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(79,70,229,0.36); }
+    .cb-submit:disabled { opacity: 0.6; cursor: default; transform: none; }
+    .cb-submit:disabled::after { display: none; }
+
+    .cb-fine { font-size: 0.64rem; color: #94a3b8; text-align: center; margin: 0.42rem 0 0; }
+
+    .cb-done { display: none; text-align: center; padding: 0.4rem 0 0.2rem; }
+    .cb-done.show { display: block; animation: cbUp 0.45s cubic-bezier(0.22,1,0.36,1) forwards; }
+    .cb-tick {
+      width: 50px; height: 50px; border-radius: 50%; margin: 0 auto 0.7rem;
+      background: #ecfdf5; color: #047857; font-size: 1.45rem;
+      display: flex; align-items: center; justify-content: center;
+      animation: cbPop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes cbPop { 0% { transform: scale(0.3); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+    .cb-done h4 { font-size: 0.98rem; margin: 0 0 0.3rem; color: #0f172a; }
+    .cb-done p { font-size: 0.78rem; color: #64748b; margin: 0 0 0.3rem; line-height: 1.5; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cb-card, .cb-field, .cb-tick, .cb-err { animation: none !important; transition: none !important;
+        opacity: 1 !important; transform: none !important; }
+      .cb-card::before, .cb-submit::after, .cb-logo, .cb-dot::after { animation: none !important; }
+    }
+    @media (max-width: 460px) {
+      .cb-card { padding: 1rem 0.95rem 0.95rem; max-width: 360px; }
+      .cb-grid { grid-template-columns: 1fr; }
+      .cb-head h3 { font-size: 1rem; }
+    }
+
+    /* ============ BRAND MARK ============ */
+    .ea-logo { display: block; overflow: visible; flex-shrink: 0; color: var(--primary, #4f46e5); }
+    .ea-logo .ea-base { opacity: 0.45; transition: opacity 0.3s ease; }
+    .ea-logo .ea-capg { transform-box: view-box; transform-origin: 22.5px 16px; transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .ea-logo .ea-tas  { transform-box: view-box; transform-origin: 41.6px 17.8px; animation: eaSwing 4.6s ease-in-out infinite; }
+    @keyframes eaSwing { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(8deg); } 75% { transform: rotate(-8deg); } }
+    .ea-logo .ea-g { animation: eaIntro 0.75s cubic-bezier(0.34, 1.56, 0.64, 1) both; transform-box: view-box; transform-origin: 22.5px 20px; }
+    @keyframes eaIntro { 0% { opacity: 0; transform: translateY(-5px) scale(0.82); } 100% { opacity: 1; transform: none; } }
+    a:hover > .ea-logo .ea-capg, .brand-logo:hover .ea-logo .ea-capg { transform: translateY(-2.4px) rotate(-7deg); }
+    a:hover > .ea-logo .ea-base, .brand-logo:hover .ea-logo .ea-base { opacity: 0.72; }
+    .brand-logo:hover .ea-logo .ea-tas { animation-duration: 1.15s; }
+    @media (prefers-reduced-motion: reduce) {
+      .ea-logo .ea-tas, .ea-logo .ea-g { animation: none !important; }
+      .ea-logo .ea-capg { transition: none !important; }
+    }
+</style>
+    <!-- restore the dismissed banner BEFORE first paint, so the layout never jumps -->
+  <script>(function(){try{if(sessionStorage.getItem('ea_banner_dismissed')==='1'){document.documentElement.classList.add('banner-dismissed');}}catch(e){}})();</script>
+  <style>
+    html.banner-dismissed .announcement-banner { display: none !important; }
+    html.banner-dismissed .site-nav { top: 0 !important; }
+    html.banner-dismissed body { padding-top: 72px !important; }
+  </style>
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#0f172a">
+<style>
+    /* MOBILE-CENTERED BALANCED ENROLLMENT MODAL */
+    @media (max-width: 768px) {
+      .modal-backdrop#enrollModal {
+        padding: 0.75rem !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+      .modal-backdrop#enrollModal:not(.active):not([style*="display: flex"]) {
+        display: none !important;
+      }
+      .modal-backdrop#enrollModal.active,
+      .modal-backdrop#enrollModal[style*="display: flex"] {
+        display: flex !important;
+      }
+      .modal-backdrop#enrollModal .enroll-card {
+        max-width: min(95vw, 520px) !important;
+        width: 100% !important;
+        border-radius: 18px !important;
+        max-height: 90vh !important;
+        margin: auto !important;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45) !important;
+        animation: modalZoomIn 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+      @keyframes modalZoomIn {
+        from { opacity: 0; transform: scale(0.94); }
+        to { opacity: 1; transform: scale(1); }
+      }
+      #eaCredsRow {
+        grid-template-columns: 1fr !important;
+        gap: 0.45rem !important;
+      }
+    }
+    </style><style>
+    /* MOBILE NAVIGATION FLYOUT MENU */
+    @media (max-width: 900px) {
+      .mobile-menu-btn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        background: rgba(79, 70, 229, 0.08);
+        border: 1px solid rgba(79, 70, 229, 0.2);
+        border-radius: 8px;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        color: #4f46e5;
+        z-index: 1002;
+      }
+      .nav-links {
+        position: fixed !important;
+        top: 65px !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        background: rgba(255, 255, 255, 0.98) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        flex-direction: column !important;
+        padding: 1.25rem 1.5rem !important;
+        gap: 0.85rem !important;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12) !important;
+        border-bottom: 1px solid #e2e8f0 !important;
+        display: none !important;
+        box-sizing: border-box !important;
+        z-index: 1001 !important;
+      }
+      .nav-links.active, .nav-links.open {
+        display: flex !important;
+        animation: navSlideDown 0.22s ease-out forwards;
+      }
+      @keyframes navSlideDown {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .nav-actions {
+        display: none !important;
+      }
+    }
+    </style>
+  <script>
+    // CORE GLOBAL HANDLERS - LOADED FIRST FOR ZERO-DELAY BUTTON ACTIONS
+        window.openEnrollModal = function(courseId, courseTitle, coursePrice) {
+      const cid = courseId ? parseInt(courseId, 10) : 1;
+      window.location.href = 'enroll.php?course_id=' + encodeURIComponent(cid);
+    };
+
+    window.closeEnrollModal = function(e) {
+      if (e) {
+        if (typeof e.stopPropagation === 'function') e.stopPropagation();
+        if (typeof e.preventDefault === 'function') e.preventDefault();
+      }
+      const modal = document.getElementById('enrollModal');
+      if (modal) {
+        modal.classList.remove('active');
+        modal.classList.remove('is-open');
+        modal.style.setProperty('display', 'none', 'important');
+      }
+      document.body.style.overflow = '';
+      if (window.eaResendTimerInterval) clearInterval(window.eaResendTimerInterval);
+    };
+
+    window.openSampleLectureModal = function(e) {
+      if (e && typeof e.preventDefault === 'function') e.preventDefault();
+      const modal = document.getElementById('sampleLectureModal');
+      if (modal) {
+        modal.classList.add('active');
+        modal.classList.add('is-open');
+        modal.style.setProperty('display', 'flex', 'important');
+        document.body.style.overflow = 'hidden';
+      }
+    };
+
+    window.closeSampleLectureModal = function(e) {
+      if (e && typeof e.preventDefault === 'function') e.preventDefault();
+      const modal = document.getElementById('sampleLectureModal');
+      if (modal) {
+        modal.classList.remove('active');
+        modal.classList.remove('is-open');
+        modal.style.setProperty('display', 'none', 'important');
+        document.body.style.overflow = '';
+      }
+    };
+
+        // Mobile Hamburger Nav Toggle (Universal Fix)
+    window.toggleMobileNav = function(e) {
+      if (e && typeof e.stopPropagation === 'function') e.stopPropagation();
+      const siteNav = document.getElementById('siteNav');
+      const nav = document.getElementById('navLinks');
+      const btn = document.getElementById('mobileMenuBtn');
+      const backdrop = document.getElementById('mobileNavBackdrop');
+      
+      const isOpen = siteNav ? siteNav.classList.contains('open') : (nav && nav.classList.contains('open'));
+      
+      if (isOpen) {
+        if (siteNav) siteNav.classList.remove('open');
+        if (nav) { nav.classList.remove('active'); nav.classList.remove('open'); }
+        if (btn) btn.classList.remove('active');
+        if (backdrop) { backdrop.classList.remove('active'); backdrop.style.display = 'none'; }
+      } else {
+        if (siteNav) siteNav.classList.add('open');
+        if (nav) { nav.classList.add('active'); nav.classList.add('open'); }
+        if (btn) btn.classList.add('active');
+        if (backdrop) { backdrop.classList.add('active'); backdrop.style.display = 'block'; }
+      }
+    };
+
+    window.closeMobileNav = function() {
+      const siteNav = document.getElementById('siteNav');
+      const nav = document.getElementById('navLinks');
+      const btn = document.getElementById('mobileMenuBtn');
+      const backdrop = document.getElementById('mobileNavBackdrop');
+      if (siteNav) siteNav.classList.remove('open');
+      if (nav) { nav.classList.remove('active'); nav.classList.remove('open'); }
+      if (btn) btn.classList.remove('active');
+      if (backdrop) { backdrop.classList.remove('active'); backdrop.style.display = 'none'; }
+    };
+</script>
+
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y45hrispgg");
+</script>
+
+</head>
+<body>
+  <!-- Announcement Banner -->
+  <div class="announcement-banner" id="topBanner">
+    <span class="live-dot"></span>
+    <span class="banner-text"><strong>Admissions Open</strong> <span class="banner-detail">| Live Weekend Batches Starting Soon</span></span>
+    <a href="courses.html" class="banner-link">Explore Batches &rarr;</a>
+    <button class="banner-close" onclick="dismissBanner()" aria-label="Dismiss banner">&times;</button>
+  </div>
+
+  <div class="mobile-nav-backdrop" id="mobileNavBackdrop" onclick="closeMobileNav()"></div>
+
+  <!-- Top Navigation -->
+  <header class="site-nav" id="siteNav">
+    <div class="nav-inner">
+      <a href="./" class="brand-logo">
+        <svg class="ea-logo" width="34" height="34" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Education Algorithm"><g class="ea-g"><path class="ea-base" d="M11.5 23.4v6.8c0 3.6 5 6.1 11 6.1s11-2.5 11-6.1v-6.8" stroke="currentColor" stroke-width="3.4" fill="none" stroke-linecap="round"/><g class="ea-capg"><path class="ea-cap" d="M22.5 6.5 43 16 22.5 25.5 2 16Z" fill="currentColor"/></g><g class="ea-tas"><path d="M41.6 17.8v8.4" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" fill="none"/><circle cx="41.6" cy="30.2" r="3.2" fill="currentColor"/></g></g></svg>
+        <span>Education Algorithm</span>
+        <span class="brand-badge">EDTECH</span>
+      </a>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation" onclick="toggleMobileNav()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="courses.html" class="nav-link active">Courses</a></li>
+        <li><a href="outcomes.html" class="nav-link">Outcomes</a></li>
+        <li><a href="internships.html" class="nav-link">Internships</a></li>
+        <li><a href="about.html" class="nav-link">About Us</a></li>
+        <li><a href="contact.html" class="nav-link">Admissions</a></li>
+        <li class="mobile-action"><a href="login.php" class="btn btn-secondary" style="width: 100%; margin-top: 0.75rem; justify-content: center;">Student LMS</a></li>
+        <li class="mobile-action"><a href="enroll" class="btn btn-primary">Enroll Now &rarr;</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="login.php" class="btn btn-secondary">Student LMS</a>
+        <a href="enroll" class="btn btn-primary">Enroll Now &rarr;</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Page Header -->
+    <div class="page-header-box">
+      <span class="mono" style="color: var(--primary); font-weight: 700; text-transform: uppercase;">Engineering Programs</span>
+      <h1>Master Software Engineering & AI</h1>
+      <p>Live, mentor-led programs designed with senior tech leads to get you job-ready with production projects, 1-on-1 code reviews, and placement referrals.</p>
+    </div>
+
+
+
+    <!-- Category Filters & Live Search -->
+    <div class="filter-bar-wrapper">
+      <div class="filter-pills" id="filterPills">
+        <button class="filter-pill active" onclick="filterCourses('all', this)">All Tracks (4)</button>
+        <button class="filter-pill" onclick="filterCourses('fullstack', this)">Java Full Stack</button>
+        <button class="filter-pill" onclick="filterCourses('ai', this)">Generative AI & ML</button>
+        <button class="filter-pill" onclick="filterCourses('dsa', this)">DSA (Coming Soon)</button>
+        <button class="filter-pill" onclick="filterCourses('cloud', this)">DevOps (Coming Soon)</button>
+      </div>
+      <input type="text" id="courseSearch" class="search-input" placeholder="&#128269; Search track or skill..." onkeyup="searchCourses()">
+    </div>
+
+    <!-- Course Grid -->
+    <main class="course-grid" id="courseGrid">
+      
+      <!-- Track 1: Java Full Stack (Active) -->
+      <article id="course-fullstack" class="course-card" data-category="fullstack" data-title="Java Full Stack Engineering React Spring Boot SQL Microservices Docker AWS">
+        <div>
+          <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap;">
+            <span class="course-tag">12 Weeks Live &bull; Flagship</span>
+            <span style="background: #ecfdf5; color: #047857; font-size: 0.7rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: var(--radius-full); font-family: var(--font-mono);">&#9889; 94.6% PLACED</span>
+          </div>
+          <h2>Java Full Stack & Cloud Engineering</h2>
+          <p>Master Java 21, Spring Boot 3.2 microservices, React 18, PostgreSQL, Docker, and AWS cloud deployment through end-to-end production development.</p>
+
+          <div class="chips-row">
+            <span class="chip">Java 21</span>
+            <span class="chip">Spring Boot 3.2</span>
+            <span class="chip">React 18</span>
+            <span class="chip">PostgreSQL</span>
+            <span class="chip">Docker</span>
+            <span class="chip">AWS</span>
+          </div>
+
+          <ul class="features-list">
+            <li>&#10003; 12 Weekly live weekend interactive lectures with architectural blueprints</li>
+            <li>&#10003; Weekly 1-on-1 GitHub Pull Request reviews by senior engineers</li>
+            <li>&#10003; Capstone: Multi-Vendor E-Commerce microservices with Redis and Razorpay</li>
+            <li>&#10003; 3 Technical mock interview rounds and resume optimization</li>
+          </ul>
+
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem;">
+            <a href="#curriculumSummary" class="btn btn-secondary btn-sm" onclick="switchSyllabusTab('tab-fullstack')">Curriculum Highlights &rarr;</a>
+            <a href="Education_Algorithm_Java_Full_Stack_Syllabus_Modern_Full_Page (1).pdf" target="_blank" download="Education_Algorithm_Java_Full_Stack_Syllabus.pdf" class="btn btn-secondary btn-sm">&#128196; Download Syllabus PDF</a>
+          </div>
+        </div>
+
+        <div class="course-pricing-box">
+          <div style="font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Tuition Fee</div>
+          <div class="price-value">&#8377;15,000</div>
+          <div style="font-size: 0.78rem; color: var(--success-text); font-weight: 700; margin: 0.25rem 0 1rem;">&#128640; Cohort Starts September 16th</div>
+          <a href="enroll?course_id=1" class="btn btn-primary btn-lg" style="width: 100%; margin-bottom: 0.4rem;" >
+            Enroll in Full Stack &rarr;
+          </a>
+          <div style="font-size: 0.72rem; color: var(--text-muted);">&#128274; Razorpay Verified &bull; Instant LMS Access</div>
+        </div>
+      </article>
+
+      <!-- Track 2: Data Science & AI (Active) -->
+      <article id="course-ai" class="course-card" data-category="ai" data-title="Data Science AI Machine Learning Python PyTorch LangChain LLMs RAG Vector DBs">
+        <div>
+          <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap;">
+            <span class="course-tag" style="background: #ebf8ff; color: #3182ce;">14 Weeks Live &bull; Modern AI</span>
+            <span style="background: #eff6ff; color: #1e40af; font-size: 0.7rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: var(--radius-full); font-family: var(--font-mono);">&#129302; LLMS & RAG</span>
+          </div>
+          <h2>Data Science, Machine Learning & Generative AI</h2>
+          <p>Build real-world AI applications. Learn Python data analysis, classical machine learning, PyTorch deep neural networks, LangChain, RAG, and LLM deployment.</p>
+
+          <div class="chips-row">
+            <span class="chip">Python 3.12</span>
+            <span class="chip">Scikit-Learn</span>
+            <span class="chip">PyTorch</span>
+            <span class="chip">LangChain & RAG</span>
+            <span class="chip">FastAPI</span>
+          </div>
+
+          <ul class="features-list">
+            <li>&#10003; End-to-end exploratory data analysis and statistical modeling</li>
+            <li>&#10003; Supervised and unsupervised ML algorithms coded from mathematical principles</li>
+            <li>&#10003; Capstone: Enterprise Knowledge Base Assistant with Hybrid Vector Search</li>
+            <li>&#10003; FastAPI production serving and Dockerized cloud containerization</li>
+          </ul>
+
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem;">
+            <a href="#curriculumSummary" class="btn btn-secondary btn-sm" onclick="switchSyllabusTab('tab-ai')">Curriculum Highlights &rarr;</a>
+            <a href="Education_Algorithm_Data_Science_GenAI_Syllabus_Fitted.pdf" target="_blank" download="Education_Algorithm_Data_Science_GenAI_Syllabus.pdf" class="btn btn-secondary btn-sm">&#128196; Download Syllabus PDF</a>
+          </div>
+        </div>
+
+        <div class="course-pricing-box">
+          <div style="font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Tuition Fee</div>
+          <div class="price-value">&#8377;18,000</div>
+          <div style="font-size: 0.78rem; color: var(--success-text); font-weight: 700; margin: 0.25rem 0 1rem;">&#128640; Cohort Starts September 16th</div>
+          <a href="enroll?course_id=2" class="btn btn-primary btn-lg" style="width: 100%; margin-bottom: 0.4rem;" >
+            Enroll in AI Track &rarr;
+          </a>
+          <div style="font-size: 0.72rem; color: var(--text-muted);">&#128274; Razorpay Verified &bull; Instant LMS Access</div>
+        </div>
+      </article>
+
+      <!-- Track 3: DSA & Problem Solving (Coming Soon) -->
+      <article id="course-dsa" class="course-card" data-category="dsa" data-title="Data Structures & Algorithms DSA LeetCode System Design FAANG Interview Prep" style="opacity: 0.95;">
+        <div>
+          <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap;">
+            <span class="course-tag" style="background: #fff5f5; color: #e53e3e;">8 Weeks Live &bull; Interview Prep</span>
+            <span style="background: #f1f5f9; color: #475569; font-size: 0.7rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: var(--radius-full); font-family: var(--font-mono);">&#9203; COMING SOON</span>
+          </div>
+          <h2>Data Structures, Algorithms & System Design</h2>
+          <p>Target Tier-1 & FAANG technical rounds. Master pattern recognition across Arrays, Trees, Graphs, Dynamic Programming, and High/Low-Level System Design.</p>
+
+          <div class="chips-row">
+            <span class="chip">LeetCode Top 150</span>
+            <span class="chip">Trees & Graphs</span>
+            <span class="chip">Dynamic Programming</span>
+            <span class="chip">LLD & HLD</span>
+            <span class="chip">Mock Rounds</span>
+          </div>
+
+          <ul class="features-list">
+            <li>&#10003; 150+ Top LeetCode interview problem patterns with runtime optimization</li>
+            <li>&#10003; Live whiteboard coding sessions led by FAANG alumni mentors</li>
+            <li>&#10003; Capstone: Distributed In-Memory Cache with LRU Eviction & Rate Limiter</li>
+            <li>&#10003; 4 Full-length technical mock interviews with live scoring</li>
+          </ul>
+
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem;">
+            <a href="#curriculumSummary" class="btn btn-secondary btn-sm" onclick="switchSyllabusTab('tab-dsa')">Curriculum Highlights &rarr;</a>
+            <button class="btn btn-secondary btn-sm" onclick="openSyllabusModal('DSA & System Design Mastery')">&#128196; Download Syllabus PDF</button>
+          </div>
+        </div>
+
+        <div class="course-pricing-box" style="background: #f8fafc; border: 1.5px dashed var(--border);">
+          <div style="font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Tuition Fee</div>
+          <div class="price-value">&#8377;12,000</div>
+          <div style="font-size: 0.78rem; color: #64748b; font-weight: 700; margin: 0.25rem 0 1rem;">&#128640; Cohort Opening Next Quarter</div>
+          <a href="contact?track=dsa" class="btn btn-secondary btn-lg" style="width: 100%; margin-bottom: 0.4rem; justify-content: center; background: #ffffff;">
+            Join Waitlist / Pre-Register &rarr;
+          </a>
+          <div style="font-size: 0.72rem; color: var(--text-muted);">Priority Seat Notification &bull; Zero Advance Required</div>
+        </div>
+      </article>
+
+      <!-- Track 4: Cloud DevOps (Coming Soon) -->
+      <article id="course-cloud" class="course-card" data-category="cloud" data-title="Cloud DevOps Microservices Docker Kubernetes Terraform AWS CI/CD Prometheus" style="opacity: 0.95;">
+        <div>
+          <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap;">
+            <span class="course-tag" style="background: #f0fff4; color: #38a169;">10 Weeks Live &bull; Cloud Infra</span>
+            <span style="background: #f1f5f9; color: #475569; font-size: 0.7rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: var(--radius-full); font-family: var(--font-mono);">&#9203; COMING SOON</span>
+          </div>
+          <h2>Cloud DevOps, Kubernetes & Infrastructure as Code</h2>
+          <p>Architect resilient cloud platforms. Master Linux server internals, Docker containers, Kubernetes clusters, GitHub Actions CI/CD pipelines, and Terraform on AWS.</p>
+
+          <div class="chips-row">
+            <span class="chip">Linux & Bash</span>
+            <span class="chip">Docker</span>
+            <span class="chip">Kubernetes</span>
+            <span class="chip">Terraform</span>
+            <span class="chip">AWS EKS</span>
+            <span class="chip">Prometheus</span>
+          </div>
+
+          <ul class="features-list">
+            <li>&#10003; Multi-container microservice packaging with security hardening</li>
+            <li>&#10003; Automated CI/CD test and deployment pipelines with GitHub Actions</li>
+            <li>&#10003; Capstone: Zero-Downtime Blue/Green Deployment Pipeline on AWS EKS</li>
+            <li>&#10003; Distributed monitoring with Prometheus metrics and Grafana alerting</li>
+          </ul>
+
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem;">
+            <a href="#curriculumSummary" class="btn btn-secondary btn-sm" onclick="switchSyllabusTab('tab-cloud')">Curriculum Highlights &rarr;</a>
+            <button class="btn btn-secondary btn-sm" onclick="openSyllabusModal('Cloud DevOps & Microservices')">&#128196; Download Syllabus PDF</button>
+          </div>
+        </div>
+
+        <div class="course-pricing-box" style="background: #f8fafc; border: 1.5px dashed var(--border);">
+          <div style="font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Tuition Fee</div>
+          <div class="price-value">&#8377;14,000</div>
+          <div style="font-size: 0.78rem; color: #64748b; font-weight: 700; margin: 0.25rem 0 1rem;">&#128640; Cohort Opening Next Quarter</div>
+          <a href="contact?track=cloud" class="btn btn-secondary btn-lg" style="width: 100%; margin-bottom: 0.4rem; justify-content: center; background: #ffffff;">
+            Join Waitlist / Pre-Register &rarr;
+          </a>
+          <div style="font-size: 0.72rem; color: var(--text-muted);">Priority Seat Notification &bull; Zero Advance Required</div>
+        </div>
+      </article>
+    </main>
+
+    <!-- Interactive Tuition & 0% EMI Calculator Widget -->
+    <div class="interactive-tool-card" style="margin-bottom: 3rem;">
+      <div style="text-align: center; margin-bottom: 1rem;">
+        <span class="mono" style="color: var(--primary); font-weight: 700; text-transform: uppercase;">Tuition & Installment Calculator</span>
+        <h3 style="font-size: 1.35rem; margin-top: 0.2rem;">&#128179; Split Your Tuition with 0% EMI</h3>
+        <p style="font-size: 0.86rem; color: var(--text-secondary); max-width: 500px; margin: 0.25rem auto 0;">No credit check barriers. Pay in easy monthly installments using credit card, debit card, or UPI via Razorpay.</p>
+      </div>
+
+      <div class="emi-card-grid">
+        <div>
+          <label style="font-size: 0.82rem; font-weight: 700; display: block; margin-bottom: 0.35rem;">Select Track:</label>
+          <select id="emiTrackSelect" onchange="recalculateEmi()" style="width: 100%; padding: 0.55rem 0.85rem; border: 1px solid var(--border); border-radius: var(--radius-md); font-family: inherit; font-size: 0.86rem; background: #fff; margin-bottom: 1rem;">
+            <option value="15000" data-course-id="1" data-course-title="Java Full Stack Web Development">Java Full Stack & Cloud (&#8377;15,000)</option>
+            <option value="18000" data-course-id="3" data-course-title="Data Science & AI Engineering">Data Science, ML & Gen AI (&#8377;18,000)</option>
+            <option value="12000" data-course-id="2" data-course-title="Data Structures & Algorithms Mastery">DSA & System Design (&#8377;12,000 - Coming Soon)</option>
+            <option value="14000" data-course-id="4" data-course-title="Cloud DevOps & Microservices">Cloud DevOps & Kubernetes (&#8377;14,000 - Coming Soon)</option>
+          </select>
+
+          <label style="font-size: 0.82rem; font-weight: 700; display: block; margin-bottom: 0.35rem;">Select Installment Tenure:</label>
+          <div class="emi-tenure-pills">
+            <button class="emi-pill active" onclick="setEmiTenure(3, this)">3 Months (0% Interest)</button>
+            <button class="emi-pill" onclick="setEmiTenure(6, this)">6 Months (Low EMI)</button>
+            <button class="emi-pill" onclick="setEmiTenure(1, this)">Pay Upfront (Full Access)</button>
+          </div>
+        </div>
+
+        <div class="emi-summary-box">
+          <div style="font-size: 0.76rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Estimated Monthly Outflow</div>
+          <div class="emi-amount-highlight" id="emiMonthlyAmount">&#8377;5,000 / mo</div>
+          <div style="font-size: 0.8rem; color: var(--success-text); font-weight: 700; margin-bottom: 0.75rem;" id="emiInterestNote">&#10003; 0% Interest &bull; &#8377;0 Extra Cost</div>
+          <button class="btn btn-primary btn-sm" style="width: 100%;" onclick="proceedEmiCheckout()">
+            Enroll with this Plan &rarr;
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Concise Curriculum Highlights -->
+    <div id="curriculumSummary" class="matrix-card" style="margin-bottom: 3rem;">
+      <div style="text-align: center; margin-bottom: 1.25rem;">
+        <span class="mono" style="color: var(--primary); font-weight: 700; text-transform: uppercase;">Curriculum Roadmaps</span>
+        <h2 style="font-size: 1.45rem; margin-top: 0.25rem;">Track Roadmap Highlights</h2>
+      </div>
+
+      <!-- Syllabus Tabs Navigation -->
+      <div class="syllabus-tabs">
+        <button class="syllabus-tab-btn active" id="btn-tab-fullstack" onclick="switchSyllabusTab('tab-fullstack')">Java Full Stack (12 Wks)</button>
+        <button class="syllabus-tab-btn" id="btn-tab-ai" onclick="switchSyllabusTab('tab-ai')">Generative AI & ML (14 Wks)</button>
+        <button class="syllabus-tab-btn" id="btn-tab-dsa" onclick="switchSyllabusTab('tab-dsa')">DSA (Coming Soon)</button>
+        <button class="syllabus-tab-btn" id="btn-tab-cloud" onclick="switchSyllabusTab('tab-cloud')">Cloud DevOps (Coming Soon)</button>
+      </div>
+
+      <!-- Tab 1: Full Stack Content -->
+      <div class="syllabus-panel active" id="tab-fullstack">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 1rem;">
+          <div style="background: var(--bg-subtle); padding: 1.15rem; border-radius: var(--radius-lg); border-left: 3px solid var(--primary);">
+            <span style="font-size: 0.72rem; font-weight: 800; color: var(--primary); font-family: var(--font-mono);">PHASE 01 (WEEKS 1-4)</span>
+            <h4 style="font-size: 0.92rem; margin: 0.2rem 0;">Java 21 Core & Algorithmic Logic</h4>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5;">JVM internals, memory models, primitive data structures, exception handling, and JUnit 5 unit testing.</p>
+          </div>
+          <div style="background: var(--bg-subtle); padding: 1.15rem; border-radius: var(--radius-lg); border-left: 3px solid var(--success);">
+            <span style="font-size: 0.72rem; font-weight: 800; color: var(--success-text); font-family: var(--font-mono);">PHASE 02 (WEEKS 5-8)</span>
+            <h4 style="font-size: 0.92rem; margin: 0.2rem 0;">OOP, Collections & Web Fundamentals</h4>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5;">SOLID principles, Collections framework internals, LeetCode patterns, semantic HTML5, CSS Grid, and modern ES6+.</p>
+          </div>
+          <div style="background: var(--bg-subtle); padding: 1.15rem; border-radius: var(--radius-lg); border-left: 3px solid #f59e0b;">
+            <span style="font-size: 0.72rem; font-weight: 800; color: #b45309; font-family: var(--font-mono);">PHASE 03 (WEEKS 9-12)</span>
+            <h4 style="font-size: 0.92rem; margin: 0.2rem 0;">Spring Boot, React 18 & AWS Cloud</h4>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5;">REST APIs, Spring Data JPA, JWT auth, React SPA hooks, Docker containerization, and AWS cloud deployment.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: AI & ML Content -->
+      <div class="syllabus-panel" id="tab-ai">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 1rem;">
+          <div style="background: var(--bg-subtle); padding: 1.15rem; border-radius: var(--radius-lg); border-left: 3px solid #3182ce;">
+            <span style="font-size: 0.72rem; font-weight: 800; color: #3182ce; font-family: var(--font-mono);">PHASE 01 (WEEKS 1-6)</span>
+            <h4 style="font-size: 0.92rem; margin: 0.2rem 0;">Python EDA & Classical ML</h4>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5;">NumPy, Pandas, statistical data visualization, Scikit-Learn regression, classification, and ensemble modeling.</p>
+          </div>
+          <div style="background: var(--bg-subtle); padding: 1.15rem; border-radius: var(--radius-lg); border-left: 3px solid #3182ce;">
+            <span style="font-size: 0.72rem; font-weight: 800; color: #3182ce; font-family: var(--font-mono);">PHASE 02 (WEEKS 7-14)</span>
+            <h4 style="font-size: 0.92rem; margin: 0.2rem 0;">Deep Learning, LLMs, RAG & FastAPI</h4>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5;">PyTorch neural networks, Transformer attention, LangChain, Pinecone vector search, RAG pipelines, and FastAPI APIs.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 3: DSA Content (Coming Soon) -->
+      <div class="syllabus-panel" id="tab-dsa">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 1rem;">
+          <div style="background: var(--bg-subtle); padding: 1.15rem; border-radius: var(--radius-lg); border-left: 3px solid #e53e3e;">
+            <span style="font-size: 0.72rem; font-weight: 800; color: #e53e3e; font-family: var(--font-mono);">PHASE 01 (WEEKS 1-4)</span>
+            <h4 style="font-size: 0.92rem; margin: 0.2rem 0;">Arrays, Pointers & Monotonic Structures</h4>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5;">Two pointers, sliding window, fast & slow pointers, monotonic stacks, queues, and linked list manipulations.</p>
+          </div>
+          <div style="background: var(--bg-subtle); padding: 1.15rem; border-radius: var(--radius-lg); border-left: 3px solid #e53e3e;">
+            <span style="font-size: 0.72rem; font-weight: 800; color: #e53e3e; font-family: var(--font-mono);">PHASE 02 (WEEKS 5-8)</span>
+            <h4 style="font-size: 0.92rem; margin: 0.2rem 0;">Trees, Graphs, DP & System Design</h4>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5;">Binary Search Trees, Graph BFS/DFS, Dijkstra, 1D/2D dynamic programming, and low/high level system design.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 4: Cloud DevOps Content (Coming Soon) -->
+      <div class="syllabus-panel" id="tab-cloud">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 1rem;">
+          <div style="background: var(--bg-subtle); padding: 1.15rem; border-radius: var(--radius-lg); border-left: 3px solid #38a169;">
+            <span style="font-size: 0.72rem; font-weight: 800; color: #38a169; font-family: var(--font-mono);">PHASE 01 (WEEKS 1-5)</span>
+            <h4 style="font-size: 0.92rem; margin: 0.2rem 0;">Linux, Docker & GitHub Actions CI/CD</h4>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5;">Linux process and network management, multi-stage Docker builds, and automated CI/CD deployment pipelines.</p>
+          </div>
+          <div style="background: var(--bg-subtle); padding: 1.15rem; border-radius: var(--radius-lg); border-left: 3px solid #38a169;">
+            <span style="font-size: 0.72rem; font-weight: 800; color: #38a169; font-family: var(--font-mono);">PHASE 02 (WEEKS 6-10)</span>
+            <h4 style="font-size: 0.92rem; margin: 0.2rem 0;">Kubernetes, Terraform IaC & Observability</h4>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5;">K8s cluster deployments, Ingress SSL routing, Terraform AWS provisioning, and Prometheus/Grafana monitoring.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- 4-Step Engineering Pedagogy -->
+    <div style="text-align: center; margin-bottom: 1.25rem;">
+      <span class="mono" style="color: var(--primary); font-weight: 700; text-transform: uppercase;">How We Train</span>
+      <h2 style="font-size: 1.45rem; margin-top: 0.25rem;">The 4-Step Learning Routine</h2>
+    </div>
+
+    <div class="pedagogy-grid" style="grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr)); margin-bottom: 3rem;">
+      <div class="pedagogy-card" style="border-top: 3px solid var(--primary);">
+        <div style="font-size: 1.35rem; margin-bottom: 0.2rem;">&#128179;</div>
+        <div style="font-size: 0.72rem; font-weight: 800; color: var(--primary); font-family: var(--font-mono);">STEP 01</div>
+        <h3 style="font-size: 0.95rem; margin: 0.2rem 0 0.3rem;">Live Weekend Lectures</h3>
+        <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5;">Architectural deep-dives and live coding sessions taught by senior engineers.</p>
+      </div>
+
+      <div class="pedagogy-card" style="border-top: 3px solid var(--success);">
+        <div style="font-size: 1.35rem; margin-bottom: 0.2rem;">&#128179;</div>
+        <div style="font-size: 0.72rem; font-weight: 800; color: var(--success-text); font-family: var(--font-mono);">STEP 02</div>
+        <h3 style="font-size: 0.95rem; margin: 0.2rem 0 0.3rem;">Daily Lab Practice</h3>
+        <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5;">Solve curated coding problems on our LMS with automated test suite evaluation.</p>
+      </div>
+
+      <div class="pedagogy-card" style="border-top: 3px solid #f59e0b;">
+        <div style="font-size: 1.35rem; margin-bottom: 0.2rem;">&#128179;</div>
+        <div style="font-size: 0.72rem; font-weight: 800; color: #b45309; font-family: var(--font-mono);">STEP 03</div>
+        <h3 style="font-size: 0.95rem; margin: 0.2rem 0 0.3rem;">1-on-1 PR Code Reviews</h3>
+        <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5;">Senior engineers review your code on GitHub for Big-O, naming, and clean architecture.</p>
+      </div>
+
+      <div class="pedagogy-card" style="border-top: 3px solid #8b5cf6;">
+        <div style="font-size: 1.35rem; margin-bottom: 0.2rem;">&#128179;</div>
+        <div style="font-size: 0.72rem; font-weight: 800; color: #7c3aed; font-family: var(--font-mono);">STEP 04</div>
+        <h3 style="font-size: 0.95rem; margin: 0.2rem 0 0.3rem;">Mocks & Referrals</h3>
+        <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5;">1-on-1 mock interviews and fast-tracked referrals across 120+ tech hiring partners.</p>
+      </div>
+    </div>
+
+    <!-- Compact Course FAQs -->
+    <div style="max-width: 800px; margin: 0 auto 3rem;">
+      <div style="text-align: center; margin-bottom: 1.25rem;">
+        <span class="mono" style="color: var(--primary); font-weight: 700; text-transform: uppercase;">Got Questions?</span>
+        <h2 style="font-size: 1.45rem; margin-top: 0.25rem;">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="faq-item open">
+        <div class="faq-q" onclick="toggleCourseFaq(this)">
+          <span>What are the live cohort timings and what if I miss a lecture?</span>
+          <span class="faq-icon">&#9660;</span>
+        </div>
+        <div class="faq-a">
+          Live cohorts run on Saturdays and Sundays. Full HD recordings, code repositories, and notes are uploaded to your Student LMS within 2 hours of lecture completion.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleCourseFaq(this)">
+          <span>Can I enroll if I am a beginner?</span>
+          <span class="faq-icon">&#9660;</span>
+        </div>
+        <div class="faq-a">
+          Yes! The Java Full Stack track starts from foundational principles: memory models, variables, and logic control flow. No prior coding background is required.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleCourseFaq(this)">
+          <span>How does certificate verification work?</span>
+          <span class="faq-icon">&#9660;</span>
+        </div>
+        <div class="faq-a">
+          Every graduate is issued a cryptographically verifiable digital certificate with a unique UUID and QR code verifiable instantly on `verify.php`.
+        </div>
+      </div>
+    </div>
+
+    <!-- Guidance Banner CTA -->
+    <div style="background: linear-gradient(135deg, var(--primary), var(--primary-hover)); border-radius: var(--radius-xl); padding: 2rem 1.5rem; color: #fff; text-align: center; margin-bottom: 3rem; box-shadow: 0 4px 18px var(--primary-glow);">
+      <h2 style="font-size: 1.45rem; color: #fff; margin-bottom: 0.4rem;">Need Help Choosing the Right Track?</h2>
+      <p style="color: rgba(255, 255, 255, 0.9); max-width: 500px; margin: 0 auto 1.25rem; font-size: 0.88rem;">
+        Speak directly with an academic advisor to evaluate your coding goals and select the right track.
+      </p>
+      <a href="contact.html" class="btn btn-secondary" style="font-size: 0.85rem; padding: 0.6rem 1.5rem; background: #ffffff; color: var(--primary); border: none;">
+        Schedule Free Profile Counseling ?
+      </a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <a href="./" class="brand-logo" style="margin-bottom: 1rem; display: inline-flex;">
+          <svg class="ea-logo" width="28" height="28" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Education Algorithm"><g class="ea-g"><path class="ea-base" d="M11.5 23.4v6.8c0 3.6 5 6.1 11 6.1s11-2.5 11-6.1v-6.8" stroke="currentColor" stroke-width="3.4" fill="none" stroke-linecap="round"/><g class="ea-capg"><path class="ea-cap" d="M22.5 6.5 43 16 22.5 25.5 2 16Z" fill="currentColor"/></g><g class="ea-tas"><path d="M41.6 17.8v8.4" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" fill="none"/><circle cx="41.6" cy="30.2" r="3.2" fill="currentColor"/></g></g></svg>
+          <span style="color: #ffffff;">Education Algorithm</span>
+        </a>
+        <p style="font-size: 0.9rem; line-height: 1.6; color: #94a3b8;">
+          An advanced technology learning platform designed to bridge the gap between textbook theory and production software engineering.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Learning</h4>
+        <ul>
+          <li><a href="courses.html">All Courses</a></li>
+          <li><a href="internships.html">Internship Track</a></li>
+          <li><a href="verify">Verify Certificate</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Portals</h4>
+        <ul>
+          <li><a href="login.php">Student Portal</a></li>
+          <li><a href="instructor-login">Faculty Portal</a></li>
+          <li><a href="admin-login">Admin Login</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Legal & Policies</h4>
+        <ul>
+          <li><a href="privacy-policy">Privacy Policy</a></li>
+          <li><a href="terms">Terms & Conditions</a></li>
+          <li><a href="shipping-policy">Digital Delivery</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="contact.html">Admissions Desk</a></li>
+          <li><span style="font-size: 0.9rem; color: #94a3b8;">Chennai, Tamil Nadu</span></li>
+          <li><span style="font-size: 0.9rem; color: #94a3b8;">+91 78456 70203</span></li>
+        </ul>
+      </div>
+    </div>
+    <div style="max-width: 1200px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem; text-align: center; font-size: 0.85rem; color: #64748b;">
+      &copy; 2026 Education Algorithm. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- ================================================================ -->
+  <!-- UNIFIED NEXT-GEN ENROLLMENT & CHECKOUT MODAL (IDENTICAL TO MAIN) -->
+  <!-- ================================================================ -->
+  id="syllabusModal">
+    <div class="modal-dialog">
+      <button class="modal-close" onclick="closeSyllabusModal()">&times;</button>
+      
+      <div id="syllabusFormBox">
+        <div style="text-align: center; margin-bottom: 1.25rem;">
+          <div style="font-size: 1.5rem; margin-bottom: 0.25rem;">??</div>
+          <h3 style="font-size: 1.15rem;" id="syllabusModalTitle">Download 2026 Syllabus</h3>
+          <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem;">Get the complete week-by-week curriculum, lab sheets & capstone architecture.</p>
+        </div>
+
+        <form id="syllabusDownloadForm" onsubmit="handleSyllabusDownloadSubmit(event)">
+          <input type="hidden" id="syllabusSelectedTrack" value="Java Full Stack Engineering">
+          
+          <div style="margin-bottom: 0.85rem;">
+            <label style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.25rem;">Full Name</label>
+            <input type="text" id="syllabusName" required placeholder="Jane Doe" style="width: 100%; padding: 0.55rem 0.75rem; border: 1px solid var(--border); border-radius: var(--radius-md); font-family: inherit; font-size: 0.85rem; box-sizing: border-box;">
+          </div>
+
+          <div style="margin-bottom: 0.85rem;">
+            <label style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.25rem;">Email Address</label>
+            <input type="email" id="syllabusEmail" required placeholder="jane@example.com" style="width: 100%; padding: 0.55rem 0.75rem; border: 1px solid var(--border); border-radius: var(--radius-md); font-family: inherit; font-size: 0.85rem; box-sizing: border-box;">
+          </div>
+
+          <div style="margin-bottom: 1.25rem;">
+            <label style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.25rem;">WhatsApp Number (for instant PDF link)</label>
+            <input type="tel" id="syllabusPhone" required placeholder="+91 98765 43210" style="width: 100%; padding: 0.55rem 0.75rem; border: 1px solid var(--border); border-radius: var(--radius-md); font-family: inherit; font-size: 0.85rem; box-sizing: border-box;">
+          </div>
+
+          <button type="submit" id="syllabusDownloadBtn" class="btn btn-primary" style="width: 100%; padding: 0.65rem; font-size: 0.88rem;">
+            &#128196; Download Free Curriculum PDF
+          </button>
+        </form>
+      </div>
+
+      <!-- Syllabus Success State -->
+      <div id="syllabusSuccessBox" style="display: none; text-align: center;">
+        <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--success-light); color: var(--success-text); display: flex; align-items: center; justify-content: center; margin: 0 auto 0.75rem; font-size: 1.35rem;">?</div>
+        <h3 style="font-size: 1.15rem; margin-bottom: 0.25rem;">Curriculum Dispatched!</h3>
+        <p style="font-size: 0.84rem; color: var(--text-secondary); margin-bottom: 1rem;">
+          The full 2026 syllabus roadmap and capstone specs have been sent to your email & WhatsApp.
+        </p>
+        <button class="btn btn-secondary btn-sm" style="width: 100%;" onclick="closeSyllabusModal()">
+          Close Window
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+    // Category Filtering
+    function filterCourses(category, btn) {
+      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      
+      const cards = document.querySelectorAll('.course-card');
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'grid';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Live Search
+    function searchCourses() {
+      const q = document.getElementById('courseSearch').value.toLowerCase();
+      const cards = document.querySelectorAll('.course-card');
+      cards.forEach(card => {
+        const text = (card.getAttribute('data-title') || '').toLowerCase() + ' ' + card.innerText.toLowerCase();
+        if (text.includes(q)) {
+          card.style.display = 'grid';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Track Finder Quiz Logic
+    let currentQuizAnswers = {};
+    function toggleQuizVisibility() {
+      const box = document.getElementById('quizContentBox');
+      const btn = document.getElementById('quizToggleBtn');
+      if (box.style.display === 'none' || !box.style.display) {
+        box.style.display = 'block';
+        btn.innerText = 'Close Quiz ?';
+      } else {
+        box.style.display = 'none';
+        btn.innerText = 'Take Quick Quiz →';
+      }
+    }
+
+    function answerQuiz(step, answer) {
+      currentQuizAnswers[step] = answer;
+      const progress = document.getElementById('quizProgress');
+      
+      if (step === 1) {
+        document.getElementById('quizStep1').style.display = 'none';
+        document.getElementById('quizStep2').style.display = 'block';
+        if (progress) progress.style.width = '66%';
+      } else if (step === 2) {
+        document.getElementById('quizStep2').style.display = 'none';
+        document.getElementById('quizStep3').style.display = 'block';
+        if (progress) progress.style.width = '100%';
+      } else if (step === 3) {
+        document.getElementById('quizStep3').style.display = 'none';
+        displayQuizResult();
+      }
+    }
+
+    function displayQuizResult() {
+      const resBox = document.getElementById('quizResultBox');
+      const titleEl = document.getElementById('quizRecommendedTitle');
+      const descEl = document.getElementById('quizRecommendedDesc');
+      const enrollBtn = document.getElementById('quizActionEnrollBtn');
+      const target = currentQuizAnswers[2] || currentQuizAnswers[1] || 'fullstack';
+
+      if (target === 'ai') {
+        titleEl.innerText = 'Data Science, Machine Learning & Generative AI';
+        descEl.innerText = 'Best for building production LLM apps, RAG architectures, and PyTorch deep learning models.';
+        enrollBtn.setAttribute('onclick', "openEnrollModal(3, 'Data Science & AI Engineering', 18000)");
+        enrollBtn.innerText = 'Enroll in AI Track →';
+      } else if (target === 'dsa') {
+        titleEl.innerText = 'Data Structures, Algorithms & System Design';
+        descEl.innerText = 'Target Tier-1 technical rounds with 150+ LeetCode patterns and system design. Cohort opening soon!';
+        enrollBtn.setAttribute('onclick', "window.location.href='contact?track=dsa'");
+        enrollBtn.innerText = 'Pre-Register / Join Waitlist →';
+      } else if (target === 'cloud') {
+        titleEl.innerText = 'Cloud DevOps, Kubernetes & Infrastructure as Code';
+        descEl.innerText = 'Master CI/CD pipelines, Docker containers, Kubernetes, and AWS Terraform IaC. Cohort opening soon!';
+        enrollBtn.setAttribute('onclick', "window.location.href='contact?track=cloud'");
+        enrollBtn.innerText = 'Pre-Register / Join Waitlist →';
+      } else {
+        titleEl.innerText = 'Java Full Stack & Cloud Engineering';
+        descEl.innerText = 'Best for mastering end-to-end full stack architecture with Spring Boot, React, and AWS.';
+        enrollBtn.setAttribute('onclick', "openEnrollModal(1, 'Java Full Stack Web Development', 15000)");
+        enrollBtn.innerText = 'Enroll in Full Stack →';
+      }
+      
+      resBox.style.display = 'block';
+    }
+
+    function resetQuiz() {
+      currentQuizAnswers = {};
+      document.getElementById('quizStep1').style.display = 'block';
+      document.getElementById('quizStep2').style.display = 'none';
+      document.getElementById('quizStep3').style.display = 'none';
+      document.getElementById('quizResultBox').style.display = 'none';
+      const progress = document.getElementById('quizProgress');
+      if (progress) progress.style.width = '33%';
+    }
+
+    // EMI Calculator Logic
+    let currentEmiTenure = 3;
+    function setEmiTenure(months, btn) {
+      currentEmiTenure = months;
+      document.querySelectorAll('.emi-pill').forEach(p => p.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      recalculateEmi();
+    }
+
+    function recalculateEmi() {
+      const select = document.getElementById('emiTrackSelect');
+      const totalTuition = parseInt(select.value, 10);
+      const amountEl = document.getElementById('emiMonthlyAmount');
+      const noteEl = document.getElementById('emiInterestNote');
+
+      if (currentEmiTenure === 1) {
+        amountEl.innerText = '?' + totalTuition.toLocaleString('en-IN') + ' (Full)';
+        noteEl.innerText = '✓ Instant Lifetime LMS Access';
+      } else if (currentEmiTenure === 3) {
+        const monthly = Math.round(totalTuition / 3);
+        amountEl.innerText = '?' + monthly.toLocaleString('en-IN') + ' / mo';
+        noteEl.innerText = '✓ 0% Interest • 3 Equal Installments';
+      } else if (currentEmiTenure === 6) {
+        const monthly = Math.round((totalTuition * 1.05) / 6);
+        amountEl.innerText = '?' + monthly.toLocaleString('en-IN') + ' / mo';
+        noteEl.innerText = '✓ Flexible 6-Month Low EMI Plan';
+      }
+    }
+
+    function proceedEmiCheckout() {
+      window.location.href = 'enroll';
+    }
+
+    // Syllabus PDF Downloader Logic
+    function openSyllabusModal(trackName) { window.location.href = "enrollment-preview.php"; }
+    function closeSyllabusModal() {}
+    function handleSyllabusDownloadSubmit(e) { if(e) e.preventDefault(); }
+
+    // Syllabus Tab Switcher
+    function switchSyllabusTab(tabId) {
+      document.querySelectorAll('.syllabus-tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.syllabus-panel').forEach(panel => panel.classList.remove('active'));
+      
+      const targetBtn = document.getElementById('btn-' + tabId);
+      const targetPanel = document.getElementById(tabId);
+      if (targetBtn) targetBtn.classList.add('active');
+      if (targetPanel) targetPanel.classList.add('active');
+    }
+
+    // Course FAQ Accordion
+    function toggleCourseFaq(el) {
+      const item = el.closest('.faq-item');
+      item.classList.toggle('open');
+    }
+
+    // Banner dismiss
+    function dismissBanner() {
+      const banner = document.getElementById('topBanner');
+      if (banner) {
+        banner.classList.add('hidden');
+        document.body.classList.add('banner-dismissed');
+        document.documentElement.classList.add('banner-dismissed');
+        try { sessionStorage.setItem('ea_banner_dismissed', '1'); } catch(e){}
+      }
+    }
+    try {
+      if (sessionStorage.getItem('ea_banner_dismissed') === '1') {
+        dismissBanner();
+      }
+    } catch(e){}
+
+    // Mobile nav
+    
+
+    // Razorpay and Track Enrollment modal
+                let currentOtpCode = '';
+    let currentVerificationId = '';
+    let currentOrderData = null;
+    let appliedCouponData = null;
+
+    // --- 1. Password Strength Meter ---
+    function checkEnrollPass(input) {
+      const val = input.value;
+      const hint = document.getElementById('enrollPassHint');
+      const b1 = document.getElementById('strBar1');
+      const b2 = document.getElementById('strBar2');
+      const b3 = document.getElementById('strBar3');
+      const b4 = document.getElementById('strBar4');
+      if (!hint || !b1) return;
+
+      b1.style.background = '#e2e8f0';
+      b2.style.background = '#e2e8f0';
+      b3.style.background = '#e2e8f0';
+      b4.style.background = '#e2e8f0';
+
+      if (val.length === 0) {
+        hint.textContent = 'Min 6 characters';
+        hint.style.color = '#64748b';
+      } else if (val.length < 6) {
+        b1.style.background = '#ef4444';
+        hint.textContent = val.length + ' / 6+ chars (Too short)';
+        hint.style.color = '#ef4444';
+      } else {
+        let score = 1;
+        if (/[A-Z]/.test(val)) score++;
+        if (/[0-9]/.test(val)) score++;
+        if (/[^A-Za-z0-9]/.test(val)) score++;
+
+        if (score === 1) {
+          b1.style.background = '#f59e0b';
+          b2.style.background = '#f59e0b';
+          hint.textContent = 'Medium security';
+          hint.style.color = '#f59e0b';
+        } else if (score === 2) {
+          b1.style.background = '#10b981';
+          b2.style.background = '#10b981';
+          b3.style.background = '#10b981';
+          hint.textContent = 'Strong password ✓';
+          hint.style.color = '#10b981';
+        } else {
+          b1.style.background = '#059669';
+          b2.style.background = '#059669';
+          b3.style.background = '#059669';
+          b4.style.background = '#059669';
+          hint.textContent = 'Excellent password 👍';
+          hint.style.color = '#059669';
+        }
+      }
+    }
+
+    function toggleEnrollPassVisibility() {
+      const input = document.getElementById('enrollPassword');
+      if (input) {
+        input.type = (input.type === 'password') ? 'text' : 'password';
+      }
+    }
+
+    // --- 2. Dynamic Track Selector Details ---
+    function updateEnrollCourseDetails() {
+      const sel = document.getElementById('enrollCourseId');
+      if (!sel) return;
+      const opt = sel.options[sel.selectedIndex];
+      const title = opt.getAttribute('data-title') || opt.text;
+      const desc = opt.getAttribute('data-desc') || 'Master scalable software engineering with live expert mentoring.';
+      const price = parseInt(opt.getAttribute('data-price')) || 15000;
+      const duration = opt.getAttribute('data-duration') || '12 Weekly Live Weekend Cohort Lectures';
+      const status = opt.getAttribute('data-status') || 'active';
+
+      // Update Left Summary Pane
+      const pTitle = document.getElementById('paneSummaryTitle');
+      const pDesc = document.getElementById('paneSummaryDesc');
+      const pDur = document.getElementById('paneSummaryDuration');
+      const pOrig = document.getElementById('paneOriginalPrice');
+      const pFinal = document.getElementById('paneFinalPrice');
+      const pTag = document.getElementById('paneDiscountTag');
+      const btn = document.getElementById('enrollNextBtn');
+
+      if (pTitle) pTitle.innerText = title;
+      if (pDesc) pDesc.innerText = desc;
+      if (pDur) pDur.innerText = duration;
+
+      if (appliedCouponData) {
+        const discount = appliedCouponData.discount || 0;
+        const finalP = Math.max(500, price - discount);
+        if (pOrig) {
+          pOrig.innerText = '?' + price.toLocaleString('en-IN');
+          pOrig.style.display = 'inline';
+        }
+        if (pFinal) pFinal.innerText = '?' + finalP.toLocaleString('en-IN');
+        if (pTag) {
+          pTag.innerText = '? ' + appliedCouponData.description;
+          pTag.style.display = 'block';
+        }
+      } else {
+        if (pOrig) pOrig.style.display = 'none';
+        if (pFinal) pFinal.innerText = '?' + price.toLocaleString('en-IN');
+        if (pTag) pTag.style.display = 'none';
+      }
+
+      if (status === 'upcoming') {
+        if (btn) btn.innerText = 'Pre-Register for Early Access ?';
+      } else {
+        if (btn) btn.innerText = 'Continue to Email Verification →';
+      }
+    }
+
+    // --- 3. Coupon Code Engine ---
+    async function applyEnrollCoupon() {
+      const codeInput = document.getElementById('enrollCouponCode');
+      const msgBox = document.getElementById('couponMsgBox');
+      const applyBtn = document.getElementById('couponApplyBtn');
+      const sel = document.getElementById('enrollCourseId');
+      const code = codeInput.value.trim().toUpperCase();
+
+      if (!code) {
+        msgBox.innerText = 'Please enter a coupon code.';
+        msgBox.style.color = '#ef4444';
+        msgBox.style.display = 'block';
+        return;
+      }
+
+      applyBtn.disabled = true;
+      applyBtn.innerText = 'Checking...';
+
+      try {
+        const res = await fetch('api-enrollment.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'validate_coupon',
+            coupon: code,
+            course_id: sel.value
+          })
+        });
+        const data = await res.json();
+
+        if (!res.ok || data.error) {
+          appliedCouponData = null;
+          msgBox.innerText = data.error || 'Invalid coupon code.';
+          msgBox.style.color = '#ef4444';
+          msgBox.style.display = 'block';
+        } else {
+          appliedCouponData = data;
+          msgBox.innerText = '? ' + data.description + ' (Saved ?' + data.discount.toLocaleString('en-IN') + ')';
+          msgBox.style.color = '#059669';
+          msgBox.style.display = 'block';
+        }
+        updateEnrollCourseDetails();
+      } catch (e) {
+        msgBox.innerText = 'Failed to validate coupon.';
+        msgBox.style.color = '#ef4444';
+        msgBox.style.display = 'block';
+      } finally {
+        applyBtn.disabled = false;
+        applyBtn.innerText = 'Apply';
+      }
+    }
+
+    /* ============================================================
+       EDUCATION ALGORITHM — NEXT-GEN ENROLLMENT & CHECKOUT ENGINE
+       - Real-time debounced student detection (VIP bypass)
+       - Google In-Modal One-Tap Auth
+       - 6-Box Auto-Advancing PIN with WebOTP
+       - High-Trust Checkout & Multi-Tier Pricing
+       - Canvas Confetti Particle Celebration
+       ============================================================ */
+
+    let eaCurrentOrderData = null;
+    let eaCurrentVerificationId = '';
+    let eaResendTimerInterval = null;
+    let eaEmailDebounceTimer = null;
+
+    function showEaVerifyOverlay(title, sub) {
+      const ov = document.getElementById('eaVerificationOverlay');
+      if (ov) {
+        if (title) document.getElementById('eaOverlayTitle').innerText = title;
+        if (sub) document.getElementById('eaOverlaySub').innerText = sub;
+        ov.style.display = 'flex';
+      }
+    }
+
+    function hideEaVerifyOverlay() {
+      const ov = document.getElementById('eaVerificationOverlay');
+      if (ov) ov.style.display = 'none';
+    }
+
+    // --- Dynamic Rotating Quotes Array for Students ---
+    const EA_STUDENT_QUOTES = [
+      "“First, solve the problem. Then, write the code.” — John Johnson",
+      "“Experience is the name everyone gives to their mistakes.” — Oscar Wilde",
+      "“Simplicity is the soul of efficiency.” — Austin Freeman",
+      "“Code is like humor. When you have to explain it, it’s bad.” — Cory House",
+      "“Make it work, make it right, make it fast.” — Kent Beck",
+      "“The only way to learn a new programming language is by writing programs in it.” — Dennis Ritchie",
+      "“Any fool can write code that a computer can understand. Good programmers write code that humans understand.” — Martin Fowler",
+      "“Knowledge is power, but practice makes you an Architect.” — Education Algorithm",
+      "“Talk is cheap. Show me the code.” — Linus Torvalds",
+      "“Great coders are not born; they build one algorithm at a time.” — Education Algorithm"
+    ];
+
+    function rotateEaStudentQuote() {
+      const el = document.getElementById('eaDynamicStudentQuote');
+      if (el) {
+        const randomQuote = EA_STUDENT_QUOTES[Math.floor(Math.random() * EA_STUDENT_QUOTES.length)];
+        el.innerText = randomQuote;
+      }
+    }
+
+    window.openEnrollModal = function(courseId, courseTitle, coursePrice) {
+      const cid = courseId ? parseInt(courseId, 10) : 1;
+      window.location.href = 'enroll.php?course_id=' + encodeURIComponent(cid);
+    };
+
+    window.closeEnrollModal = function(e) {
+      if (e) {
+        if (typeof e.stopPropagation === 'function') e.stopPropagation();
+        if (typeof e.preventDefault === 'function') e.preventDefault();
+      }
+      const modal = document.getElementById('enrollModal');
+      if (modal) {
+        modal.classList.remove('active');
+        modal.style.setProperty('display', 'none', 'important');
+      }
+      document.body.style.overflow = '';
+      if (window.eaResendTimerInterval) clearInterval(window.eaResendTimerInterval);
+    };
+
+    // Close on backdrop tap / click
+    document.addEventListener('DOMContentLoaded', function() {
+      const modal = document.getElementById('enrollModal');
+      if (modal) {
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) {
+            window.closeEnrollModal(e);
+          }
+        });
+        modal.addEventListener('touchend', function(e) {
+          if (e.target === modal) {
+            window.closeEnrollModal(e);
+          }
+        });
+      }
+    });
+
+    // Close on ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' || e.keyCode === 27) {
+        const modal = document.getElementById('enrollModal');
+        if (modal && modal.style.display === 'flex') {
+          window.closeEnrollModal(e);
+        }
+      }
+    });
+
+    function setEaStepperNode(stage) {
+      ['eaStage1', 'eaStage2', 'eaStage3', 'eaStage4'].forEach((id, idx) => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = (idx + 1 === stage) ? 'block' : 'none';
+        
+        const node = document.getElementById('stepNode' + (idx + 1));
+        if (node) {
+          if (idx + 1 <= stage) {
+            node.style.color = '#4f46e5';
+            node.querySelector('span:first-child').style.background = '#4f46e5';
+            node.querySelector('span:first-child').style.color = '#ffffff';
+          } else {
+            node.style.color = '#94a3b8';
+            node.querySelector('span:first-child').style.background = '#e2e8f0';
+            node.querySelector('span:first-child').style.color = '#64748b';
+          }
+        }
+      });
+    }
+
+    let eaAppliedCouponData = null;
+
+    async function applyEaCoupon(customCode) {
+      const codeInput = document.getElementById('eaCouponCode');
+      if (customCode && codeInput) codeInput.value = customCode;
+      const code = (customCode || (codeInput ? codeInput.value : '')).trim().toUpperCase();
+      const select = document.getElementById('eaCourseSelect');
+      const courseId = select ? select.value : 1;
+      const msgBox = document.getElementById('eaCouponMsg');
+      const btn = document.getElementById('btnEaApplyCoupon');
+
+      if (!code) {
+        if (msgBox) {
+          msgBox.innerText = 'Please enter a promo code.';
+          msgBox.style.color = '#ef4444';
+          msgBox.style.display = 'block';
+        }
+        return;
+      }
+
+      if (btn) {
+        btn.disabled = true;
+        btn.innerText = 'Applying...';
+      }
+
+      try {
+        const res = await fetch('api-enrollment.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'validate_coupon',
+            coupon: code,
+            course_id: courseId
+          })
+        });
+        const data = await res.json();
+
+        if (!res.ok || data.error) {
+          eaAppliedCouponData = null;
+          if (msgBox) {
+            msgBox.innerText = data.error || 'Invalid or expired promo code.';
+            msgBox.style.color = '#ef4444';
+            msgBox.style.display = 'block';
+          }
+        } else {
+          eaAppliedCouponData = data;
+          if (codeInput) codeInput.value = data.code;
+          if (msgBox) {
+            msgBox.innerText = '🎉 ' + (data.description || 'Coupon Applied!') + ' (Saved ₹' + data.discount.toLocaleString('en-IN') + ')';
+            msgBox.style.color = '#059669';
+            msgBox.style.display = 'block';
+          }
+        }
+        updateEaCourseSelection();
+      } catch (e) {
+        if (msgBox) {
+          msgBox.innerText = 'Could not validate coupon.';
+          msgBox.style.color = '#ef4444';
+          msgBox.style.display = 'block';
+        }
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerText = 'Apply';
+        }
+      }
+    }
+
+    function updateEaCourseSelection() {
+      const select = document.getElementById('eaCourseSelect');
+      if (!select) return;
+      const opt = select.options[select.selectedIndex];
+      const title = opt.getAttribute('data-title') || opt.text;
+      const basePrice = parseInt(opt.getAttribute('data-price') || '15000');
+      
+      let discount = 0;
+      let finalPrice = basePrice;
+      if (eaAppliedCouponData && eaAppliedCouponData.discount) {
+        discount = eaAppliedCouponData.discount;
+        finalPrice = eaAppliedCouponData.final_price || (basePrice - discount);
+      }
+
+      const titleEl = document.getElementById('eaCheckoutCourseTitle');
+      if (titleEl) titleEl.innerText = title;
+      const baseEl = document.getElementById('eaCheckoutBasePrice');
+      if (baseEl) baseEl.innerText = '₹' + basePrice.toLocaleString('en-IN');
+
+      const discRow = document.getElementById('eaDiscountRow');
+      const discEl = document.getElementById('eaCheckoutDiscount');
+      if (discount > 0) {
+        if (discEl) discEl.innerText = '-₹' + discount.toLocaleString('en-IN');
+        if (discRow) discRow.style.display = 'flex';
+      } else {
+        if (discRow) discRow.style.display = 'none';
+      }
+
+      const finalEl = document.getElementById('eaCheckoutFinalPrice');
+      if (finalEl) finalEl.innerText = '₹' + finalPrice.toLocaleString('en-IN');
+
+      const payBtnText = document.getElementById('btnEaPayText');
+      if (payBtnText) payBtnText.innerText = '🔒 Complete Payment • ₹' + finalPrice.toLocaleString('en-IN') + ' ➔';
+    }
+
+    // --- 2. Live Debounced Student Recognition (VIP Bypass) ---
+    function handleEaEmailLiveInput(val) {
+      clearTimeout(eaEmailDebounceTimer);
+      const email = val.trim();
+      const banner = document.getElementById('eaRecognizedBanner');
+      const passContainer = document.getElementById('eaPassContainer');
+
+      if (!email || !email.includes('@') || email.length < 5) {
+        if (banner) banner.style.display = 'none';
+        if (passContainer) passContainer.style.display = 'block';
+        return;
+      }
+
+      eaEmailDebounceTimer = setTimeout(async function() {
+        try {
+          const res = await fetch('api-enrollment.php?action=check_email&email=' + encodeURIComponent(email));
+          const data = await res.json();
+          if (data && data.exists) {
+            if (banner) {
+              document.getElementById('eaRecognizedName').innerText = 'Welcome back, ' + (data.student_name || 'Scholar') + '! 👋';
+              banner.style.display = 'flex';
+            }
+            if (passContainer) passContainer.style.display = 'none';
+          } else {
+            if (banner) banner.style.display = 'none';
+            if (passContainer) passContainer.style.display = 'block';
+          }
+        } catch (e) {}
+      }, 350);
+    }
+
+    function appendEaDomain(domain) {
+      const emailInput = document.getElementById('eaStudentEmail');
+      if (!emailInput) return;
+      let val = emailInput.value.trim();
+      if (val.includes('@')) val = val.split('@')[0];
+      emailInput.value = val + domain;
+      handleEaEmailLiveInput(emailInput.value);
+    }
+
+    // --- 3. Stage 1 Submit -> Backend Send OTP or VIP Bypass ---
+    async function handleEaStage1Submit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('btnEaStage1Submit');
+
+      const select = document.getElementById('eaCourseSelect');
+      const courseId = select ? select.value : 1;
+      const name = (document.getElementById('eaStudentName')?.value || '').trim();
+      const email = (document.getElementById('eaStudentEmail')?.value || '').trim();
+      const phone = (document.getElementById('eaStudentPhone')?.value || '').trim();
+      const passEl = document.getElementById('eaStudentPass');
+      const password = passEl ? passEl.value.trim() : '';
+      const coupon = (document.getElementById('eaCouponCode')?.value || '').trim();
+
+      // ── SYNCHRONOUS FIELD VALIDATION (Issue 8 Guard) ──
+      if (!name || name.length < 2) {
+        alert('Please enter your full name (minimum 2 characters).');
+        document.getElementById('eaStudentName')?.focus();
+        return;
+      }
+      if (!email || !email.includes('@') || email.length < 5) {
+        alert('Please enter a valid email address.');
+        document.getElementById('eaStudentEmail')?.focus();
+        return;
+      }
+      if (!phone || phone.replace(/\D/g, '').length < 7) {
+        alert('Please enter a valid mobile number (7–15 digits).');
+        document.getElementById('eaStudentPhone')?.focus();
+        return;
+      }
+      const passContainer = document.getElementById('eaPassContainer');
+      const isPassVisible = !passContainer || passContainer.style.display !== 'none';
+      if (isPassVisible && (!password || password.length < 6)) {
+        alert('Please enter your password (minimum 6 characters).');
+        passEl?.focus();
+        return;
+      }
+
+      // Validation passed -> Now activate loading state
+      btn.disabled = true;
+      btn.innerText = 'Verifying with Admissions Server...';
+      showEaVerifyOverlay('Verifying Admissions Profile...', 'Checking verified database credentials & cohort allocation...');
+
+      try {
+        const res = await fetch('api-enrollment.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'send_otp',
+            name: name,
+            email: email,
+            phone: phone,
+            password: password,
+            course_id: courseId,
+            coupon: coupon
+          })
+        });
+        const data = await res.json();
+
+        if (!res.ok || data.error) {
+          hideEaVerifyOverlay();
+          alert(data.error || 'Admissions verification failed. Please check inputs.');
+          btn.disabled = false;
+          btn.innerText = 'Continue to Instant Verification ➔';
+          return;
+        }
+
+        if (data.already_enrolled) {
+          hideEaVerifyOverlay();
+          alert('You are already actively enrolled in this course! Redirecting to your learning portal...');
+          window.location.href = data.redirect_url || data.dashboard_url || 'dashboard.php';
+          return;
+        }
+
+        eaCurrentVerificationId = data.verification_id || '';
+
+        // ── VIP RETURNING SCHOLAR BYPASS ──
+        if (data.skip_otp) {
+          hideEaVerifyOverlay();
+          populateEaCheckoutSummary(data, email);
+          setEaStepperNode(3);
+          return;
+        }
+
+        // ── NEW STUDENT: Show Stage 2 PIN Verification ──
+        hideEaVerifyOverlay();
+        document.getElementById('eaOtpTargetEmail').innerText = email;
+        setEaStepperNode(2);
+        startEaOtpCountdown();
+        setTimeout(() => document.getElementById('pin1')?.focus(), 150);
+
+      } catch (err) {
+        hideEaVerifyOverlay();
+        alert('Network connection error. Please retry.');
+      } finally {
+        btn.disabled = false;
+        btn.innerText = 'Continue to Instant Verification ➔';
+      }
+    }
+
+    // --- 4. Google In-Modal One-Tap Auth ---
+    function launchGoogleOneTapModal() {
+      const select = document.getElementById('eaCourseSelect');
+      const courseId = select ? select.value : 1;
+      window.location.href = 'login-google.php?action=redirect&enroll=1&course_id=' + courseId;
+    }
+
+    // --- 5. Stage 2: 6-Box Discrete PIN Handlers ---
+    function handlePinInput(el, idx) {
+      if (el.value.length === 1 && idx < 6) {
+        document.getElementById('pin' + (idx + 1))?.focus();
+      }
+      let pin = '';
+      for (let i = 1; i <= 6; i++) {
+        pin += document.getElementById('pin' + i)?.value || '';
+      }
+      if (pin.length === 6) {
+        submitEaPinVerification();
+      }
+    }
+
+    function handlePinBackspace(e, idx) {
+      if (e.key === 'Backspace' && !e.target.value && idx > 1) {
+        document.getElementById('pin' + (idx - 1))?.focus();
+      }
+    }
+
+    document.getElementById('eaPinBoxContainer')?.addEventListener('paste', function(e) {
+      e.preventDefault();
+      const pasteData = (e.clipboardData || window.clipboardData).getData('text').trim();
+      if (/^\d{6}$/.test(pasteData)) {
+        for (let i = 0; i < 6; i++) {
+          const box = document.getElementById('pin' + (i + 1));
+          if (box) box.value = pasteData[i];
+        }
+        submitEaPinVerification();
+      }
+    });
+
+    function startEaOtpCountdown() {
+      if (eaResendTimerInterval) clearInterval(eaResendTimerInterval);
+      let timeLeft = 60;
+      const countdownEl = document.getElementById('eaResendCountdown');
+      const timerBox = document.getElementById('eaResendTimerBox');
+      const resendBtn = document.getElementById('btnEaResendCode');
+
+      if (timerBox) timerBox.style.display = 'block';
+      if (resendBtn) resendBtn.style.display = 'none';
+
+      eaResendTimerInterval = setInterval(function() {
+        timeLeft--;
+        if (countdownEl) countdownEl.innerText = timeLeft;
+        if (timeLeft <= 0) {
+          clearInterval(eaResendTimerInterval);
+          if (timerBox) timerBox.style.display = 'none';
+          if (resendBtn) resendBtn.style.display = 'block';
+        }
+      }, 1000);
+    }
+
+    function backToEaStage1() {
+      setEaStepperNode(1);
+    }
+
+    async function resendEaOtpCode() {
+      const email = document.getElementById('eaStudentEmail').value.trim();
+      const btn = document.getElementById('btnEaResendCode');
+      btn.innerText = 'Sending...';
+      try {
+        await fetch('api-enrollment.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'send_otp', email: email })
+        });
+        startEaOtpCountdown();
+      } catch (e) {
+        alert('Could not resend OTP.');
+      }
+    }
+
+    async function submitEaPinVerification() {
+      let otp = '';
+      for (let i = 1; i <= 6; i++) {
+        otp += document.getElementById('pin' + i)?.value || '';
+      }
+      if (otp.length < 6) return alert('Please enter all 6 digits.');
+
+      const btn = document.getElementById('btnEaVerifyOtp');
+      btn.disabled = true;
+      btn.innerText = 'Verifying PIN...';
+      showEaVerifyOverlay('Validating Security PIN...', 'Cryptographic token handshake in progress...');
+
+      const email = document.getElementById('eaStudentEmail').value.trim();
+
+      try {
+        const res = await fetch('api-enrollment.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'verify_otp',
+            email: email,
+            otp: otp,
+            verification_id: eaCurrentVerificationId
+          })
+        });
+        const data = await res.json();
+
+        if (!res.ok || data.error) {
+          hideEaVerifyOverlay();
+          alert(data.error || 'Invalid verification PIN.');
+          return;
+        }
+
+        hideEaVerifyOverlay();
+        populateEaCheckoutSummary(data, email);
+        setEaStepperNode(3);
+
+      } catch (err) {
+        hideEaVerifyOverlay();
+        alert('Network error verifying PIN.');
+      } finally {
+        btn.disabled = false;
+        btn.innerText = 'Verify & Proceed to Checkout ➔';
+      }
+    }
+
+    // --- 6. Stage 3: Checkout Summary & Razorpay Trigger ---
+    function populateEaCheckoutSummary(data, email) {
+      eaCurrentOrderData = data;
+      if (data.verification_id) eaCurrentVerificationId = data.verification_id;
+
+      const titleEl = document.getElementById('eaCheckoutCourseTitle');
+      if (titleEl) titleEl.innerText = data.course_title || 'Engineering Cohort';
+
+      const emailEl = document.getElementById('eaCheckoutStudentEmail');
+      if (emailEl) emailEl.innerText = email || data.email || '';
+
+      const baseEl = document.getElementById('eaCheckoutBasePrice');
+      if (baseEl) baseEl.innerText = '₹' + (data.base_price || 15000).toLocaleString('en-IN');
+
+      const discEl = document.getElementById('eaCheckoutDiscount');
+      if (discEl) discEl.innerText = '-₹' + (data.discount_amount || 0).toLocaleString('en-IN');
+
+      const finalEl = document.getElementById('eaCheckoutFinalPrice');
+      const finalAmt = data.amount_inr || data.amount || 15000;
+      if (finalEl) finalEl.innerText = '₹' + finalAmt.toLocaleString('en-IN');
+
+      const payBtnText = document.getElementById('btnEaPayText');
+      if (payBtnText) payBtnText.innerText = '🔒 Complete Payment • ₹' + finalAmt.toLocaleString('en-IN') + ' ➔';
+    }
+
+    async function triggerEaRazorpayCheckout() {
+      if (!eaCurrentOrderData) {
+        alert('Checkout session expired. Please restart.');
+        setEaStepperNode(1);
+        return;
+      }
+
+      const payBtn = document.getElementById('btnEaPayWithRazorpay');
+      payBtn.disabled = true;
+      payBtn.innerText = 'Opening Secure Gateway...';
+
+      // Dynamic Auto-Loader if Razorpay SDK isn't loaded yet
+      if (typeof Razorpay === 'undefined') {
+        const script = document.createElement('script');
+        script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+        script.onload = function() { triggerEaRazorpayCheckout(); };
+        script.onerror = function() {
+          payBtn.disabled = false;
+          payBtn.innerText = '🔒 Complete Payment • ₹' + (eaCurrentOrderData.amount_inr || 15000).toLocaleString('en-IN') + ' ➔';
+          alert('Could not connect to payment gateway. Please check your internet connection and try again.');
+        };
+        document.head.appendChild(script);
+        return;
+      }
+
+      const email = eaCurrentOrderData.email || document.getElementById('eaStudentEmail').value.trim();
+      const keyId = eaCurrentOrderData.razorpay_key_id || eaCurrentOrderData.key_id || '';
+      if (!keyId) {
+        alert('Payment gateway is not configured. Please try again later.');
+        payBtn.disabled = false;
+        payBtn.innerText = 'Try Payment Again';
+        return;
+      }
+      const orderId = eaCurrentOrderData.razorpay_order_id || eaCurrentOrderData.order_id;
+      const amountPaise = (eaCurrentOrderData.amount_inr || 15000) * 100;
+
+      if (typeof Razorpay !== 'undefined' && keyId && !keyId.includes('sim')) {
+        const options = {
+          key: keyId,
+          amount: amountPaise,
+          currency: 'INR',
+          name: 'Education Algorithm',
+          description: eaCurrentOrderData.course_title,
+          order_id: orderId,
+          prefill: {
+            name: eaCurrentOrderData.student_name || document.getElementById('eaStudentName').value,
+            email: email,
+            contact: eaCurrentOrderData.phone || document.getElementById('eaStudentPhone').value
+          },
+          theme: { color: '#4f46e5' },
+          handler: async function(response) {
+            await finalizeEaPaymentSuccess(email, response.razorpay_order_id, response.razorpay_payment_id, response.razorpay_signature);
+          },
+          modal: {
+            ondismiss: function() {
+              payBtn.disabled = false;
+              payBtn.innerText = '🔒 Complete Payment • ₹' + (eaCurrentOrderData.amount_inr || 15000).toLocaleString('en-IN') + ' ➔';
+            }
+          }
+        };
+        const rzp = new Razorpay(options);
+        rzp.open();
+      } else {
+        payBtn.disabled = false;
+        payBtn.innerText = 'Payment Gateway Unavailable';
+        alert('Razorpay could not be loaded. Please try again later.');
+      }
+    }
+
+    async function finalizeEaPaymentSuccess(email, orderId, paymentId, signature) {
+      try {
+        const res = await fetch('api-enrollment.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'finalize_payment',
+            email: email,
+            razorpay_order_id: orderId,
+            razorpay_payment_id: paymentId,
+            razorpay_signature: signature,
+            verification_id: eaCurrentVerificationId
+          })
+        });
+        const data = await res.json();
+        if (!res.ok || data.error || !data.success) {
+          throw new Error(data.error || 'Payment confirmation failed.');
+        }
+
+        // ── STAGE 4: CELEBRATION & 3D PASS ──
+        document.getElementById('eaPassStudentName').innerText = data.student_name || 'Scholar';
+        document.getElementById('eaPassStudentEmail').innerText = data.student_email || email;
+        document.getElementById('eaPassCourseTitle').innerText = data.course_title || 'Engineering Cohort';
+        document.getElementById('eaPassStudentId').innerText = '#EA-' + (data.student_id || Math.floor(1000 + Math.random()*9000));
+
+        setEaStepperNode(4);
+
+        if (window.confetti) {
+          confetti({ particleCount: 120, spread: 80, origin: { y: 0.5 } });
+        }
+
+      } catch(e) {
+        window.location.href = 'dashboard.php';
+      }
+    }
+
+    // --- 7. Automated Google Enrollment Auto-Launcher (Immediate Stage 3 Bridge) ---
+    window.addEventListener('DOMContentLoaded', async function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('google_enrolled') === '1' || urlParams.get('google_enroll') === '1' || urlParams.get('google_verified') === '1') {
+        const name = urlParams.get('name') || 'Google Scholar';
+        const email = urlParams.get('email') || '';
+        const courseId = parseInt(urlParams.get('course_id') || '1');
+
+        if (email) {
+          openEnrollModal(courseId);
+
+          const nameInput = document.getElementById('eaStudentName');
+          if (nameInput) nameInput.value = name;
+          const emailInput = document.getElementById('eaStudentEmail');
+          if (emailInput) emailInput.value = email;
+          const phoneInput = document.getElementById('eaStudentPhone');
+          if (phoneInput) phoneInput.value = '9876543210';
+
+          const btn = document.getElementById('btnEaStage1Submit');
+          if (btn) {
+            btn.disabled = true;
+            btn.innerText = '⚡ Connecting to Payment Gateway...';
+          }
+
+          try {
+            const res = await fetch('api-enrollment.php', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                action: 'send_otp',
+                name: name,
+                email: email,
+                phone: '9876543210',
+                course_id: courseId
+              })
+            });
+            const data = await res.json();
+
+            if (data && (data.skip_otp || data.order_id)) {
+              populateEaCheckoutSummary(data, email);
+              setEaStepperNode(3);
+
+              // Auto-launch Razorpay Checkout popup
+              setTimeout(function() {
+                if (typeof triggerEaRazorpayCheckout === 'function') {
+                  triggerEaRazorpayCheckout();
+                }
+              }, 400);
+            } else {
+              setEaStepperNode(3);
+            }
+          } catch(e) {
+            setEaStepperNode(3);
+          } finally {
+            if (btn) {
+              btn.disabled = false;
+              btn.innerText = 'Continue to Instant Verification ➔';
+            }
+          }
+        }
+      }
+    });
+  
+    // --- CLEAN MOBILE NAVIGATION CONTROLLER ---
+    function toggleMobileNav() {
+      const nav = document.getElementById('siteNav');
+      const backdrop = document.getElementById('mobileNavBackdrop');
+      if (nav) {
+        const isOpen = nav.classList.toggle('open');
+        if (backdrop) backdrop.classList.toggle('active', isOpen);
+      }
+    }
+
+    function closeMobileNav() {
+      const nav = document.getElementById('siteNav');
+      const backdrop = document.getElementById('mobileNavBackdrop');
+      if (nav) nav.classList.remove('open');
+      if (backdrop) backdrop.classList.remove('active');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuBtn = document.getElementById('mobileMenuBtn');
+      if (menuBtn) {
+        menuBtn.onclick = function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggleMobileNav();
+        };
+      }
+
+      const backdrop = document.getElementById('mobileNavBackdrop');
+      if (backdrop) {
+        backdrop.onclick = function(e) {
+          e.preventDefault();
+          closeMobileNav();
+        };
+      }
+
+      const links = document.querySelectorAll('.nav-links a, .nav-links button');
+      links.forEach(function(l) {
+        l.addEventListener('click', function() {
+          closeMobileNav();
+        });
+      });
+    });
+  </script>
+  <script src="assets/chatbot.js?v=5.0.0" defer></script>
+
+  <script>
+  /* Deep links from the home-page hero (/courses#tab-ai, /courses#course-ai):
+     select the matching syllabus track AND scroll to that course's card, so the
+     visitor lands on the tuition fee / enrol button rather than the curriculum. */
+  (function () {
+    var NAV_OFFSET = 130;   // 40px banner + 72px nav + breathing room
+    var flashTimer = null;
+
+    function keyFromHash() {
+      var h = (window.location.hash || '').replace('#', '');
+      var m = /^(?:tab|course)-([a-z]+)$/.exec(h);
+      return m ? m[1] : null;
+    }
+
+    function card(key) { return document.getElementById('course-' + key); }
+
+    function revealAll() {
+      // a category filter may be hiding the target card - clear it first
+      document.querySelectorAll('.course-card').forEach(function (c) { c.style.display = 'grid'; });
+      var pills = document.querySelectorAll('.filter-pill');
+      pills.forEach(function (p) { p.classList.remove('active'); });
+      if (pills.length) pills[0].classList.add('active');
+    }
+
+    function flash(el) {
+      if (flashTimer) clearTimeout(flashTimer);
+      document.querySelectorAll('.course-card.card-flash').forEach(function (c) {
+        c.classList.remove('card-flash');
+      });
+      // reflow so the animation restarts even on a repeat click
+      void el.offsetWidth;
+      el.classList.add('card-flash');
+      flashTimer = setTimeout(function () { el.classList.remove('card-flash'); }, 1900);
+    }
+
+    function apply(smooth) {
+      var key = keyFromHash();
+      if (!key) return;
+
+      var el = card(key);
+      if (!el) return;
+
+      // keep the curriculum tabs in sync with the track that was clicked
+      if (typeof switchSyllabusTab === 'function' && document.getElementById('tab-' + key)) {
+        switchSyllabusTab('tab-' + key);
+      }
+
+      if (getComputedStyle(el).display === 'none') revealAll();
+
+      // let the tab switch / filter reset lay out before measuring
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          var y = el.getBoundingClientRect().top + window.pageYOffset - NAV_OFFSET;
+          window.scrollTo({ top: Math.max(0, y), behavior: smooth ? 'smooth' : 'auto' });
+          flash(el);
+        });
+      });
+    }
+
+    // on first load jump straight there (no long animation from the top)
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function () { apply(false); });
+    } else {
+      apply(false);
+    }
+    // images/fonts can shift the layout - re-assert once everything has loaded
+    window.addEventListener('load', function () { setTimeout(function () { apply(false); }, 60); });
+    // in-page hash changes animate
+    window.addEventListener('hashchange', function () { apply(true); });
+  })();
+  </script>
+
+  <!-- ============ CALLBACK POPUP ============ -->
+  <div class="cb-backdrop" id="cbBackdrop" role="dialog" aria-modal="true" aria-labelledby="cbTitle">
+    <div class="cb-card">
+      <button type="button" class="cb-close" id="cbClose" aria-label="Close">&times;</button>
+
+      <div class="cb-head">
+        <svg class="ea-logo cb-logo" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><g class="ea-g"><path class="ea-base" d="M11.5 23.4v6.8c0 3.6 5 6.1 11 6.1s11-2.5 11-6.1v-6.8" stroke="currentColor" stroke-width="3.4" fill="none" stroke-linecap="round"/><g class="ea-capg"><path class="ea-cap" d="M22.5 6.5 43 16 22.5 25.5 2 16Z" fill="currentColor"/></g><g class="ea-tas"><path d="M41.6 17.8v8.4" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" fill="none"/><circle cx="41.6" cy="30.2" r="3.2" fill="currentColor"/></g></g></svg>
+        <span class="cb-pill"><span class="cb-dot"></span>Admissions Open</span>
+        <h3 id="cbTitle">Request a Callback</h3>
+        <p>Fill the form &mdash; our team will call you shortly.</p>
+      </div>
+
+      <form id="cbForm" novalidate>
+        <input type="hidden" name="csrf_token" id="cbCsrf" value="">
+
+        <div class="cb-grid">
+          <div class="cb-field">
+            <label class="cb-label" for="cbName">Full Name *</label>
+            <input class="cb-input" type="text" id="cbName" name="name" required minlength="2" maxlength="80" placeholder="Alex Morgan" autocomplete="name">
+          </div>
+
+          <div class="cb-field">
+            <label class="cb-label" for="cbPhone">Mobile Number *</label>
+            <input class="cb-input" type="tel" id="cbPhone" name="phone" required inputmode="numeric" minlength="7" maxlength="20" placeholder="98765 43210" autocomplete="tel">
+          </div>
+
+          <div class="cb-field cb-field-full">
+            <label class="cb-label" for="cbEmail">Email Address *</label>
+            <input class="cb-input" type="email" id="cbEmail" name="email" required maxlength="191" placeholder="alex@example.com" autocomplete="email">
+          </div>
+
+          <div class="cb-field cb-field-full">
+            <label class="cb-label" for="cbTrack">Curriculum Track</label>
+            <select class="cb-input" id="cbTrack" name="program_interest">
+              <option value="Java Full Stack Engineering">Java Full Stack &amp; Cloud (12 Weeks)</option>
+              <option value="Data Science &amp; AI">Data Science &amp; Generative AI (14 Weeks)</option>
+              <option value="DSA &amp; Problem Solving">DSA &amp; System Design (Coming Soon)</option>
+              <option value="Cloud DevOps">Cloud DevOps &amp; Kubernetes (Coming Soon)</option>
+              <option value="Internship Track">Capstone &amp; Internship Track</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="cb-err" id="cbErr" role="alert"></div>
+
+        <button type="submit" class="cb-submit" id="cbSubmit">Request Callback &rarr;</button>
+        <p class="cb-fine">We&rsquo;ll only use your details to contact you about admissions.</p>
+      </form>
+
+      <div class="cb-done" id="cbDone">
+        <div class="cb-tick">&#10003;</div>
+        <h4>Request received!</h4>
+        <p>Our counsellor will call you shortly. Keep your phone handy.</p>
+        <button type="button" class="cb-submit" id="cbDoneClose">Continue browsing</button>
+      </div>
+    </div>
+  </div>
+  <script>
+  /* ============ CALLBACK POPUP ============
+     Shows once per browser session: after DELAY_MS, or immediately if the
+     visitor moves to close the tab (exit intent), whichever happens first.
+     Submits to contact-handler.php via fetch so the page is never left. */
+  (function () {
+    var DELAY_MS   = 8000;                 // <-- change this to show it sooner/later
+    var STORE_KEY  = 'ea_callback_popup';  // remembers "already shown/submitted"
+
+    var back  = document.getElementById('cbBackdrop');
+    var form  = document.getElementById('cbForm');
+    var done  = document.getElementById('cbDone');
+    var errEl = document.getElementById('cbErr');
+    var btn   = document.getElementById('cbSubmit');
+    var csrf  = document.getElementById('cbCsrf');
+    if (!back || !form) return;
+
+    function seen() { try { return sessionStorage.getItem(STORE_KEY); } catch (e) { return null; } }
+    function mark(v) { try { sessionStorage.setItem(STORE_KEY, v); } catch (e) {} }
+
+    function readCookie(n) {
+      var m = document.cookie.match('(^|;)\\s*' + n + '\\s*=\\s*([^;]+)');
+      return m ? decodeURIComponent(m.pop()) : '';
+    }
+    function syncToken() {
+      return fetch('session-init.php', { credentials: 'same-origin', cache: 'no-store' })
+        .then(function () { csrf.value = readCookie('csrf_token'); return !!csrf.value; })
+        .catch(function () { csrf.value = readCookie('csrf_token'); return !!csrf.value; });
+    }
+
+    function open_() {
+      if (seen()) return;
+      back.classList.add('show');
+      document.body.style.overflow = 'hidden';
+      mark('shown');
+      syncToken();
+      setTimeout(function () { var n = document.getElementById('cbName'); if (n) n.focus(); }, 320);
+    }
+    function close_() {
+      back.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('cbClose').addEventListener('click', close_);
+    var dc = document.getElementById('cbDoneClose');
+    if (dc) dc.addEventListener('click', close_);
+    back.addEventListener('click', function (e) { if (e.target === back) close_(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && back.classList.contains('show')) close_();
+    });
+
+    /* triggers */
+    if (!seen()) {
+      setTimeout(open_, DELAY_MS);
+      document.addEventListener('mouseout', function onExit(e) {
+        if (!e.relatedTarget && e.clientY <= 0) { document.removeEventListener('mouseout', onExit); open_(); }
+      });
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      errEl.classList.remove('show');
+
+      var name  = document.getElementById('cbName').value.trim();
+      var email = document.getElementById('cbEmail').value.trim();
+      var phone = document.getElementById('cbPhone').value.trim();
+      var msg   = '';
+
+      if (name.length < 2)                    return fail('Please enter your full name.');
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return fail('Please enter a valid email address.');
+      if (phone.replace(/\D/g, '').length < 7) return fail('Please enter a valid mobile number.');
+
+      // the handler needs a message; supply a sensible one if left blank
+      if (!msg) msg = 'Callback requested from the website popup. Please call me about admissions.';
+
+      btn.disabled = true; btn.textContent = 'Sending...';
+
+      syncToken().then(function (haveToken) {
+        if (!haveToken) { reset(); return fail('Could not start a secure session. Please refresh and try again.'); }
+        var body = new URLSearchParams({
+          csrf_token: csrf.value, name: name, email: email, phone: phone,
+          program_interest: document.getElementById('cbTrack').value, message: msg
+        });
+        return fetch('contact-handler.php?format=json', {
+          method: 'POST', credentials: 'same-origin',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'X-Requested-With': 'XMLHttpRequest' },
+          body: body.toString()
+        })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          reset();
+          if (d && d.ok) { form.style.display = 'none'; done.classList.add('show'); mark('submitted'); }
+          else { fail((d && d.error) || 'Something went wrong. Please try again.'); }
+        })
+        .catch(function () { reset(); fail('Network error. Please check your connection and try again.'); });
+      });
+
+      function fail(m) { errEl.textContent = m; errEl.classList.add('show'); return false; }
+      function reset() { btn.disabled = false; btn.innerHTML = 'Request Callback &rarr;'; }
+    });
+  })();
+  </script>
+
+    <!-- DYNAMIC DATABASE COURSE CATALOG HYDRATION (Database = Single Source of Truth) -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('api-courses.php?action=list')
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                if (data && data.success && data.courses && data.courses.length > 0) {
+                    const grid = document.getElementById('courseGrid');
+                    if (!grid) return;
+
+                    const icons = ['☕', '🤖', '☁️', '🚀', '⚡', '💻', '🎯'];
+                    const brochures = {
+                        1: { file: 'Education_Algorithm_Java_Full_Stack_Syllabus_Modern_Full_Page (1).pdf', name: 'Education_Algorithm_Java_Full_Stack_Syllabus.pdf' },
+                        2: { file: 'Education_Algorithm_Data_Science_GenAI_Syllabus_Fitted.pdf', name: 'Education_Algorithm_Data_Science_GenAI_Syllabus.pdf' }
+                    };
+
+                    let htmlOutput = '';
+
+                    data.courses.forEach(function(c, idx) {
+                        const icon = icons[idx % icons.length];
+                        const priceFormatted = '₹' + Number(c.price).toLocaleString('en-IN');
+                        const duration = c.duration || '12 Weeks Live';
+                        const level = c.level || 'Intermediate';
+                        const desc = c.description || 'Comprehensive industry curriculum covering core paradigms, hands-on microservices labs, and live coding sessions.';
+                        const brochure = brochures[c.id];
+
+                        let brochureBtn = '';
+                        if (brochure) {
+                            brochureBtn = `<a href="${brochure.file}" target="_blank" download="${brochure.name}" class="btn btn-secondary btn-sm">📄 Download Syllabus PDF</a>`;
+                        }
+
+                        htmlOutput += `
+                        <article class="course-card" data-category="all" data-title="${c.title}">
+                            <div>
+                                <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap;">
+                                    <span class="course-tag">${duration}</span>
+                                    <span style="background: #ecfdf5; color: #047857; font-size: 0.7rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: var(--radius-full); font-family: var(--font-mono);">🎯 ${level.toUpperCase()}</span>
+                                    <span style="background: #fdf4ff; color: #86198f; font-size: 0.7rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: var(--radius-full); font-family: var(--font-mono);">🟢 LIVE COHORT</span>
+                                </div>
+                                <h2 style="font-size: 1.45rem; font-weight: 800; color: var(--text-primary); margin: 0.35rem 0 0.65rem;">
+                                    <span style="margin-right: 0.35rem;">${icon}</span>${c.title}
+                                </h2>
+                                <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.1rem;">
+                                    ${desc}
+                                </p>
+
+                                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem;">
+                                    <a href="enrollment-preview.php?course_id=${c.id}" class="btn btn-secondary btn-sm">Curriculum Highlights →</a>
+                                    ${brochureBtn}
+                                </div>
+                            </div>
+
+                            <div class="course-pricing-box">
+                                <div style="font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Tuition Fee</div>
+                                <div class="price-value" style="font-size: 1.85rem; font-weight: 900; color: var(--text-primary); margin: 0.25rem 0 0.5rem;">${priceFormatted}</div>
+                                <div style="font-size: 0.78rem; color: var(--success-text); font-weight: 700; margin-bottom: 1rem;">🚀 Live Admissions Open</div>
+                                <a href="enroll.php?course_id=${c.id}" class="btn btn-primary btn-lg" style="width: 100%; margin-bottom: 0.4rem; justify-content: center; font-weight: 800;">
+                                    Enroll in Track →
+                                </a>
+                                <div style="font-size: 0.72rem; color: var(--text-muted);">🔒 Razorpay Verified • Instant LMS Access</div>
+                            </div>
+                        </article>
+                        `;
+                    });
+
+                    grid.innerHTML = htmlOutput;
+                }
+            })
+            .catch(function(err) {
+                console.error("Error loading dynamic courses:", err);
+            });
+    });
+    </script>
+
+</body>
+</html>
+
+

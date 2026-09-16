@@ -1,0 +1,1 @@
+{"id":"job_f1610a8dc55ba0446c9b2230","submission_id":63,"student_id":0,"challenge_id":0,"language":"cpp","job_type":"NATIVE","code":"#include <iostream>\nusing namespace std;\nint main() { cout << \"C++ Calculated Sum: 100\" << endl; return 0; }","custom_input":"","enqueued_at":1787569752}

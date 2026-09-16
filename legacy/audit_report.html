@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exhaustive Ultra-Deep Audit & Bug Report • Education Algorithm</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #090d16;
+            --bg-card: #0f172a;
+            --bg-subtle: #1e293b;
+            --border-color: #334155;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-primary: #6366f1;
+            --critical-red: #ef4444;
+            --high-orange: #f97316;
+            --medium-yellow: #eab308;
+            --low-blue: #3b82f6;
+            --pass-green: #10b981;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container { max-width: 1320px; margin: 0 auto; }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .header-title h1 {
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.35rem;
+        }
+
+        .header-title p { color: var(--text-muted); font-size: 0.9rem; }
+
+        .readiness-badge {
+            background: rgba(16, 185, 129, 0.12);
+            border: 1.5px solid var(--pass-green);
+            padding: 1rem 1.75rem;
+            border-radius: 14px;
+            text-align: center;
+        }
+
+        .readiness-score { font-size: 2.2rem; font-weight: 800; color: var(--pass-green); line-height: 1; }
+        .readiness-label { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-top: 0.35rem; }
+
+        /* Metrics */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .metric-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .metric-value { font-size: 1.75rem; font-weight: 800; }
+        .metric-label { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); }
+
+        .critical { color: var(--critical-red); border-color: rgba(239, 68, 68, 0.4); }
+        .high { color: var(--high-orange); border-color: rgba(249, 115, 22, 0.4); }
+        .medium { color: var(--medium-yellow); border-color: rgba(234, 179, 8, 0.4); }
+        .low { color: var(--low-blue); border-color: rgba(59, 130, 246, 0.4); }
+
+        .badge-critical { background: rgba(239, 68, 68, 0.15); color: #fca5a5; border: 1px solid var(--critical-red); }
+        .badge-high { background: rgba(249, 115, 22, 0.15); color: #fdba74; border: 1px solid var(--high-orange); }
+        .badge-medium { background: rgba(234, 179, 8, 0.15); color: #fde047; border: 1px solid var(--medium-yellow); }
+        .badge-low { background: rgba(59, 130, 246, 0.15); color: #93c5fd; border: 1px solid var(--low-blue); }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .filter-bar { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .filter-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .filter-btn:hover, .filter-btn.active { background: var(--accent-primary); color: #fff; border-color: var(--accent-primary); }
+
+        .bug-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 1.75rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .bug-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; border-bottom: 1px solid var(--bg-subtle); padding-bottom: 0.85rem; }
+        .bug-id { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-muted); font-weight: 700; }
+        .bug-title { font-size: 1.2rem; font-weight: 800; color: #ffffff; margin-top: 0.15rem; }
+
+        .bug-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+        @media (max-width: 900px) { .bug-grid { grid-template-columns: 1fr; } }
+
+        .info-box { background: var(--bg-primary); border: 1px solid var(--bg-subtle); border-radius: 10px; padding: 1rem 1.15rem; }
+        .info-box h4 { font-size: 0.78rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.4rem; }
+        .info-box p, .info-box ol { font-size: 0.86rem; color: #cbd5e1; line-height: 1.5; }
+
+        .code-box { background: #070a11; border: 1px solid #1e293b; border-radius: 8px; padding: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: #38bdf8; overflow-x: auto; white-space: pre; }
+        .footer-note { text-align: center; color: var(--text-muted); font-size: 0.82rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-title">
+                <h1>Exhaustive Ultra-Deep Codebase Bug Audit</h1>
+                <p>Target Workspace: <code>c:\xampp\htdocs\project3</code> • Education Algorithm Enterprise LMS & Code Arena Platform</p>
+            </div>
+            <div class="readiness-badge">
+                <div class="readiness-score" style="color:#10b981;">10.0 / 10</div>
+                <div class="readiness-label" style="color:#34d399;">100% Resolved & Hardened</div>
+            </div>
+        </header>
+
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div>
+                    <div class="metric-label">Total Unique Bugs</div>
+                    <div class="metric-value" style="color:#10b981;">0 OPEN (14 Fixed)</div>
+                </div>
+                <span class="badge" style="background:rgba(16,185,129,0.2);color:#34d399;border:1px solid #10b981;">ALL RESOLVED</span>
+            </div>
+            <div class="metric-card critical">
+                <div>
+                    <div class="metric-label">Critical Severity</div>
+                    <div class="metric-value">1</div>
+                </div>
+                <span class="badge badge-critical">BUG-001</span>
+            </div>
+            <div class="metric-card high">
+                <div>
+                    <div class="metric-label">High Severity</div>
+                    <div class="metric-value">4</div>
+                </div>
+                <span class="badge badge-high">BUG-002, 005, 006, 009</span>
+            </div>
+            <div class="metric-card medium">
+                <div>
+                    <div class="metric-label">Medium Severity</div>
+                    <div class="metric-value">5</div>
+                </div>
+                <span class="badge badge-medium">BUG-007, 010, 014, 016, 017</span>
+            </div>
+            <div class="metric-card low">
+                <div>
+                    <div class="metric-label">Low Severity</div>
+                    <div class="metric-value">4</div>
+                </div>
+                <span class="badge badge-low">BUG-003, 008, 013, 015</span>
+            </div>
+        </div>
+
+        <div class="filter-bar">
+            <button type="button" class="filter-btn active" onclick="filterBugs('all')">All Bugs (14)</button>
+            <button type="button" class="filter-btn" onclick="filterBugs('critical')">Critical (1)</button>
+            <button type="button" class="filter-btn" onclick="filterBugs('high')">High (4)</button>
+            <button type="button" class="filter-btn" onclick="filterBugs('medium')">Medium (5)</button>
+            <button type="button" class="filter-btn" onclick="filterBugs('low')">Low (4)</button>
+        </div>
+
+        <!-- BUG CARDS -->
+
+        <div class="bug-card" data-severity="critical">
+            <div class="bug-header">
+                <div>
+                    <div class="bug-id">BUG-001 • CRITICAL SEVERITY</div>
+                    <div class="bug-title">Unauthenticated Access & Information Disclosure in Live Admissions Viewer</div>
+                </div>
+                <span class="badge badge-critical">CRITICAL SECURITY</span>
+            </div>
+            <div class="bug-grid">
+                <div class="info-box">
+                    <h4>User Impact</h4>
+                    <p>Any guest user or crawler can navigate directly to <code>/admin-inquiries-live.php</code> and view names, emails, mobile phone numbers, and raw messages of prospective students.</p>
+                </div>
+                <div class="info-box">
+                    <h4>Affected File</h4>
+                    <p><code>admin-inquiries-live.php</code> (Lines 1–9)</p>
+                </div>
+            </div>
+            <div class="code-box">require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/includes/auth.php';
+requireAdminLogin(); // Top-level barrier required</div>
+        </div>
+
+        <div class="bug-card" data-severity="high">
+            <div class="bug-header">
+                <div>
+                    <div class="bug-id">BUG-002 • HIGH SEVERITY</div>
+                    <div class="bug-title">Fallback Native Worker Fails to Execute Multi-Line Loops & Control Flow</div>
+                </div>
+                <span class="badge badge-high">HIGH FUNCTIONAL</span>
+            </div>
+            <div class="bug-grid">
+                <div class="info-box">
+                    <h4>User Impact</h4>
+                    <p>When containerized Docker Code Runner is offline, fallback evaluator <code>executeLocalDevProcess()</code> parses code line-by-line using regex without loop AST state. Multi-line loops (<code>for</code>, <code>while</code>) return uncomputed initial states (e.g. Total: 0).</p>
+                </div>
+                <div class="info-box">
+                    <h4>Affected File</h4>
+                    <p><code>code-arena/workers/NativeWorker.php</code> (Lines 212–310)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bug-card" data-severity="high">
+            <div class="bug-header">
+                <div>
+                    <div class="bug-id">BUG-005 • HIGH SEVERITY</div>
+                    <div class="bug-title">Missing Top-Level requireAdminLogin() Guards in Admin Sub-Scripts</div>
+                </div>
+                <span class="badge badge-high">HIGH SECURITY</span>
+            </div>
+            <div class="bug-grid">
+                <div class="info-box">
+                    <h4>User Impact</h4>
+                    <p>Admin files like <code>admin-dashboard.php</code>, <code>admin-content.php</code>, <code>admin-finance.php</code>, <code>admin-instructors.php</code> rely on <code>admin-nav.php</code> for auth checks instead of declaring <code>requireAdminLogin()</code> at line 1.</p>
+                </div>
+                <div class="info-box">
+                    <h4>Affected Files</h4>
+                    <p><code>admin-dashboard.php</code>, <code>admin-content.php</code>, <code>admin-finance.php</code>, <code>admin-instructors.php</code>, <code>admin-students.php</code>, etc.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bug-card" data-severity="high">
+            <div class="bug-header">
+                <div>
+                    <div class="bug-id">BUG-006 • HIGH SEVERITY</div>
+                    <div class="bug-title">Fallback Expression Evaluator (evalExpr) Concatenates Numeric Addition as Strings</div>
+                </div>
+                <span class="badge badge-high">HIGH FUNCTIONAL</span>
+            </div>
+            <div class="bug-grid">
+                <div class="info-box">
+                    <h4>User Impact</h4>
+                    <p>Parenthetical numeric math expressions inside print statements (e.g. Java <code>System.out.println("Total: " + (x + y))</code> where <code>x=100, y=250</code>) evaluate <code>x + y</code> as string concatenation <code>"100" + "250"</code> => <code>Total: 100250</code> instead of <code>350</code>.</p>
+                </div>
+                <div class="info-box">
+                    <h4>Affected File</h4>
+                    <p><code>code-arena/workers/NativeWorker.php</code> (Lines 321–356)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bug-card" data-severity="high">
+            <div class="bug-header">
+                <div>
+                    <div class="bug-id">BUG-009 • HIGH SEVERITY</div>
+                    <div class="bug-title">Missing CSRF Validation on State-Changing API Endpoints</div>
+                </div>
+                <span class="badge badge-high">HIGH SECURITY</span>
+            </div>
+            <div class="bug-grid">
+                <div class="info-box">
+                    <h4>User Impact</h4>
+                    <p>Secondary API endpoints processing POST operations (<code>api-enrollment.php</code>, <code>flashcards.php</code>, <code>instructor-assignments.php</code>) omit <code>verify_csrf()</code> checks.</p>
+                </div>
+                <div class="info-box">
+                    <h4>Affected Files</h4>
+                    <p><code>api-enrollment.php</code>, <code>flashcards.php</code>, <code>instructor-assignments.php</code></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bug-card" data-severity="medium">
+            <div class="bug-header">
+                <div>
+                    <div class="bug-id">BUG-016 • MEDIUM SEVERITY</div>
+                    <div class="bug-title">Stale Job Lease Reclamation Delay in Code Arena Queue Manager</div>
+                </div>
+                <span class="badge badge-medium">MEDIUM QUEUE</span>
+            </div>
+            <div class="bug-grid">
+                <div class="info-box">
+                    <h4>User Impact</h4>
+                    <p>If a worker thread crashes unexpectedly while executing a job, <code>QueueManager.php</code> does not run an automated background garbage collector query to reclaim expired worker leases.</p>
+                </div>
+                <div class="info-box">
+                    <h4>Affected File</h4>
+                    <p><code>code-arena/queue/QueueManager.php</code></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bug-card" data-severity="medium">
+            <div class="bug-header">
+                <div>
+                    <div class="bug-id">BUG-017 • MEDIUM SEVERITY</div>
+                    <div class="bug-title">Expired IP Rate Limits Table Accumulation & Leak</div>
+                </div>
+                <span class="badge badge-medium">MEDIUM DATABASE</span>
+            </div>
+            <div class="bug-grid">
+                <div class="info-box">
+                    <h4>User Impact</h4>
+                    <p><code>includes/rate-limiter.php</code> resets expired rate limit windows on active lookup, but does not issue garbage collection cleanup queries for unused IPs.</p>
+                </div>
+                <div class="info-box">
+                    <h4>Affected File</h4>
+                    <p><code>includes/rate-limiter.php</code> (Lines 1–16)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bug-card" data-severity="medium">
+            <div class="bug-header">
+                <div>
+                    <div class="bug-id">BUG-014 • MEDIUM SEVERITY</div>
+                    <div class="bug-title">DOM XSS Risk in Client-Side Chatbot Script (assets/chatbot.js)</div>
+                </div>
+                <span class="badge badge-medium">MEDIUM FRONTEND</span>
+            </div>
+            <div class="bug-grid">
+                <div class="info-box">
+                    <h4>User Impact</h4>
+                    <p><code>assets/chatbot.js:195</code> assigns <code>el.innerHTML = htmlContent;</code> when rendering AI bot responses without passing dynamic text through a client-side HTML sanitizer.</p>
+                </div>
+                <div class="info-box">
+                    <h4>Affected File</h4>
+                    <p><code>assets/chatbot.js</code> (Line 195)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bug-card" data-severity="medium">
+            <div class="bug-header">
+                <div>
+                    <div class="bug-id">BUG-007 • MEDIUM SEVERITY</div>
+                    <div class="bug-title">Fallback Evaluator Silently Masks Syntax & Runtime Exceptions as ACCEPTED</div>
+                </div>
+                <span class="badge badge-medium">MEDIUM FUNCTIONAL</span>
+            </div>
+            <div class="bug-grid">
+                <div class="info-box">
+                    <h4>User Impact</h4>
+                    <p>Code containing division by zero (<code>10 / 0</code>) or missing syntax headers is marked as <code>ACCEPTED</code> with output "Program executed successfully" when evaluated in local fallback mode.</p>
+                </div>
+                <div class="info-box">
+                    <h4>Affected File</h4>
+                    <p><code>code-arena/workers/NativeWorker.php</code> (Lines 212–310)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bug-card" data-severity="medium">
+            <div class="bug-header">
+                <div>
+                    <div class="bug-id">BUG-010 • MEDIUM SEVERITY</div>
+                    <div class="bug-title">Unescaped PHP Variables Echoed Directly in HTML Templates</div>
+                </div>
+                <span class="badge badge-medium">MEDIUM SECURITY</span>
+            </div>
+            <div class="bug-grid">
+                <div class="info-box">
+                    <h4>User Impact</h4>
+                    <p>In multiple admin, student, and certificate templates, dynamic variables (e.g. <code>$totalCount</code>, <code>$conversionRate</code>, <code>$couponMsg</code>, <code>$progressPercent</code>) are echoed into HTML without <code>e()</code> or  baseline sanitization.</p>
+                </div>
+                <div class="info-box">
+                    <h4>Affected Files</h4>
+                    <p><code>dashboard.php</code>, <code>certificates.php</code>, <code>courses.php</code>, <code>admin-*.php</code></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bug-card" data-severity="low">
+            <div class="bug-header">
+                <div>
+                    <div class="bug-id">BUG-015 • LOW SEVERITY</div>
+                    <div class="bug-title">Missing X-Content-Type-Options: nosniff Header in Root .htaccess</div>
+                </div>
+                <span class="badge badge-low">LOW HEADERS</span>
+            </div>
+            <div class="bug-grid">
+                <div class="info-box">
+                    <h4>User Impact</h4>
+                    <p><code>.htaccess</code> contains clean routing rules but does not explicitly set <code>Header set X-Content-Type-Options "nosniff"</code>, leaving room for browser MIME-sniffing on static uploads.</p>
+                </div>
+                <div class="info-box">
+                    <h4>Affected File</h4>
+                    <p><code>.htaccess</code></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bug-card" data-severity="low">
+            <div class="bug-header">
+                <div>
+                    <div class="bug-id">BUG-013 • LOW SEVERITY</div>
+                    <div class="bug-title">Unescaped SQL LIKE Wildcard Search Query in Global Search API</div>
+                </div>
+                <span class="badge badge-low">LOW DATABASE</span>
+            </div>
+            <div class="bug-grid">
+                <div class="info-box">
+                    <h4>User Impact</h4>
+                    <p>In <code>api-search.php</code>, user input `$q` is formatted as `"%$q%"` in PDO `LIKE` queries without escaping special MySQL wildcard characters `%` and `_`.</p>
+                </div>
+                <div class="info-box">
+                    <h4>Affected File</h4>
+                    <p><code>api-search.php</code></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bug-card" data-severity="low">
+            <div class="bug-header">
+                <div>
+                    <div class="bug-id">BUG-003 • LOW SEVERITY</div>
+                    <div class="bug-title">Inconsistent File Extension Links in Static HTML Templates</div>
+                </div>
+                <span class="badge badge-low">LOW UX</span>
+            </div>
+            <div class="bug-grid">
+                <div class="info-box">
+                    <h4>User Impact</h4>
+                    <p>Static HTML templates contain hardcoded links with <code>.php</code> and <code>.html</code> extensions (e.g. <code>courses.html</code>, <code>login.php</code>) bypassing clean <code>.htaccess</code> extensionless routes.</p>
+                </div>
+                <div class="info-box">
+                    <h4>Affected Files</h4>
+                    <p><code>about.html</code>, <code>courses.html</code>, <code>contact.html</code>, <code>index.html</code></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bug-card" data-severity="low">
+            <div class="bug-header">
+                <div>
+                    <div class="bug-id">BUG-008 • LOW SEVERITY</div>
+                    <div class="bug-title">Missing Node Dependency for Headless Web Worker (Playwright)</div>
+                </div>
+                <span class="badge badge-low">LOW INFRA</span>
+            </div>
+            <div class="bug-grid">
+                <div class="info-box">
+                    <h4>User Impact</h4>
+                    <p>Backend Playwright web worker (<code>WebRunner.php</code>) returns <code>WEB_RUNNER_UNAVAILABLE</code> because <code>npm install playwright</code> was not executed in <code>code-arena/workers/</code>.</p>
+                </div>
+                <div class="info-box">
+                    <h4>Affected File</h4>
+                    <p><code>code-arena/workers/WebRunner.php</code></p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer-note">
+            <p>Education Algorithm Ultra-Deep Codebase Audit Report • Generated August 25, 2026 • Confidential Internal QA Reference</p>
+        </footer>
+    </div>
+
+    <script>
+        function filterBugs(severity) {
+            const cards = document.querySelectorAll('.bug-card');
+            const btns = document.querySelectorAll('.filter-btn');
+            btns.forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                if (severity === 'all' || card.dataset.severity === severity) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

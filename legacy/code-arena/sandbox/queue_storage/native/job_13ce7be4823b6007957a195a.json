@@ -1,0 +1,1 @@
+{"id":"job_13ce7be4823b6007957a195a","submission_id":189,"student_id":0,"challenge_id":0,"language":"cpp","job_type":"NATIVE","code":"#include <iostream>\nusing namespace std;\nint main() {\n    int x = 120;\n    int y = 80;\n    cout << \"Calculated Sum: \" << (x + y) << endl;\n    return 0;\n}","custom_input":"","enqueued_at":1787576880}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Arena HTML & Worker Bugs • Education Algorithm</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #090d16;
+            --bg-card: #0f172a;
+            --bg-subtle: #1e293b;
+            --border-color: #334155;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-primary: #6366f1;
+            --high-orange: #f97316;
+            --medium-yellow: #eab308;
+            --pass-green: #10b981;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        .header {
+            background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 { font-size: 1.75rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem; }
+        .header p { color: var(--text-muted); font-size: 0.9rem; }
+
+        .section-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-card h2 { font-size: 1.25rem; font-weight: 800; color: #fff; margin-bottom: 1rem; }
+
+        .issue-box {
+            background: var(--bg-primary);
+            border: 1px solid var(--bg-subtle);
+            border-radius: 10px;
+            padding: 1.15rem;
+            margin-bottom: 1rem;
+        }
+
+        .issue-box h3 { font-size: 0.95rem; font-weight: 700; color: var(--high-orange); margin-bottom: 0.35rem; }
+        .issue-box p { font-size: 0.88rem; color: #cbd5e1; }
+
+        .code-box {
+            background: #070a11;
+            border: 1px solid #1e293b;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            color: #38bdf8;
+            overflow-x: auto;
+            white-space: pre;
+            margin-top: 0.75rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Code Arena HTML Sandbox & Worker Bugs Guide</h1>
+            <p>HTML5 Preview Mechanism, Playwright Web Worker Bug (BUG-008) & Solution Guide</p>
+        </header>
+
+        <div class="section-card">
+            <h2>🖥️ How Code Arena Handles HTML5 / CSS3 / JS Web Preview</h2>
+            <p>Inside <code>code-view.php</code>, when a student submits HTML/CSS/JS code, Code Arena runs a dual preview mechanism:</p>
+            <ol style="margin-top:0.5rem; padding-left: 1.25rem; color:#cbd5e1; font-size:0.9rem;">
+                <li><strong>Client-Side Live Preview:</strong> Injects student code into an isolated <code>&lt;iframe srcdoc="..."&gt;</code> element with a custom <code>console.log()</code> interceptor script that forwards terminal logs using <code>window.parent.postMessage()</code>.</li>
+                <li><strong>Backend Automated Web Runner:</strong> Sends student HTML code to <code>code-arena/workers/WebRunner.php</code> to run automated DOM validation assertions using Headless Node.js.</li>
+            </ol>
+        </div>
+
+        <div class="section-card">
+            <h2>⚠️ BUG-008: Missing Playwright Dependency in Web Worker</h2>
+            <div class="issue-box">
+                <h3>Problem Description</h3>
+                <p>When <code>WebRunner.php</code> triggers backend headless testing via <code>node playwright-runner.js</code>, Node throws an unhandled exception:</p>
+                <div class="code-box" style="color:#ef4444;">Error: Cannot find module 'playwright'
+Require stack:
+- c:\xampp\htdocs\project3\code-arena\workers\playwright-runner.js</div>
+            </div>
+
+            <div class="issue-box">
+                <h3>What Issues Will You Face?</h3>
+                <p>Automated grading for HTML/CSS web development challenges will fail with status <code>WEB_RUNNER_UNAVAILABLE</code>. (Note: Client-side iframe live rendering in <code>code-view.php</code> continues to function normally).</p>
+            </div>
+
+            <div class="issue-box">
+                <h3>How to Fix BUG-008</h3>
+                <p>Open Terminal / Command Prompt and run NPM install inside <code>code-arena/workers/</code>:</p>
+                <div class="code-box">cd c:\xampp\htdocs\project3\code-arena\workers
+npm install playwright</div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <h2>⚡ Code Arena Local Fallback Bugs (BUG-002 & BUG-006) Summary</h2>
+            <div class="issue-box">
+                <h3>BUG-002: Multi-line Loop AST Parsing Loss</h3>
+                <p>When Docker (port 8088) is offline, <code>NativeWorker.php</code> evaluates Python/Java/C++ line-by-line via regex. Loops return initial uncomputed values (e.g. <code>Total: 0</code> instead of <code>15</code>).</p>
+            </div>
+
+            <div class="issue-box">
+                <h3>BUG-006: String Addition Concatenation in Print Statements</h3>
+                <p>Parenthetical math expressions like <code>System.out.println("Total: " + (x + y))</code> evaluate <code>(x + y)</code> as string concatenation <code>"100" + "250"</code> => <code>Total: 100250</code> instead of <code>350</code>.</p>
+            </div>
+
+            <div class="issue-box">
+                <h3>Recommended Solution</h3>
+                <p>Launch <code>start_runner.bat</code> in project root to start the 24/7 Docker Code Runner microservice on port 8088.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

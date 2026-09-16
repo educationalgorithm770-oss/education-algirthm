@@ -1,0 +1,1 @@
+{"id":"job_ab598a0df34a618a80314dad","submission_id":245,"student_id":0,"challenge_id":0,"language":"python","job_type":"NATIVE","code":"print('Python Diagnostic Test Success')\na = 10\nb = 20\nprint(f'Calculated: {a + b}')","custom_input":"","enqueued_at":1787599051}

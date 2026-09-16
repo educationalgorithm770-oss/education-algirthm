@@ -1,0 +1,1 @@
+{"id":"job_7166f95447a3cc20d4528013","submission_id":124,"student_id":0,"challenge_id":0,"language":"sql","job_type":"NATIVE","code":"SELECT name, salary FROM users ORDER BY salary DESC;","custom_input":"","enqueued_at":1787572835}

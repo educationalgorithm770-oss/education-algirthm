@@ -1,0 +1,329 @@
+{
+  "lastUpdated": "2026-09-12T17:19:01.995Z",
+  "documents": [
+    {
+      "id": "rag_doc_1789233510890",
+      "title": "Demystifying Spring Boot Auto-Configuration and Custom Starters",
+      "category": "Java Full Stack & Cloud Engineering",
+      "difficulty": "MEDIUM",
+      "executionMode": "batch",
+      "pageNumber": 1,
+      "companyTags": [
+        "Amazon",
+        "Netflix",
+        "Microsoft",
+        "Google"
+      ],
+      "keywords": [
+        "Spring Boot",
+        "Auto-Configuration",
+        "Dependency Injection",
+        "Spring Boot Starter",
+        "ConditionalOnMissingBean",
+        "Java 21",
+        "Spring Framework 6"
+      ],
+      "problemStatement": "Explain the internal mechanics of Spring Boot's Auto-Configuration engine. Specifically, detail how Spring Boot conditionally configures beans based on classpath dependencies, environment properties, and existing bean definitions. Implement a custom Spring Boot Auto-Configuration class using Java 21 that conditionally registers a service bean only if a specific property is set and no other bean of that type exists. Additionally, provide a conceptual equivalent in Python 3.12 demonstrating conditional dependency injection.",
+      "canonicalSolution": "Spring Boot Auto-Configuration is driven by the `@EnableAutoConfiguration` annotation, which is typically inherited via `@SpringBootApplication`. Under the hood, this annotation imports `AutoConfigurationImportSelector`. This class reads configuration candidates from `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports` (in Spring Boot 3.x / Spring Framework 6) or `META-INF/spring.factories` (in legacy Spring Boot 2.x).\n\nOnce the candidate configuration classes are loaded, Spring Boot filters them using `@Conditional` annotations. The evaluation happens in two distinct phases:\n1. **User Configuration Phase**: Spring first processes all user-defined beans (annotated with `@Component`, `@Configuration`, `@Bean`, etc.).\n2. **Auto-Configuration Phase**: Spring processes the auto-configuration classes. Because of this ordering, annotations like `@ConditionalOnMissingBean` can safely detect if a user has already defined a custom bean of that type and, if so, skip the auto-configured default.\n\nKey conditional annotations include:\n- `@ConditionalOnClass`: Evaluates to true if the specified classes are present on the classpath.\n- `@ConditionalOnMissingBean`: Evaluates to true if no bean of the specified type is already registered in the ApplicationContext.\n- `@ConditionalOnProperty`: Evaluates to true if a specific configuration property is present and matches a given value.",
+      "codeJava": "package com.example.config;\n\nimport org.springframework.boot.autoconfigure.AutoConfiguration;\nimport org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;\nimport org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;\nimport org.springframework.context.annotation.Bean;\n\n// Interface representing the service contract\ninterface PaymentGateway {\n    String processPayment(double amount);\n}\n\n// Production-grade implementation of the service\nclass StripePaymentGateway implements PaymentGateway {\n    private final String apiKey;\n\n    public StripePaymentGateway(String apiKey) {\n        this.apiKey = apiKey;\n    }\n\n    @Override\n    public String processPayment(double amount) {\n        return \"Processed $\" + amount + \" securely via Stripe.\";\n    }\n}\n\n// Custom Auto-Configuration class\n@AutoConfiguration\n@ConditionalOnProperty(name = \"app.payment.provider\", havingValue = \"stripe\", matchIfMissing = false)\npublic class PaymentAutoConfiguration {\n\n    @Bean\n    @ConditionalOnMissingBean(PaymentGateway.class)\n    public PaymentGateway paymentGateway() {\n        // In a real application, this would pull from Environment or ConfigurationProperties\n        String apiKey = System.getProperty(\"stripe.api.key\", \"default-test-key\");\n        return new StripePaymentGateway(apiKey);\n    }\n}",
+      "codePython": "from typing import Dict, Type, Callable, Any\nimport os\n\nclass PaymentGateway:\n    def process_payment(self, amount: float) -> str:\n        pass\n\nclass StripePaymentGateway(PaymentGateway):\n    def __init__(self, api_key: str):\n        self.api_key = api_key\n\n    def process_payment(self, amount: float) -> str:\n        return f\"Processed ${amount} securely via Stripe.\"\n\n# A lightweight Dependency Injection Container simulating Spring's conditional registration\nclass DIContainer:\n    def __init__(self) -> None:\n        self._registry: Dict[Type, Callable[[], Any]] = {}\n\n    def register_conditional(\n        self, \n        interface: Type,\n        condition_property: str,\n        expected_value: str\n    ) -> Callable[[Callable[[], Any]], Callable[[], Any]]:\n        def decorator(factory: Callable[[], Any]) -> Callable[[], Any]:\n            # Simulate @ConditionalOnProperty and @ConditionalOnMissingBean\n            env_value = os.getenv(condition_property)\n            if env_value == expected_value:\n                if interface not in self._registry:\n                    self._registry[interface] = factory\n            return factory\n        return decorator\n\n    def resolve(self, interface: Type) -> Any:\n        if interface in self._registry:\n            return self._registry[interface]()\n        raise RuntimeError(f\"No bean registered for type: {interface.__name__}\")\n\n# Usage Demonstration\ncontainer = DIContainer()\nos.environ[\"APP_PAYMENT_PROVIDER\"] = \"stripe\"\n\n@container.register_conditional(PaymentGateway, \"APP_PAYMENT_PROVIDER\", \"stripe\")\ndef auto_configure_stripe() -> PaymentGateway:\n    return StripePaymentGateway(api_key=\"sk_live_python_key\")\n\n# Resolve and verify\ngateway = container.resolve(PaymentGateway)\nprint(gateway.process_payment(150.00))",
+      "systemDesignTips": [
+        "Keep Auto-Configurations Modular: Avoid monolithic configuration classes. Split them by functional domain (e.g., Database, Security, Messaging) to optimize startup time and memory footprint.",
+        "Leverage Fail-Fast Properties: Use `@ConditionalOnProperty` with `havingValue` and `matchIfMissing` to allow graceful degradation or explicit opt-outs in cloud-native environments.",
+        "Optimize Classpath Scanning: Limit the base package scan scope and rely on explicit imports or auto-configuration selectors for external library integrations to prevent slow startup times in serverless environments (e.g., AWS Lambda)."
+      ],
+      "canonicalRubric": [
+        "Does the candidate correctly explain the transition from `spring.factories` to the new `AutoConfiguration.imports` file in Spring Boot 3.x?",
+        "Does the candidate demonstrate a deep understanding of `@ConditionalOnMissingBean` and its ordering implications (why auto-configurations run after user configurations)?",
+        "Is the provided code thread-safe, modular, and compliant with modern Java 21 / Spring Boot 3.x standards?"
+      ],
+      "createdAt": "2026-09-12T17:19:01.995Z"
+    },
+    {
+      "id": "prob_legacy_1788726107780",
+      "title": "Legacy Problem",
+      "category": "Data Structures & Algorithms",
+      "difficulty": "MEDIUM",
+      "executionMode": "batch",
+      "pageNumber": 9,
+      "companyTags": [
+        "General Tech"
+      ],
+      "keywords": [
+        "legacy problem"
+      ],
+      "problemStatement": "Legacy Problem",
+      "canonicalSolution": "",
+      "codeJava": "",
+      "codePython": "",
+      "systemDesignTips": [],
+      "canonicalRubric": [
+        "Correct technical concept explanation",
+        "Clean code implementation",
+        "Time and space complexity awareness"
+      ],
+      "createdAt": "2026-09-06T20:21:47.819Z"
+    },
+    {
+      "id": "prob_batch_1788726103276",
+      "title": "Two Sum Array Search",
+      "category": "Data Structures & Algorithms",
+      "difficulty": "EASY",
+      "executionMode": "batch",
+      "pageNumber": 8,
+      "companyTags": [
+        "General Tech"
+      ],
+      "keywords": [
+        "two sum array search"
+      ],
+      "problemStatement": "Read two integers from stdin and output their sum.",
+      "canonicalSolution": "",
+      "codeJava": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int a = sc.nextInt();\n        int b = sc.nextInt();\n        System.out.println(\"SUM=\" + (a + b));\n    }\n}",
+      "codePython": "",
+      "systemDesignTips": [],
+      "canonicalRubric": [
+        "Correct technical concept explanation",
+        "Clean code implementation",
+        "Time and space complexity awareness"
+      ],
+      "createdAt": "2026-09-06T20:21:43.293Z"
+    },
+    {
+      "id": "prob_interactive_1788726102920",
+      "title": "Student Career Profile Generator",
+      "category": "Core Java & JVM Internals",
+      "difficulty": "MEDIUM",
+      "executionMode": "interactive",
+      "pageNumber": 7,
+      "companyTags": [
+        "General Tech"
+      ],
+      "keywords": [
+        "student career profile generator"
+      ],
+      "problemStatement": "Interactive console application that asks student details step by step.",
+      "canonicalSolution": "",
+      "codeJava": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        System.out.print(\"Enter Student ID: \");\n        String id = sc.nextLine();\n        System.out.print(\"Enter Full Name: \");\n        String name = sc.nextLine();\n        System.out.println(\"VERIFIED:\" + id + \":\" + name);\n    }\n}",
+      "codePython": "",
+      "systemDesignTips": [],
+      "canonicalRubric": [
+        "Correct technical concept explanation",
+        "Clean code implementation",
+        "Time and space complexity awareness"
+      ],
+      "createdAt": "2026-09-06T20:21:43.270Z"
+    },
+    {
+      "id": "rag_doc_1788719245279",
+      "title": "Scalable URL Shortener System Design (Bit.ly Style)",
+      "category": "DevOps & Multi-Cloud Architecture",
+      "difficulty": "MEDIUM",
+      "pageNumber": 1,
+      "companyTags": [
+        "Google",
+        "Amazon",
+        "Meta",
+        "Microsoft"
+      ],
+      "keywords": [
+        "URL Shortener",
+        "System Design",
+        "Distributed Cache",
+        "Redis",
+        "Base62 Encoding",
+        "Database Sharding",
+        "High Read Throughput",
+        "Load Balancing"
+      ],
+      "problemStatement": "Design a highly scalable and available URL shortening service capable of handling millions of URL creations and very high read traffic (redirections). The system must generate unique, compact short codes, resolve them efficiently with low latency, and scale gracefully using caching and load balancing strategies.",
+      "canonicalSolution": "To design a scalable URL shortener like Bit.ly, the architecture must prioritize read performance over write performance, as redirections vastly outnumber URL generation requests. \n\n1. **Core Mechanics**: When a user submits a long URL, the service generates a unique short code. When a user requests the short code, the service performs an HTTP 301/302 redirect to the original long URL.\n\n2. **Short Code Generation**: \n   - Approach A: Hashing (MD5/SHA-256) the long URL and taking the first 6-8 characters, mapped to a Base62 alphabet (`[a-zA-Z0-9]`). This requires collision handling (e.g., appending a salt or counter if the hash exists).\n   - Approach B: Using a distributed unique ID generator (like Twitter Snowflake or a centralized database auto-increment ID counter) and converting that numeric ID to Base62. This eliminates collision issues entirely.\n\n3. **Database Selection**: \n   - NoSQL databases like Cassandra, DynamoDB, or MongoDB work well because of high write/read scalability and simple key-value retrieval patterns (ShortCode -> LongURL). \n   - Relational databases (PostgreSQL/MySQL) with sharding are also viable if transactional guarantees are needed.\n\n4. **Caching Layer (Redis)**: \n   - Hot URLs are accessed frequently. Placing a Redis cache in front of the database absorbs read traffic, reducing latency to sub-millisecond levels and protecting the database from hot-spot queries. Use an LRU (Least Recently Used) eviction policy.\n\n5. **Scalability & Load Balancing**: \n   - Deploy a Layer 7 Load Balancer (e.g., Nginx, AWS ALB) to distribute incoming traffic across multiple stateless application server instances. Scale out app servers horizontally behind the LB.",
+      "codeJava": "import java.util.HashMap;\nimport java.util.Map;\nimport java.util.concurrent.atomic.AtomicLong;\n\npublic class UrlShortenerService {\n    private static final String ALLOWED_CHARS = \"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\";\n    private static final int BASE = ALLOWED_CHARS.length();\n    \n    private final AtomicLong idGenerator = new AtomicLong(100000000L);\n    private final Map<String, String> urlDatabase = new HashMap<>();\n    private final Map<String, String> cache = new HashMap<>();\n\n    public String shortenUrl(String longUrl) {\n        long id = idGenerator.incrementAndGet();\n        String shortCode = encodeBase62(id);\n        urlDatabase.put(shortCode, longUrl);\n        cache.put(shortCode, longUrl);\n        return \"https://sho.rt/\" + shortCode;\n    }\n\n    public String resolveUrl(String shortCode) {\n        if (cache.containsKey(shortCode)) {\n            return cache.get(shortCode);\n        }\n        String longUrl = urlDatabase.get(shortCode);\n        if (longUrl != null) {\n            cache.put(shortCode, longUrl);\n        }\n        return longUrl;\n    }\n\n    private String encodeBase62(long id) {\n        StringBuilder sb = new StringBuilder();\n        while (id > 0) {\n            sb.append(ALLOWED_CHARS.charAt((int)(id % BASE)));\n            id /= BASE;\n        }\n        return sb.reverse().toString();\n    }\n\n    public static void main(String[] args) {\n        UrlShortenerService service = new UrlShortenerService();\n        String shortUrl = service.shortenUrl(\"https://www.example.com/very/long/path/to/resource\");\n        System.out.println(\"Generated: \" + shortUrl);\n        \n        String code = shortUrl.substring(shortUrl.lastIndexOf('/') + 1);\n        System.out.println(\"Resolved: \" + service.resolveUrl(code));\n    }\n}",
+      "codePython": "import string\n\nclass UrlShortenerService:\n    def __init__(self):\n        self.chars = string.ascii_letters + string.digits\n        self.base = len(self.chars)\n        self.id_counter = 100000000\n        self.url_database = {}\n        self.cache = {}\n\n    def _encode_base62(self, num: int) -> str:\n        if num == 0:\n            return self.chars[0]\n        result = []\n        while num > 0:\n            result.append(self.chars[num % self.base])\n            num //= self.base\n        return \"\".join(reversed(result))\n\n    def shorten_url(self, long_url: str) -> str:\n        self.id_counter += 1\n        short_code = self._encode_base62(self.id_counter)\n        self.url_database[short_code] = long_url\n        self.cache[short_code] = long_url\n        return f\"https://sho.rt/{short_code}\"\n\n    def resolve_url(self, short_code: str) -> str:\n        if short_code in self.cache:\n            return self.cache[short_code]\n        \n        long_url = self.url_database.get(short_code)\n        if long_url:\n            self.cache[short_code] = long_url\n        return long_url\n\nif __name__ == \"__main__\":\n    service = UrlShortenerService()\n    short_url = service.shorten_url(\"https://www.example.com/very/long/path/to/resource\")\n    print(f\"Generated: {short_url}\")\n    \n    code = short_url.split('/')[-1]\n    print(f\"Resolved: {service.resolve_url(code)}\")",
+      "systemDesignTips": [
+        "Prioritize HTTP 302 (Found) over HTTP 301 (Moved Permanently) for redirections if you need to track analytics (click counts, geographic data, device types) on the backend server before redirecting.",
+        "Implement cache eviction policies (such as Redis LRU/LFU) carefully to handle long-tail requests and prevent memory overflow from dormant custom short URLs.",
+        "Use a distributed ID generation scheme (e.g., Snowflake or Zookeeper-coordinated ranges) instead of single-database auto-incrementors to eliminate single points of failure during high-concurrency writes."
+      ],
+      "canonicalRubric": [
+        "Candidate correctly identifies and defends a scalable short-code generation strategy (Base62 encoding from sequential IDs or collision-resistant hashing).",
+        "Candidate designs an effective caching strategy (e.g., Redis with LRU eviction) to handle high read traffic and protect the primary datastore.",
+        "Candidate addresses high availability, load balancing, and horizontal scaling considerations for both read-heavy and write-intensive paths."
+      ],
+      "createdAt": "2026-09-06T18:27:37.259Z"
+    },
+    {
+      "id": "rag_doc_1788718523764",
+      "title": "Java 21 Platform Threads vs. Virtual Threads: Concurrency Model & Architecture",
+      "category": "Java Full Stack & System Design",
+      "difficulty": "MEDIUM",
+      "pageNumber": 1,
+      "companyTags": [
+        "Amazon",
+        "Google",
+        "Netflix",
+        "Microsoft"
+      ],
+      "keywords": [
+        "Java 21",
+        "Virtual Threads",
+        "Project Loom",
+        "Platform Threads",
+        "Concurrency",
+        "I/O Bound",
+        "Executors",
+        "System Design"
+      ],
+      "problemStatement": "Explain the architectural differences between traditional platform threads and Java 21 virtual threads, identify optimal use cases (such as I/O-bound workloads), detail their limitations regarding CPU-intensive tasks, and demonstrate how to implement them using modern executor services.",
+      "canonicalSolution": "Java 21 introduces Virtual Threads (Project Loom) as a lightweight concurrency construct managed entirely by the JVM, contrasting with traditional Platform Threads which map 1:1 to OS-level threads. Platform threads are expensive to create, consume significant memory (typically 1MB stack size), and are limited by OS resource constraints, making thread-per-request models inefficient for high-throughput I/O applications. Virtual threads, however, are cheap, require only a few hundred bytes of heap memory, and allow millions of concurrent instances.\n\nMechanics: When a virtual thread encounters a blocking I/O operation (e.g., database call, network socket read, file system access), the JVM unmounts the virtual thread from its underlying carrier platform thread, freeing the carrier to execute another virtual thread. Once the I/O operation completes, the JVM remounts the virtual thread to resume execution.\n\nLimitations: Virtual threads do not make CPU-bound computations faster. They share the same number of carrier threads (typically set to the number of available CPU cores via the ForkJoinPool parallelism) for CPU-bound tasks. Furthermore, code that performs frequent synchronization using synchronized blocks or native methods can experience 'pinning', where the carrier thread cannot be unmounted, reducing concurrency benefits.",
+      "codeJava": "import java.util.concurrent.Executors;\nimport java.time.Duration;\nimport java.util.stream.IntStream;\n\npublic class VirtualThreadDemo {\n    public static void main(String[] args) throws InterruptedException {\n        // Create an executor that spawns a new virtual thread for each submitted task\n        try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {\n            IntStream.range(0, 10).forEach(i -> {\n                executor.submit(() -> {\n                    System.out.println(\"Task \" + i + \" running on thread: \" + Thread.currentThread());\n                    try {\n                        // Simulate blocking I/O operation\n                        Thread.sleep(Duration.ofMillis(500));\n                    } catch (InterruptedException e) {\n                        Thread.currentThread().interrupt();\n                    }\n                    return i;\n                });\n            });\n        } // executor.close() waits for all tasks to complete\n        System.out.println(\"All virtual threads completed.\");\n    }\n}",
+      "codePython": "# Python 3.12 equivalent leveraging asyncio for concurrent I/O-bound tasks\nimport asyncio\nimport time\n\nasync def simulate_io_task(task_id: int):\n    print(f\"Task {task_id} starting I/O operation...\")\n    # Simulate non-blocking I/O via asyncio.sleep\n    await asyncio.sleep(0.5)\n    print(f\"Task {task_id} finished I/O operation.\")\n    return task_id\n\nasync def main():\n    start_time = time.time()\n    # Run 10 concurrent virtual-like tasks using Python's event loop\n    tasks = [simulate_io_task(i) for i in range(10)]\n    await asyncio.gather(*tasks)\n    end_time = time.time()\n    print(f\"All tasks completed in {end_time - start_time:.2f} seconds.\")\n\nif __name__ == \"__main__\":\n    asyncio.run(main())",
+      "systemDesignTips": [
+        "Adopt the thread-per-request programming style again: Avoid complex reactive programming libraries (like WebFlux) purely for scalability; use simple blocking calls inside virtual threads to drastically improve code readability and maintainability.",
+        "Do not pool virtual threads: Since virtual threads are extremely lightweight and cheap to create, pooling them defeats their design purpose. Always instantiate a new virtual thread per task using factories or Executors.newVirtualThreadPerTaskExecutor.",
+        "Beware of thread pinning: Avoid synchronized blocks or native methods in critical I/O paths where virtual threads execute, as this pins the carrier thread and temporarily reduces system concurrency."
+      ],
+      "canonicalRubric": [
+        "Accurately explains the 1:1 OS mapping of platform threads versus the JVM-managed nature and carrier thread unmounting mechanism of virtual threads.",
+        "Correctly identifies optimal scenarios (I/O-bound operations like API calls, DB queries) versus anti-patterns (CPU-heavy computations, heavy synchronization/pinning).",
+        "Demonstrates correct code implementation using Java 21 concurrency APIs (e.g., Executors.newVirtualThreadPerTaskExecutor) and explains resource management."
+      ],
+      "createdAt": "2026-09-06T18:15:30.274Z"
+    },
+    {
+      "id": "rag_doc_1788693956041",
+      "title": "Distributed Kafka Partition Rebalancing & Consumer Lag",
+      "category": "System Design & Microservices",
+      "difficulty": "HARD",
+      "pageNumber": 4,
+      "companyTags": [
+        "LinkedIn",
+        "Netflix",
+        "Amazon"
+      ],
+      "keywords": [
+        "kafka",
+        "partition rebalancing",
+        "consumer lag",
+        "group coordinator",
+        "heartbeat"
+      ],
+      "problemStatement": "How does Apache Kafka handle partition reassignment during consumer failure, and how do you prevent stop-the-world rebalance storms?",
+      "canonicalSolution": "In Apache Kafka, when a consumer fails to send heartbeats within session.timeout.ms, the Group Coordinator triggers a partition rebalance. To avoid stop-the-world rebalances, modern Kafka clusters use the Cooperative Sticky Assignor (KIP-429), which performs incremental cooperative rebalances, allowing non-affected consumers to continue processing without dropping active TCP connections.",
+      "codeJava": "// Configuring CooperativeStickyAssignor in Spring Boot Kafka\nprops.put(ConsumerConfig.PARTITION_ASSIGNMENT_STRATEGY_CONFIG, CooperativeStickyAssignor.class.getName());",
+      "codePython": "# Kafka Python Consumer Configuration\nconsumer = KafkaConsumer(bootstrap_servers=[\"localhost:9092\"], group_id=\"billing_group\", partition_assignment_strategy=[\"cooperative-sticky\"])",
+      "systemDesignTips": [],
+      "canonicalRubric": [
+        "Correct technical concept explanation",
+        "Clean code implementation",
+        "Time and space complexity awareness"
+      ],
+      "createdAt": "2026-09-06T11:25:56.041Z"
+    },
+    {
+      "id": "rag_doc_java21_virtual_threads",
+      "title": "Java 21 Virtual Threads & Project Loom Architecture",
+      "category": "Core Java & JVM Internals",
+      "difficulty": "HARD",
+      "pageNumber": 1,
+      "companyTags": [
+        "Google",
+        "Amazon",
+        "Netflix"
+      ],
+      "keywords": [
+        "virtual thread",
+        "loom",
+        "carrier thread",
+        "platform thread",
+        "blocking io",
+        "unmount",
+        "jvm",
+        "concurrency"
+      ],
+      "problemStatement": "Explain how Java 21 Virtual Threads differ from traditional Platform Threads in terms of memory footprint, OS kernel scheduling, and carrier thread unmounting during blocking I/O.",
+      "canonicalSolution": "Virtual threads (Project Loom in Java 21) are lightweight JVM-managed user-mode threads that map M:N onto OS carrier threads. Unlike platform threads which allocate ~1MB stack memory per thread, virtual threads require only a few hundred bytes initially on the JVM heap. When a virtual thread executes a blocking I/O operation (e.g. database query, HTTP call), the JVM automatically unmounts it from the underlying carrier thread and parks it in heap memory, allowing the carrier thread to execute other virtual threads with zero OS context-switching overhead.",
+      "codeJava": "try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {\n    IntStream.range(0, 10_000).forEach(i -> {\n        executor.submit(() -> {\n            Thread.sleep(Duration.ofMillis(100)); // Non-blocking unmount\n            return \"Task \" + i;\n        });\n    });\n}",
+      "codePython": "import asyncio\n\nasync def worker(task_id):\n    await asyncio.sleep(0.1)\n    return f\"Task {task_id}\"\n\nasync def main():\n    tasks = [worker(i) for i in range(10_000)]\n    await asyncio.gather(*tasks)",
+      "systemDesignTips": [
+        "Never pool Virtual Threads (Executors.newFixedThreadPool is obsolete for I/O tasks).",
+        "Avoid synchronized blocks when doing I/O to prevent thread pinning; use ReentrantLock instead."
+      ],
+      "canonicalRubric": [
+        "Explains M:N mapping between Virtual Threads and OS Carrier Threads",
+        "Details heap-allocated stack frames vs 1MB OS stack limit",
+        "Mentions carrier thread unmounting on blocking I/O and thread pinning with synchronized"
+      ]
+    },
+    {
+      "id": "rag_doc_redis_distributed_locking",
+      "title": "High-Throughput Redis Distributed Locking (Redlock) & Idempotency",
+      "category": "System Design & Microservices",
+      "difficulty": "HARD",
+      "pageNumber": 2,
+      "companyTags": [
+        "Stripe",
+        "Amazon",
+        "Razorpay",
+        "Uber"
+      ],
+      "keywords": [
+        "redis",
+        "distributed lock",
+        "redlock",
+        "idempotency",
+        "setnx",
+        "lua script",
+        "concurrency",
+        "payment"
+      ],
+      "problemStatement": "Design an idempotent distributed payment processing engine handling 25,000 requests/sec with zero duplicate charges during database failover.",
+      "canonicalSolution": "Client passes an Idempotency-Key header. API Gateway checks Redis with atomic SETNX. If key exists, cached transaction status is returned immediately. If new, a distributed Redlock with TTL is acquired across Redis nodes, payment intent is published to Kafka with Dead-Letter Queue retry backoff, and database is updated using optimistic locking (@Version). Upon commit, status is cached in Redis with a 24-hour TTL.",
+      "codeJava": "@Transactional\npublic PaymentResponse processPayment(String idempotencyKey, PaymentRequest req) {\n    Boolean acquired = redisTemplate.opsForValue()\n        .setIfAbsent(\"lock:\" + idempotencyKey, \"LOCKED\", Duration.ofSeconds(10));\n    if (Boolean.FALSE.equals(acquired)) {\n        return getCachedResponse(idempotencyKey);\n    }\n    try {\n        Payment payment = new Payment(req);\n        paymentRepository.save(payment);\n        return new PaymentResponse(\"SUCCESS\", payment.getId());\n    } finally {\n        releaseLockLua(idempotencyKey);\n    }\n}",
+      "codePython": "def process_payment(idempotency_key, request):\n    acquired = redis_client.set(f\"lock:{idempotency_key}\", \"LOCKED\", nx=True, ex=10)\n    if not acquired:\n        return get_cached_response(idempotency_key)\n    try:\n        payment = save_payment_db(request)\n        return {\"status\": \"SUCCESS\", \"id\": payment.id}\n    finally:\n        release_lock_lua(idempotency_key)",
+      "systemDesignTips": [
+        "Always use atomic Lua scripts to release locks (check value matches UUID before DEL).",
+        "Set reasonable lock lease TTL with renewal heartbeats for long-running workflows."
+      ],
+      "canonicalRubric": [
+        "Mentions Redis atomic SETNX with expiration TTL",
+        "Covers Lua script atomic release to avoid unlocking another thread's lock",
+        "Includes database optimistic locking (@Version) for defense-in-depth"
+      ]
+    },
+    {
+      "id": "rag_doc_spring_security_jwt",
+      "title": "Spring Boot 3 & Spring Security 6 Stateless JWT Authentication",
+      "category": "Spring Boot 3 & Security",
+      "difficulty": "MEDIUM",
+      "pageNumber": 3,
+      "companyTags": [
+        "Microsoft",
+        "Oracle",
+        "Goldman Sachs"
+      ],
+      "keywords": [
+        "spring boot",
+        "spring security 6",
+        "jwt",
+        "stateless",
+        "onceperrequestfilter",
+        "rbac",
+        "security filter chain"
+      ],
+      "problemStatement": "How do you implement stateless JWT authentication in Spring Boot 3 without creating HTTP session cookies?",
+      "canonicalSolution": "Configure a SecurityFilterChain bean setting SessionCreationPolicy.STATELESS. Create a custom OncePerRequestFilter that extracts the Bearer token from the Authorization header, validates signature and expiration with HMAC-SHA256, loads user authorities, and sets the UsernamePasswordAuthenticationToken in SecurityContextHolder.",
+      "codeJava": "@Bean\npublic SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {\n    return http\n        .csrf(AbstractHttpConfigurer::disable)\n        .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))\n        .authorizeHttpRequests(auth -> auth\n            .requestMatchers(\"/api/auth/**\").permitAll()\n            .anyRequest().authenticated()\n        )\n        .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)\n        .build();\n}",
+      "codePython": "# FastAPI Equivalent JWT Middleware\nfrom fastapi import Depends, HTTPException, Security\nfrom fastapi.security import HTTPBearer, HTTPAuthorizationCredentials\n\nsecurity = HTTPBearer()\ndef verify_jwt(credentials: HTTPAuthorizationCredentials = Security(security)):\n    token = credentials.credentials\n    payload = jwt.decode(token, SECRET_KEY, algorithms=[\"HS256\"])\n    return payload",
+      "systemDesignTips": [
+        "Disable CSRF only when using stateless Bearer tokens with no cookies.",
+        "Store JWT Secret Keys securely in AWS Secrets Manager or HashiCorp Vault."
+      ],
+      "canonicalRubric": [
+        "Mentions SessionCreationPolicy.STATELESS",
+        "Implements OncePerRequestFilter before UsernamePasswordAuthenticationFilter",
+        "Properly sets SecurityContextHolder with user roles"
+      ]
+    }
+  ]
+}

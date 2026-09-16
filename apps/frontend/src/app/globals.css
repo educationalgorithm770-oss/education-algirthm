@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Outfit', var(--font-sans), sans-serif;
+  }
+}
+
+/* Custom Keyframe Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.08); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-float { animation: float 4s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulseGlow 6s ease-in-out infinite; }
+
+.shimmer-text {
+  background: linear-gradient(90deg, #4f46e5 0%, #a855f7 50%, #4f46e5 100%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Glassmorphism Effect */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+}
+
+/* ==========================================================================
+   Modern Professional Dropdown & Select Styling
+   ========================================================================== */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 0.75rem center !important;
+  background-size: 0.9em 0.9em !important;
+  padding-right: 2.5rem !important;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+/* Dark mode select arrow & options */
+.dark select,
+.bg-slate-900 select,
+.bg-slate-800 select {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+}
+
+select:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25) !important;
+}
+
+select option {
+  background-color: #ffffff;
+  color: #0f172a;
+  padding: 10px 14px;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.bg-slate-900 select option,
+.bg-slate-800 select option,
+.text-white select option {
+  background-color: #0f172a;
+  color: #f8fafc;
+}
+

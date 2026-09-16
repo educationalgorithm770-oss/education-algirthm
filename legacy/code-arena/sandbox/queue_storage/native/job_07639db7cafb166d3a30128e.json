@@ -1,0 +1,1 @@
+{"id":"job_07639db7cafb166d3a30128e","submission_id":247,"student_id":0,"challenge_id":0,"language":"javascript","job_type":"NATIVE","code":"console.log('JS Diagnostic Test Success');\nconst val = 100 * 5;\nconsole.log('Val:', val);","custom_input":"","enqueued_at":1787599055}

@@ -1,0 +1,221 @@
+<?php
+/**
+ * services/code-runner/server.php — Dedicated Isolated Code Execution Microservice
+ * Enforces strict ephemeral Docker sandboxing, process timeouts, resource limits, and token authentication.
+ */
+header('Content-Type: application/json');
+
+// 1. Verify Internal Authentication Token
+$expectedToken = getenv('CODE_RUNNER_TOKEN') ?: 'sec_token_9999';
+$incomingToken = $_SERVER['HTTP_X_INTERNAL_TOKEN'] ?? ($_SERVER['HTTP_X_CSRF_TOKEN'] ?? '');
+
+if (empty($incomingToken) || !hash_equals($expectedToken, $incomingToken)) {
+    http_response_code(403);
+    echo json_encode(['success' => false, 'error' => 'Unauthorized: Invalid runner service token.', 'verdict' => 'SANDBOX_ERROR']);
+    exit;
+}
+
+// 2. Parse Execution Request Payload
+$rawInput = file_get_contents('php://input');
+$payload = json_decode($rawInput, true) ?: [];
+
+$language   = strtolower(trim((string)($payload['language'] ?? 'javascript')));
+$code       = (string)($payload['code'] ?? '');
+$stdinInput = (string)($payload['input'] ?? '');
+
+// Resource limits enforcement
+$maxCodeSize = 50 * 1024;       // 50 KB
+$maxInputSize = 20 * 1024;      // 20 KB
+$maxOutputSize = 64 * 1024;     // 64 KB
+
+if (empty($code)) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'error' => 'Code payload is empty.', 'verdict' => 'COMPILATION_ERROR']);
+    exit;
+}
+
+if (strlen($code) > $maxCodeSize) {
+    http_response_code(413);
+    echo json_encode(['success' => false, 'error' => 'Code size exceeds maximum limit of 50 KB.', 'verdict' => 'RESOURCE_LIMIT_EXCEEDED']);
+    exit;
+}
+
+if (strlen($stdinInput) > $maxInputSize) {
+    http_response_code(413);
+    echo json_encode(['success' => false, 'error' => 'Custom input exceeds maximum limit of 20 KB.', 'verdict' => 'RESOURCE_LIMIT_EXCEEDED']);
+    exit;
+}
+
+$sandboxImage = getenv('RUNNER_SANDBOX_IMAGE') ?: 'education-sandbox:latest';
+
+$sandboxDir = sys_get_temp_dir() . '/code_' . bin2hex(random_bytes(16));
+if (!mkdir($sandboxDir, 0700, true) && !is_dir($sandboxDir)) {
+    http_response_code(500);
+    echo json_encode(['success' => false, 'error' => 'Unable to prepare execution sandbox.', 'verdict' => 'SANDBOX_ERROR']);
+    exit;
+}
+
+$startMicro = microtime(true);
+$output = '';
+$exitCode = 1;
+$sourceFile = '';
+$command = '';
+$isCompiled = false;
+$compileCommand = '';
+
+// Language-specific compilation & execution commands
+if ($language === 'python' || $language === 'py') {
+    $sourceFile = 'solution.py';
+    $command = 'python3 /workspace/' . $sourceFile;
+} elseif ($language === 'javascript' || $language === 'js' || $language === 'node') {
+    $sourceFile = 'solution.js';
+    $command = 'node /workspace/' . $sourceFile;
+} elseif ($language === 'java') {
+    // Extract public class name or default to Solution / Main
+    $className = 'Solution';
+    if (preg_match('/public\s+class\s+(\w+)/', $code, $classMatch)) {
+        $className = $classMatch[1];
+    }
+    $sourceFile = $className . '.java';
+    $isCompiled = true;
+    $command = 'javac -d /tmp /workspace/' . $sourceFile . ' && java -cp /tmp ' . $className;
+} elseif ($language === 'cpp' || $language === 'c++') {
+    $sourceFile = 'solution.cpp';
+    $isCompiled = true;
+    $command = 'g++ -O2 -std=c++20 /workspace/' . $sourceFile . ' -o /tmp/solution_bin && /tmp/solution_bin';
+} elseif ($language === 'sql') {
+    $sourceFile = 'solution.sql';
+    $command = 'python3 /usr/local/bin/sql_runner.py /workspace/' . $sourceFile;
+} else {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'error' => 'Unsupported programming language: ' . htmlspecialchars($language), 'verdict' => 'SANDBOX_ERROR']);
+    if (is_dir($sandboxDir)) { @rmdir($sandboxDir); }
+    exit;
+}
+
+file_put_contents($sandboxDir . '/' . $sourceFile, $code, LOCK_EX);
+
+$containerName = 'ea_exec_' . bin2hex(random_bytes(12));
+$docker = [
+    'docker', 'run', '--rm', '--name', $containerName,
+    '--network', 'none',
+    '--memory', '256m', '--memory-swap', '256m',
+    '--cpus', '0.5',
+    '--pids-limit', '64',
+    '--read-only',
+    '--tmpfs', '/tmp:size=64m,mode=1777',
+    '--security-opt', 'no-new-privileges:true',
+    '--cap-drop', 'ALL',
+    '--user', '65532:65532',
+    '--mount', 'type=bind,src=' . $sandboxDir . ',dst=/workspace,readonly',
+    '--workdir', '/workspace',
+    $sandboxImage,
+    $command
+];
+
+$cmd = implode(' ', array_map('escapeshellarg', $docker));
+$descriptors = [0 => ['pipe', 'r'], 1 => ['pipe', 'w'], 2 => ['pipe', 'w']];
+$proc = @proc_open($cmd, $descriptors, $pipes, null, ['PATH' => getenv('PATH') ?: '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin']);
+
+$verdict = 'RUNTIME_ERROR';
+
+if (is_resource($proc)) {
+    if ($stdinInput !== '') {
+        @fwrite($pipes[0], $stdinInput);
+    }
+    @fclose($pipes[0]);
+
+    stream_set_blocking($pipes[1], false);
+    stream_set_blocking($pipes[2], false);
+
+    $timeoutSec = 3.0; // Strict 3.0-second execution timeout
+    $deadline = microtime(true) + $timeoutSec;
+    $stdout = '';
+    $stderr = '';
+    $timedOut = false;
+
+    while (true) {
+        $stdoutChunk = fread($pipes[1], 4096);
+        $stderrChunk = fread($pipes[2], 4096);
+        if ($stdoutChunk !== false && $stdoutChunk !== '') $stdout .= $stdoutChunk;
+        if ($stderrChunk !== false && $stderrChunk !== '') $stderr .= $stderrChunk;
+
+        if (strlen($stdout) + strlen($stderr) > $maxOutputSize) {
+            @proc_terminate($proc, 9);
+            $timedOut = true;
+            $output = 'Output Limit Exceeded: output volume exceeded 64 KB limit.';
+            $exitCode = 125;
+            $verdict = 'OUTPUT_LIMIT_EXCEEDED';
+            break;
+        }
+
+        $status = proc_get_status($proc);
+        if (!$status['running']) {
+            $exitCode = (int)$status['exitcode'];
+            break;
+        }
+
+        if (microtime(true) > $deadline) {
+            @proc_terminate($proc, 9);
+            $timedOut = true;
+            $output = 'Time Limit Exceeded: program execution exceeded 3.0 seconds limit.';
+            $exitCode = 124;
+            $verdict = 'TIME_LIMIT_EXCEEDED';
+            break;
+        }
+
+        usleep(10000); // 10ms poll
+    }
+
+    if (!$timedOut) {
+        $output = $stdout !== '' ? $stdout : $stderr;
+        if ($exitCode === 0) {
+            $verdict = 'SUCCESS';
+        } else {
+            // Distinguish compile error vs runtime error
+            if ($isCompiled && (str_contains($stderr, 'error:') || str_contains($stderr, 'SyntaxError') || str_contains($output, 'error:'))) {
+                $verdict = 'COMPILATION_ERROR';
+            } else {
+                $verdict = 'RUNTIME_ERROR';
+            }
+        }
+    }
+
+    @fclose($pipes[1]);
+    @fclose($pipes[2]);
+    @proc_close($proc);
+} else {
+    // Docker execution service is unavailable
+    http_response_code(503);
+    echo json_encode([
+        'success'           => false,
+        'error'             => 'Execution service unavailable. Docker sandbox daemon is offline.',
+        'verdict'           => 'SANDBOX_ERROR',
+        'exit_code'         => 503,
+        'execution_time_ms' => 0
+    ]);
+    if (is_dir($sandboxDir)) {
+        foreach (glob($sandboxDir . '/*') ?: [] as $f) @unlink($f);
+        @rmdir($sandboxDir);
+    }
+    exit;
+}
+
+// Clean up ephemeral workspace
+if (is_dir($sandboxDir)) {
+    foreach (glob($sandboxDir . '/*') ?: [] as $f) @unlink($f);
+    @rmdir($sandboxDir);
+}
+
+$execMs = max(5, round((microtime(true) - $startMicro) * 1000));
+$successfulExecution = ($exitCode === 0);
+
+echo json_encode([
+    'success'           => $successfulExecution,
+    'output'            => trim($output),
+    'stderr'            => trim($stderr),
+    'exit_code'         => $exitCode,
+    'verdict'           => $verdict,
+    'execution_time_ms' => $execMs,
+    'memory_kb'         => null
+]);

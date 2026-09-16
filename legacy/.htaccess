@@ -1,0 +1,78 @@
+DirectoryIndex index.php index.html
+# ==========================================================
+# Education Algorithm — Production Apache Configuration
+# ==========================================================
+
+<IfModule mod_negotiation.c>
+    Options -MultiViews
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+
+<IfModule mod_autoindex.c>
+    Options -Indexes
+</IfModule>
+
+<FilesMatch "(^\.env|\.sql$|\.log$|\.bak$|\.git|composer\.(json|lock)|README\.md|schema\.sql)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order deny,allow
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Prevent internal rewrite loops
+    RewriteCond %{ENV:REDIRECT_STATUS} 200
+    RewriteRule ^ - [L]
+
+    # Explicit Clean URL Routing
+    RewriteRule ^courses\.html$ courses.php [L,QSA]
+    RewriteRule ^courses$ courses.php [L,QSA]
+    RewriteRule ^internships\.html$ internships.html [L,QSA]
+    RewriteRule ^internships$ internships.html [L,QSA]
+    RewriteRule ^about\.html$ about.html [L,QSA]
+    RewriteRule ^about$ about.html [L,QSA]
+    RewriteRule ^contact\.html$ contact.html [L,QSA]
+    RewriteRule ^contact$ contact.html [L,QSA]
+    RewriteRule ^outcomes\.html$ outcomes.html [L,QSA]
+    RewriteRule ^outcomes$ outcomes.html [L,QSA]
+    RewriteRule ^privacy-policy$ privacy-policy.html [L,QSA]
+    RewriteRule ^shipping-policy$ shipping-policy.html [L,QSA]
+    RewriteRule ^terms$ terms.html [L,QSA]
+
+    # Explicitly route workshop pages
+    RewriteRule ^java-full-stack-workshop/day-1$ java-full-stack-workshop/day-1.php [L,QSA]
+    RewriteRule ^java-full-stack-workshop/day-2$ java-full-stack-workshop/day-2.php [L,QSA]
+
+    # Explicitly route scholarship & enrollment routes
+    RewriteRule ^enroll$ enroll.php [L,QSA]
+    RewriteRule ^scholarship/success$ scholarship-success.php [L,QSA]
+    RewriteRule ^scholarship-success$ scholarship-success.php [L,QSA]
+    RewriteRule ^scholarship-confirm$ scholarship-confirm.php [L,QSA]
+    RewriteRule ^scholarship$ scholarship.php [L,QSA]
+    RewriteRule ^student-scholarships$ student-scholarships.php [L,QSA]
+    RewriteRule ^admin-scholarships$ admin-scholarships.php [L,QSA]
+    RewriteRule ^java-full-stack-roadmap$ java-full-stack-roadmap.php [L,QSA]
+    RewriteRule ^curriculum$ java-full-stack-roadmap.php [L,QSA]
+    RewriteRule ^java-preview$ java-preview.php [L,QSA]
+
+    # Clean URL support: serve .php files first
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME}.php -f
+    RewriteRule ^(.*)$ $1.php [L,QSA]
+
+    # Clean URL support: serve .html files without extension in URL
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME}.html -f
+    RewriteRule ^(.*)$ $1.html [L,QSA]
+</IfModule>

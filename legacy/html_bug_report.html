@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Static Routing Bug (BUG-003) Guide • Education Algorithm</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #090d16;
+            --bg-card: #0f172a;
+            --bg-subtle: #1e293b;
+            --border-color: #334155;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-primary: #6366f1;
+            --critical-red: #ef4444;
+            --high-orange: #f97316;
+            --pass-green: #10b981;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        .header {
+            background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 { font-size: 1.75rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem; }
+        .header p { color: var(--text-muted); font-size: 0.9rem; }
+
+        .section-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-card h2 { font-size: 1.25rem; font-weight: 800; color: #fff; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+
+        .issue-list { list-style: none; }
+        .issue-item {
+            background: var(--bg-primary);
+            border: 1px solid var(--bg-subtle);
+            border-radius: 10px;
+            padding: 1.15rem;
+            margin-bottom: 1rem;
+        }
+        .issue-item h3 { font-size: 0.95rem; font-weight: 700; color: var(--high-orange); margin-bottom: 0.35rem; }
+        .issue-item p { font-size: 0.88rem; color: #cbd5e1; }
+
+        .code-box {
+            background: #070a11;
+            border: 1px solid #1e293b;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            color: #38bdf8;
+            overflow-x: auto;
+            white-space: pre;
+            margin-top: 0.75rem;
+        }
+
+        .diff-remove { color: #fca5a5; background: rgba(239, 68, 68, 0.15); display: block; padding: 0.15rem 0.4rem; border-radius: 4px; }
+        .diff-add { color: #86efac; background: rgba(16, 185, 129, 0.15); display: block; padding: 0.15rem 0.4rem; border-radius: 4px; margin-top: 0.25rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>BUG-003 Explanation & Solution Guide</h1>
+            <p>Inconsistent File Extension Links in Static HTML Templates • Workspace: <code>c:\xampp\htdocs\project3</code></p>
+        </header>
+
+        <div class="section-card">
+            <h2>🔍 What is BUG-003?</h2>
+            <p>In your static template files (<code>about.html</code>, <code>courses.html</code>, <code>contact.html</code>, <code>index.html</code>), header and footer navigation links contain explicit <code>.html</code> and <code>.php</code> extensions in anchor <code>href</code> tags (e.g. <code>href="courses.html"</code> or <code>href="login.php"</code>).</p>
+            <p style="margin-top:0.5rem;">Meanwhile, your <code>.htaccess</code> routing rules are configured for <strong>clean, extensionless URLs</strong> (e.g. <code>http://localhost/project3/courses</code>).</p>
+        </div>
+
+        <div class="section-card">
+            <h2>⚠️ What Issues Will You Face If Not Fixed?</h2>
+            <div class="issue-list">
+                <div class="issue-item">
+                    <h3>1. SEO Duplicate Content Penalty (Canonical URL Mismatch)</h3>
+                    <p>Search engines like Google index both <code>/courses</code> and <code>/courses.html</code> as two separate pages with identical content, causing duplicate content penalties that lower search rankings.</p>
+                </div>
+                <div class="issue-item">
+                    <h3>2. Inconsistent Navigation Experience for Students</h3>
+                    <p>When students click top navigation links, the URL bar jumps back and forth between clean routes (<code>/courses</code>) and file extension routes (<code>/courses.html</code>), creating an unpolished brand experience.</p>
+                </div>
+                <div class="issue-item">
+                    <h3>3. Broken Links When Migrating to PHP Routing</h3>
+                    <p>If you convert <code>courses.html</code> into dynamic <code>courses.php</code> in the future, links pointing explicitly to <code>href="courses.html"</code> will throw HTTP 404 Not Found errors.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <h2>🛠️ How to Fix It (Code Diff)</h2>
+            <p>Open <code>about.html</code>, <code>courses.html</code>, <code>contact.html</code>, and <code>index.html</code>. Replace all explicit file extensions in <code>href</code> attributes with clean extensionless routes:</p>
+            
+            <div class="code-box">
+<span class="diff-remove">- &lt;a href="courses.html" class="nav-link"&gt;Courses&lt;/a&gt;</span>
+<span class="diff-add">+ &lt;a href="courses" class="nav-link"&gt;Courses&lt;/a&gt;</span>
+
+<span class="diff-remove">- &lt;a href="contact.html" class="nav-link"&gt;Admissions&lt;/a&gt;</span>
+<span class="diff-add">+ &lt;a href="contact" class="nav-link"&gt;Admissions&lt;/a&gt;</span>
+
+<span class="diff-remove">- &lt;a href="login.php" class="btn btn-secondary"&gt;Student LMS&lt;/a&gt;</span>
+<span class="diff-add">+ &lt;a href="login" class="btn btn-secondary"&gt;Student LMS&lt;/a&gt;</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
