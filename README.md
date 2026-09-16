@@ -1,4 +1,4 @@
-# ?? Education Algorithm — Next-Gen LMS & Career Acceleration Platform
+ï»¿# ?? Education Algorithm â€” Next-Gen LMS & Career Acceleration Platform
 
 [![Next.js](https://img.shields.io/badge/Next.js-15.0+-black?style=flat&logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19.0+-blue?style=flat&logo=react)](https://react.dev/)
@@ -82,4 +82,4 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-© 2026 **Education Algorithm**. All rights reserved.
+Â© 2026 **Education Algorithm**. All rights reserved.
