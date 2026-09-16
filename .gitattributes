@@ -1,9 +1,13 @@
 # GitHub Linguist Language Configuration
-# Ignores legacy PHP archive and database dumps from repository language breakdown
+# Ignores legacy PHP archive, database dumps, android builds, and static HTML files from language breakdown
 
 legacy/** linguist-vendored
 legacy/** linguist-documentation
 db/** linguist-vendored
 *.sql linguist-vendored
 *.json linguist-generated
+*.html linguist-documentation
+**/*.html linguist-documentation
+apps/frontend/android/** linguist-vendored
+apps/frontend/public/** linguist-vendored
 job-preview.html linguist-vendored
