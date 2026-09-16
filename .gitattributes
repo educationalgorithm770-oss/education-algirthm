@@ -1,0 +1,9 @@
+# GitHub Linguist Language Configuration
+# Ignores legacy PHP archive and database dumps from repository language breakdown
+
+legacy/** linguist-vendored
+legacy/** linguist-documentation
+db/** linguist-vendored
+*.sql linguist-vendored
+*.json linguist-generated
+job-preview.html linguist-vendored
